@@ -51,7 +51,7 @@ createGuard = function(req,res){
                   city:city,
                   zipcode:zipcode,
                   phonenumber:phonenumber
-                  },
+        		},
         function(err,result){
           if(err) {
             res.status(500).json({ status : 500, message : "Please try again later" });

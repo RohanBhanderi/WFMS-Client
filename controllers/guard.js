@@ -11,7 +11,7 @@ createGuard = function(req,res){
 	}
 	else
 		{
-    console.log("create guard inside");
+		/* console.log("create guard inside");
     var pwu = req.body.password;
     var un = req.body.email;
     var fn = req.body.fname;
@@ -77,7 +77,18 @@ createGuard = function(req,res){
           }
         });
       }
-    });
+    });*/
+		var msgPayload = {
+			operation : "createGuard",
+			message : req.body
+		};
+		mq_client.make_request('guard_queue',msgPayload,function(err,results){
+		if(err){
+			res.status(err.status).json(err);
+		}else{
+			res.status(results.status).json(results);
+		}
+	});
 		}
 };
 
@@ -87,6 +98,22 @@ updateGuard = function(req,res){
 	if(!req.params.idguard || !req.body.start_date || !req.body.end_date){
 		res.status(400).json({ status : 400, message : "Bad Request" });
 	}else{
+		var msgPayload = {
+				operation : "updateGuard",
+				message : {
+				body:	req.body,
+				idguard: 	req.params.idguard
+				}
+			};
+			mq_client.make_request('guard_queue',msgPayload,function(err,results){
+			if(err){
+				res.status(err.status).json(err);
+			}else{
+				res.status(results.status).json(results);
+			}
+		});
+		
+		/*
 		var newParam ={
 				
 				weekly_working_set : req.body.weekly_working_set,
@@ -133,12 +160,14 @@ updateGuard = function(req,res){
 			});
 				}
 		});
+		*/
 	}
 };
 
 
 
 listAllGuards=function(req,res){
+	/*
 	mysql.queryDb('select * from guard left join person on guard.idperson = person.idperson',function(err,rows){
 		if (err) {
 			console.log("Error while listing all the guard details !!!"  + err);
@@ -147,6 +176,19 @@ listAllGuards=function(req,res){
 			res.status(200).json({ status : 200, data : rows});
 		}
 	});
+	*/
+	var msgPayload = {
+			operation : "listAllGuards",
+			message : req.body
+		};
+
+		mq_client.make_request('guard_queue',msgPayload,function(err,results){
+			if(err){
+				res.status(err.status).json(err);
+			}else{
+				res.status(results.status).json(results);
+			}
+		});
 };
 
 
@@ -156,6 +198,27 @@ deleteGuard=function(req,res){
 		res.status(400).json({ status : 400, message : "Bad Request" });
 	}else{
 		
+		var msgPayload = {
+				operation : "deleteGuard",
+				message : {
+					idguard :req.params.idguard
+					
+				}
+				
+				
+			};
+
+			mq_client.make_request('guard_queue',msgPayload,function(err,results){
+				if(err){
+					res.status(err.status).json(err);
+				}else{
+					res.status(results.status).json(results);
+				}
+			});
+			
+			
+			
+		/*
 		idguard = req.params.idguard
 		
 		mysql.queryDb('DELETE FROM guard WHERE ?',[{idguard:idguard}],function(err,response){
@@ -167,6 +230,7 @@ deleteGuard=function(req,res){
 				res.status(200).json({ status : 200, message : "Guard details has been deleted Succesfully" });
 			}
 		});
+		*/
 	}
 };
 
@@ -177,6 +241,25 @@ getGuard=function(req,res){
 		res.status(400).json({ status : 400, message : "Bad Request" });
 	}else{ 
 		
+		var msgPayload = {
+				operation : "getGuard",
+				message : {
+					idguard :req.params.idguard ,
+					
+				}
+				
+			};
+
+			mq_client.make_request('guard_queue',msgPayload,function(err,results){
+				if(err){
+					res.status(err.status).json(err);
+				}else{
+					res.status(results.status).json(results);
+				}
+			});
+		
+		
+		/*
 		idguard = req.params.idguard,
 		mysql.queryDb('SELECT * FROM guard WHERE ?',[{idguard:idguard}],function(err,rows){
 
@@ -186,6 +269,7 @@ getGuard=function(req,res){
 				res.status(200).json({ status : 200, data : rows });
 			}
 		});
+		*/
 	}
 };
 
@@ -193,6 +277,24 @@ getGuard=function(req,res){
 //Will use filter in angular on these names returned
 
 searchGuard=function(req,res){
+	
+	var msgPayload = {
+			operation : "searchGuard",
+			message : {}
+				
+			
+			
+		};
+
+		mq_client.make_request('guard_queue',msgPayload,function(err,results){
+			if(err){
+				res.status(err.status).json(err);
+			}else{
+				res.status(results.status).json(results);
+			}
+		});
+		
+		/*
 	mysql.queryDb('select concat(?? , " " , ??) as name, ?? from person left outer join login on ?? = ?? where login.type= "Guard"',['person.fname','person.lname','person.email','person.idperson','login.idperson','Guard'],function(err,rows){
 		if (err) {
 			console.log("Error while listing all the guard details !!!"  + err);
@@ -201,6 +303,7 @@ searchGuard=function(req,res){
 			res.status(200).json({ status : 200, data : rows});
 		}
 	});
+	*/
 };
 
 

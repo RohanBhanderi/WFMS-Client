@@ -31,7 +31,7 @@
                               <tr ng-repeat="client in clientListResults">
                                  <td class="text-center">{{client.fname}}</td>
                                  <td class="text-center">{{client.lname}}</td>
-                                 <td class="text-center">{{{ billingInfo | sumByKey: 'Amount_Due'}}</td>
+                                 <td class="text-center">{{ billingInfo | sumByKey: 'Amount_Due'}}</td>
                                  <td class="text-center">{{client.start_date | date : 'mediumDate'}}</td>
                                  <td class="text-center">{{client.end_date | date : 'mediumDate'}}</td>
                                  <td class="text-center">{{client.address}}</td>

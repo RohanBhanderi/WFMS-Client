@@ -53,6 +53,7 @@ wfms.controller("clientBillingInfo", function($scope, $rootScope,
             sum += parseInt(data[i][key]);
         }
         console.log("Sum:"+sum);
+        
         return sum;
     };
 });

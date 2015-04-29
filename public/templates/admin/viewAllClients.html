@@ -14,7 +14,6 @@
                                  <th class="text-center">First Name</th>
                                  <th class="text-center">Last Name</th>
                                  <th class="text-center">Monthly Service Fees</th>
-                                 <th class="text-center">Balance</th>
                                  <th class="text-center">Start Date</th>
                                  <th class="text-center">End Date</th>
                                  <th class="text-center">Address</th>
@@ -32,8 +31,7 @@
                               <tr ng-repeat="client in clientListResults">
                                  <td class="text-center">{{client.fname}}</td>
                                  <td class="text-center">{{client.lname}}</td>
-                                 <td class="text-center">{{client.monthly_service}}</td>
-                                 <td class="text-center">{{client.balance}}</td>
+                                 <td class="text-center">{{{ billingInfo | sumByKey: 'Amount_Due'}}</td>
                                  <td class="text-center">{{client.start_date | date : 'mediumDate'}}</td>
                                  <td class="text-center">{{client.end_date | date : 'mediumDate'}}</td>
                                  <td class="text-center">{{client.address}}</td>

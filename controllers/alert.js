@@ -2,35 +2,215 @@ var dateutil = require('../util/dateutil'),
 	moment = require('moment');
 var mq_client = require('../rpc/client');
 
-createAlert = function(req,res){
-	console.log(JSON.stringify(req.body));
-	console.log("This Api will be adding the alert");
-	console.log(req.body.idbuilding);
-	if(!req.body.idbuilding || !req.body.idreport || !req.body.severity || !req.body.date || !req.body.idguard){
-		res.status(400).json({status : 400, message : "Bad Request"});
-	 } else {
+createAlert = function(req, res) {
+	  console.log(JSON.stringify(req.body));
+	  console.log("This Api will be adding the alert");
+	  console.log("idbuilding" + req.body.idbuilding);
+	 
+	  
+	  
+	  if (!req.body.severity || !req.body.datemy || !req.body.idguard
+	      || !req.body.description || !req.body.timemy) {
+	    res.status(400).json({
+	      status : 400,
+	      message : "Bad Request Error"
+	    });
+	  } else {
+		/*  
+	    var queryParam = {
+	      idbuilding : req.body.idbuilding,
+	      severity : req.body.severity,
+	      datemy : req.body.timemy,
+	      idguard : req.body.idguard,
+	      status : 'F',
+	      seenByClient : 'F',
+	      description : req.body.description,
+	      time : req.body.timemy
+	    };
+	    mysql
+	        .queryDb(
+	            'SELECT idreport FROM wfms.report where ?? = ?',
+	            [ 'date',req.body.timemy ],
+	            function(err,resultIdReport) {
+	              if (err) {
+	                console.log("Error while perfoming query  !!!");
+	                res.status(500).json({
+	                  status : 500,
+	                  message : "Please try again later"
+	                });
+	              } else {
+	            	  console.log("resultIdReport"+ resultIdReport);
+	                if (resultIdReport.length==0) {
+	                  console.log(" first idreport "
+	                      + resultIdReport);
+	                  var queryParam = {
+	                    idbuilding : req.body.idbuilding,
+	                    date : req.body.timemy,
+	                    idguard : req.body.idguard
 
-		var queryParam = {
-				idbuilding : req.body.idbuilding,
-				idreport : req.body.idreport,
-				severity : req.body.severity,
-				date : req.body.date,
-				idguard : req.body.idguard,
-				status : 'F',
-				seenByClient : 'F'
-		}
+	                  };
+	                  mysql
+	                      .queryDb(
+	                          "INSERT INTO `wfms`.`report` SET ?",
+	                          queryParam,
+	                          function(err, result) {
+	                            if (err) {
+	                              console
+	                                  .log("Error while perfoming query !!!");
+	                              res
+	                                  .status(500)
+	                                  .json(
+	                                      {
+	                                        status : 500,
+	                                        message : "Please try again later"
+	                                      });
+	                            } else {
+	                            	console.log(result);
+	                              var reportId = result.insertId;
+	                              console.log("reportid on line 62:"+reportId);
 
-		mysql.queryDb("INSERT INTO `wfms`.`alertinfo` SET ?", queryParam,function(err,resultAlert){
-			if (err) {
-				res.status(500).json({ status : 500, message : "Error while retrieving data" });
-			} else {
-				res.status(200).json({ status : 200, resultAlert:resultAlert });
+	                              var data = {
+	                                idbuilding : req.body.idbuilding,
+	                                idreport : reportId,
+	                                severity : req.body.severity,
+	                                date : req.body.datemy,
+	                                idguard : req.body.idguard,
+	                                status : 'F',
+	                                seenByClient : 'F',
+	                                description : req.body.description,
+	                                time : req.body.timemy
+	                              }
+	                              mysql
+	                                  .queryDb(
+	                                      "INSERT INTO `wfms`.`alertinfo` SET ?",
+	                                      data,
+	                                      function(
+	                                          err,
+	                                          rest) {
+	                                        if (err) {
+	                                          console
+	                                              .log("Error while perfoming query- cant insert t alertinfo !!!");
+	                                          res
+	                                              .status(
+	                                                  500)
+	                                              .json(
+	                                                  {
+	                                                    status : 500,
+	                                                    message : "Please try again later"
+	                                                  });
+	                                        } else {
+
+	                                          res
+	                                              .status(
+	                                                  200)
+	                                              .json(
+	                                                  {
+	                                                    status : 200,
+	                                                    message : "Alert successfully inserted",
+	                                                    resultPatrol : rest
+	                                                  });
+	                                        }
+	                                      });
+
+	                            }
+	                          });
+	                }
+
+	                else {
+	                  //console.log("idreport " + resultIdReport[0].idreport);
+	                  var data2 = {
+	                    idbuilding : req.body.idbuilding,
+	                    idguard : req.body.idguard,
+	                    date : req.body.datemy
+
+	                  }
+	                  mysql
+	                      .queryDb(
+	                          "INSERT INTO `wfms`.`report` SET ?",
+	                          data2,
+	                          function(err, resultAlert) {
+	                            if (err) {
+	                              console
+	                                  .log("Error while perfoming query !!!");
+	                              res
+	                                  .status(500)
+	                                  .json(
+	                                      {
+	                                        status : 500,
+	                                        message : "Please try again later"
+	                                      });
+	                            } else {
+	                              console
+	                                  .log("idreport "
+	                                      + resultIdReport[0].idreport);
+	                              var data3 = {
+	                                idbuilding : req.body.idbuilding,
+	                                idreport : resultIdReport[0].idreport,
+	                                severity : req.body.severity,
+	                                date : req.body.datemy,
+	                                idguard : req.body.idguard,
+	                                status : 'F',
+	                                seenByClient : 'F',
+	                                description : req.body.description,
+	                                time : req.body.timemy
+	                              }
+	                              mysql
+	                                  .queryDb(
+	                                      "INSERT INTO `wfms`.`alertinfo` SET ?",
+	                                      data3,
+	                                      function(
+	                                          err,
+	                                          resultAlert) {
+	                                        if (err) {
+	                                          console
+	                                              .log("Error while perfoming query !!!");
+	                                          res
+	                                              .status(
+	                                                  500)
+	                                              .json(
+	                                                  {
+	                                                    status : 500,
+	                                                    message : "Please try again later"
+	                                                  });
+	                                        } else {
+
+	                                          res
+	                                              .status(
+	                                                  200)
+	                                              .json(
+	                                                  {
+	                                                    status : 200,
+	                                                    message : "Alert insertedSuccefully",
+	                                                    resultAlert : resultAlert
+	                                                  });
+	                                        }
+	                                      });
+
+	                            }
+	                            ;
+
+	                          });
+
+	                }
+	                ;
+	              }
+	              ;
+	            });*/
+		  var msgPayload = {
+					operation : "createAlert",
+					message : req.body
+				};
+
+				mq_client.make_request('alert_queue',msgPayload,function(err,results){
+					if(err){
+						res.status(err.status).json(err);
+					}else{
+						res.status(results.status).json(results);
+					}
+				});
 			}
-		});
-	}
-	
-	
-}
+		};
+
 
 alertPerBuilding = function(req,res){
 	console.log(JSON.stringify(req.body));

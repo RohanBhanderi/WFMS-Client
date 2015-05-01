@@ -27,6 +27,8 @@ module.exports = function (app, passport) {
     app.delete('/api/deleteClient', ensureAuthenticated, clientController.deleteClient);
     app.post('/api/updateClientBillingInfo', ensureAuthenticated, clientController.updateClientBillingInfo);
     app.get('/api/getClientInfo/:idperson', ensureAuthenticated, clientController.getClientInfo);
+    app.get('/api/getPendingClients', ensureAuthenticated, clientController.getPendingClients);
+    
 
     // Admin
     //app.post('/api/createAlert' ,adminController.createAlert);
@@ -51,11 +53,7 @@ module.exports = function (app, passport) {
     app.put('/api/alert/seenByClient', ensureAuthenticated, alertController.seenByClient);
     app.put('/api/alert/seenByAdmin', ensureAuthenticated, alertController.seenByAdmin);
     
-   
-
     app.get('/api/activeAdminAlerts', ensureAuthenticated, alertController.activeAdminAlerts);
-    
-
     
     //Guard
   //tested with rabbit mq
@@ -70,11 +68,9 @@ module.exports = function (app, passport) {
     app.get('/api/getGuard/:idguard', ensureAuthenticated, guardController.getGuard);
    //tested with rabbit mq
     app.get('/api/searchGuard',ensureAuthenticated, guardController.searchGuard);
-    
+    app.get('/api/getGuardsForAssignments',ensureAuthenticated, guardController.getGuardsForAssignments);
 
-    
     //Building
-
     //app.get(('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);
 
     app.get('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);
@@ -106,7 +102,6 @@ module.exports = function (app, passport) {
     });
 
     //Auth Middleware
-    
     function ensureAuthenticated(req, res, next) {
        // if (req.isAuthenticated()) 
     	{ 

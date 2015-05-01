@@ -1,14 +1,4 @@
 
-<div > 
-<style>
-      #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-
-    </style>
-<script>
 function initialize() {
   var myLatlng = new google.maps.LatLng(37.335847, -121.886403);
   var myLatlng1 = new google.maps.LatLng(37.335643, -121.886848);
@@ -49,15 +39,4 @@ function initialize() {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-    </script>
-	<section id="main-content">
-        <section class="wrapper">            
-            <div class="row"><h1>Maps</h1></div>
-              
-            <div class="row" id="map-canvas"></div>
   
-            <div class="row"></div>  
-			
-          </section>
-      </section>
-</div>

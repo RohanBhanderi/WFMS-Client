@@ -37,7 +37,8 @@ var urlConstants = {
 	"DELETE_BUILDING":"/api/deleteBuilding/",
 	"GET_ALL_CLIENTS":"/api/listAllClients",
 	"GET_PNDG_CLIENTS":"/api/getPendingClients",
-	"GET_GUARDS_ASSIGN":"/api/getGuardsForAssignments"
+	"GET_GUARDS_ASSIGN":"/api/getGuardsForAssignments",
+	"ASSIGN_GUARDS":"/api/assignGuards"
 	
 };
 

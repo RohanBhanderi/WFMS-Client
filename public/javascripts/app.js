@@ -1,5 +1,5 @@
 'use strict';
-var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap' ])
+var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable'])
 .config(function($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {
 		templateUrl : 'templates/index.ejs',
@@ -13,6 +13,9 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap' ])
 	}).when('/admin', {
 		templateUrl : 'templates/admin.ejs',
 		controller : 'AdminController'
+	}).when('/logout', {
+		templateUrl : 'templates/index.ejs',
+		controller : 'IndexController'
 	}).otherwise({
 		redirectTo : '/'
 	});

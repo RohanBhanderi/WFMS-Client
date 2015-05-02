@@ -182,8 +182,25 @@ getPendingClients = function(req,res){
 	});
 };
 
+//Get the client details for which the guards are not assigned to their building
+assignGuards = function(req,res){
+	var msgPayload = {
+		operation : "assignGuards",
+		message :req.body
+	};
+
+	mq_client.make_request('admin_queue',msgPayload,function(err,results){
+		if(err){
+			res.status(err.status).json(err);
+		}else{
+			res.status(results.status).json(results);
+		}
+	});
+};
+
 exports.createAlert=createAlert;
 exports.publishAlert=publishAlert;
 exports.addPatrolRecord=addPatrolRecord;
 exports.getGuardsForAssignments=getGuardsForAssignments;
 exports.getPendingClients=getPendingClients;
+exports.assignGuards=assignGuards;

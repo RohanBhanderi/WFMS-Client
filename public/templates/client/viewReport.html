@@ -45,8 +45,6 @@
                                  <label class="control-label col-sm-4" for="tags">Building </label>
                                  <div class="col-sm-6">
                                     <select class="form-control" ng-options="data.idbuilding as data.buildingname for data in buildingName " ng-model="selectedbuilding" ng-change = "generateReport()" >
-
-                                 
                                     </select>
                                  </div>
                               </div>
@@ -57,10 +55,65 @@
                </div>
             </div>
          </div>
-         <div class="panel-body text-center">
-                     <button class="btn btn-primary" ng-click="generateReport()">Generate Report</button>
-                  </div>
-         
+         <!-- <div class="panel-body text-center">
+            <button class="btn btn-primary" ng-click="generateReport()">Generate Report</button>
+         </div> -->
+         <form id="emailForm">
+            <table cellpadding="2" cellspacing="0" border="1" width="800">
+               <tr>
+                  <th colspan="4">Guard Report</th>
+               </tr>
+               <tr>
+                  <!-- <td>How did you find us?</td> -->
+                  <td colspan="1">Property Name: <br>{{selectedbuilding}}</td>
+                  <td colspan="1">Date:<br> {{reportDate | date:'yyyy-MM-dd'}}</td>
+                  <td colspan="2">Security Officer and Badge #:<br> <input type="text" name="other" style="border: 0px"></td>
+               </tr>
+               <tr>
+                  <td colspan="4">Activity CheckList: <br><input type="text" rows = "4" width: 100px placeholder="(IF ANY OF THE FOLLOWING ITEMS HAS A TALLY, PLEASE REFER TO THE SUMMARY BELOW FOR DETAILS)" name="" style="border: 0px"</td>
+               </tr>
+               <tr ng-repeat = "patrol in resultPatrol"> Patrol List
+                  <td colspan="4"> 
+                     <ul>
+                     
+                  
+                     {{patrol.date | date:'yyyy-MM-dd'}} - {{patrol.time }}
+                     </ul>
+                  </td>
+                  
+               </tr>
+               <tr>
+                  <td colspan="4">Incident Reports</td>
+               </tr>
+               <tr>
+                  <td colspan="4">Parking Violations
+                     <br><input type= "text" placeholder="Enter here">
+                  </td>
+               </tr>
+               <tr>
+                  <td colspan="4">Maintenance Calls
+                     <br><input type= "text" cols="40" 
+                        rows="5" placeholder="Enter here">
+                  </td>
+               </tr>
+               <tr>
+                  <td colspan="4">Calls For Service
+                     <br><input type= "text" placeholder="Enter here">
+                  </td>
+               </tr>
+               <tr ng-repeat = "patrol in resultPatrol">
+                  <td colspan="4">
+                     <ul>
+                        {{patrol.date | date:'yyyy-MM-dd'}} - {{patrol.time }} - Patrols
+                       <!--  <li><input type= "text" placeholder="Enter here">-Patrol</li> -->
+                        <br>Disposition</br>
+                        <br>
+                        <li>{{patrol.description}}</li>
+                     </ul>
+                  </td>
+               </tr>
+            </table>
+         </form>
       </section>
    </section>
 </div>

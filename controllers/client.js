@@ -75,6 +75,8 @@ updateClientBillingInfo = function(req,res){
 		};
 
 		updateClient = function(req,res){
+
+			// console.log("in Udpdate Client :"+req.body.idperson + req.body.start_date + req.body.end_date);
 			if(!req.body.idperson || !req.body.start_date || !req.body.end_date){
 				res.status(400).json({ status : 400, message : "Bad Request" });
 			}else{
@@ -200,8 +202,9 @@ listAllClients=function(req,res){
 			}
 		});
 
-};
 
+	};
+	
 getClientInfo=function(req,res){
 	
 	var msgPayload = {
@@ -240,3 +243,5 @@ exports.deleteClient = deleteClient;
 exports.getClient = getClient;
 exports.listAllClients = listAllClients;
 exports.getClientInfo=getClientInfo;
+
+exports.getPendingClients=getPendingClients;

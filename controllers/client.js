@@ -200,16 +200,8 @@ listAllClients=function(req,res){
 			}
 		});
 
-	};
+};
 
-<<<<<<< HEAD
-	exports.updateClientBillingInfo = updateClientBillingInfo;
-	exports.createClient = createClient;
-	exports.updateClient = updateClient;
-	exports.deleteClient = deleteClient;
-	exports.getClient = getClient;
-	exports.listAllClients = listAllClients;
-=======
 getClientInfo=function(req,res){
 	
 	var msgPayload = {
@@ -267,4 +259,3 @@ exports.getClient = getClient;
 exports.listAllClients = listAllClients;
 exports.getClientInfo=getClientInfo;
 exports.getPendingClients=getPendingClients;
->>>>>>> 650c8e6b4793544e98bfbe6c008ef3a0ddd627bc

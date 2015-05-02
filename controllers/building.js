@@ -52,9 +52,9 @@ getBuildingClientReport = function(req,res){
 	if(!req.params.idperson){
 		res.status(400).json({ status : 400, message : "Bad Request" });
 	}else{ 
-<<<<<<< HEAD
-		mysql.queryDb('SELECT buildingname, address FROM building WHERE ? and buildingstatus = "Active"',[{idclient:req.params.idperson}],function(err,rows){
-=======
+
+//		mysql.queryDb('SELECT buildingname, address FROM building WHERE ? and buildingstatus = "Active"',[{idclient:req.params.idperson}],function(err,rows){
+
 		// mysql.queryDb('SELECT buildingname FROM building WHERE ? and buildingstatus = "Active"',[{idclient:req.params.idperson}],function(err,rows){
 
 		// 	if (err) {
@@ -63,7 +63,6 @@ getBuildingClientReport = function(req,res){
 		// 		res.status(200).json({ status : 200, data : rows });
 		// 	}
 		// });
->>>>>>> 650c8e6b4793544e98bfbe6c008ef3a0ddd627bc
 
 		var msgPayload = {
 			operation : "getBuildingClientReport",

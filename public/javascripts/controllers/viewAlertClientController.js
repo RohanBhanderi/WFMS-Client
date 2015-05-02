@@ -1,18 +1,45 @@
 'use strict';
-wfms.controller("viewAlertClientController", function($scope, $rootScope,
-		$location, $window, DataService) {
+wfms.controller("viewAlertClientController", function($scope, $rootScope, $filter, 
+		$location, $window, DataService, ngTableParams)  {
 
+	var data = [];
 	$scope.getAlert = function(){
 		DataService.getData("/api/alertPerClient/1", []).success(
 				function(response) {
 					angular.toJson(response);
-					$scope.alert = response.resultAlert;				
+					$scope.alert = response.resultAlert;	
+					data = response.resultAlert;			
 				}).error(function(err) {
 			console.log("Error while fetching data");
 		});
 	};
+	
 
+	$scope.tableParams = new ngTableParams({
+        page: 1,            // show first page
+        count: 10,
+        filter: {
+            severity: '',
+            description: ''      // initial filter
+        }        
+    }, {
+        total: data.length, // length of data
+        getData: function($defer, params) {
+            // use build-in angular filter
+            var orderedData = params.filter() ?
+                   $filter('filter')(data, params.filter()) :
+                   data;
 
+            $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+
+            params.total(orderedData.length); // set total for recalc pagination
+            $defer.resolve($scope.users);
+ 		// total: data.length, // length of data
+   //      getData: function($defer, params) {
+   //          $defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+        
+        }
+    });
 	
 
 	 $scope.severityOnSelect = function ($item, $model, $label) {

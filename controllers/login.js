@@ -168,7 +168,7 @@ exports.logout = function(req, res) {
     
     //req.session.destroy();
     
-    res.send(200);
+    res.status(200).json({status:200});
 };
 
 // route to test if the user is logged in or not 

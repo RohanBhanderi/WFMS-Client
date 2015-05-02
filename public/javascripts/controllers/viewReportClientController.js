@@ -27,8 +27,8 @@ wfms.controller("viewReportClientController", function($scope, $rootScope,
 				//idclient: $rootScope.idclient;
 			var params = {
 				idclient :  1,
-				date_report : $scope.reportDate,
-				idbuilding: buildingName.data.idbuilding
+				date : $scope.reportDate,
+				idbuilding: $scope.selectedbuilding
 			};
 
 		DataService.postData("/api/reportPerClientPerBuilding/", params ).success(
@@ -42,7 +42,9 @@ wfms.controller("viewReportClientController", function($scope, $rootScope,
 					}
 					else{
 						angular.toJson(response);
-						console.log("Response "+ response.resultAlert + response.resultPatrol);
+						console.log("Response "+ response.resultAlert + response.resultPatrol[1].description);
+						$scope.resultPatrol = response.resultPatrol;
+						$scope.resultAlert = response.resultAlert;
 						
 					}
 					

@@ -69,8 +69,16 @@ $scope.okay = function() {
 	var params = {
 		idperson : isEdit.idperson,
 		idclient : isEdit.idclient,
+		idbuilding : isEdit.idbuilding,
+		end_date : isEdit.release_date,
 		guardDtls : $scope.selectedGuards
 	};
+
+	DataService.postData(urlConstants.ASSIGN_GUARDS,params).success(function(response){
+		$modalInstance.close(true);
+	}).error(function(err){
+		$modalInstance.dismiss(false);
+	});
 
 	// if($scope.start_date && $scope.end_date){
 		

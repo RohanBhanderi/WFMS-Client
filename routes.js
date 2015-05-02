@@ -36,6 +36,7 @@ module.exports = function (app, passport) {
     //app.put('/api/createReport',reportController.createReport);
     app.get('/api/getPendingClients', ensureAuthenticated, adminController.getPendingClients);
     app.get('/api/getGuardsForAssignments',ensureAuthenticated, adminController.getGuardsForAssignments);
+    app.post('/api/assignGuards',ensureAuthenticated, adminController.assignGuards);
     
     //Rishabh
     app.post('/api/createReport', ensureAuthenticated, reportController.createReport);

@@ -51,7 +51,7 @@ createGuard = function(req,res){
                   city:city,
                   zipcode:zipcode,
                   phonenumber:phonenumber
-                  },
+        		},
         function(err,result){
           if(err) {
             res.status(500).json({ status : 500, message : "Please try again later" });
@@ -275,15 +275,11 @@ getGuard=function(req,res){
 
 
 //Will use filter in angular on these names returned
-
 searchGuard=function(req,res){
 	
 	var msgPayload = {
 			operation : "searchGuard",
 			message : {}
-				
-			
-			
 		};
 
 		mq_client.make_request('guard_queue',msgPayload,function(err,results){
@@ -306,15 +302,11 @@ searchGuard=function(req,res){
 	*/
 };
 
-
-
-	
-
 exports.createGuard = createGuard;
 exports.updateGuard=updateGuard;
 exports.listAllGuards=listAllGuards;
 exports.deleteGuard=deleteGuard;
 exports.getGuard = getGuard;
-exports.searchGuard=searchGuard
+exports.searchGuard=searchGuard;
 
 

@@ -11,7 +11,9 @@
                                  <th class="text-center">Name</th>
                                  <th class="text-center">Building</th>
                                  <th class="text-center">Building Address</th>
+                                 <th class="text-center">No of Guards</th>
                                  <th class="text-center">Release Date</th>
+                                 <th class="text-center">Action</th>
                               </tr>
                               <tr ng-if="!(clientReqList | filter:criteria).length">
                                   <td>
@@ -22,7 +24,13 @@
                                  <td class="text-center">{{client.name}}</td>
                                  <td class="text-center">{{client.buildingname}}</td>
                                  <td class="text-center">{{client.address}}</td>
+                                 <td class="text-center">{{client.no_of_guards}}</td>
                                  <td class="text-center">{{client.release_date | date : 'mediumDate'}}</td>
+                                 <td class="text-center">
+                                    <div class="btn-group">
+                                       <button class="btn btn-primary" ng-click="assignGuards(client)">Assign Guard(s)</button>
+                                    </div>
+                                </td>
                               </tr>
                               </tbody>
                               </table>

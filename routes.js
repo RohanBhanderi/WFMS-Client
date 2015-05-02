@@ -27,7 +27,6 @@ module.exports = function (app, passport) {
     app.delete('/api/deleteClient', ensureAuthenticated, clientController.deleteClient);
     app.post('/api/updateClientBillingInfo', ensureAuthenticated, clientController.updateClientBillingInfo);
     app.get('/api/getClientInfo/:idperson', ensureAuthenticated, clientController.getClientInfo);
-    app.get('/api/getPendingClients', ensureAuthenticated, clientController.getPendingClients);
     
 
     // Admin
@@ -35,7 +34,9 @@ module.exports = function (app, passport) {
     app.post('/api/publishAlert',adminController.publishAlert);
     app.post('/api/addPatrolRecord',adminController.addPatrolRecord );
     //app.put('/api/createReport',reportController.createReport);
-
+    app.get('/api/getPendingClients', ensureAuthenticated, adminController.getPendingClients);
+    app.get('/api/getGuardsForAssignments',ensureAuthenticated, adminController.getGuardsForAssignments);
+    app.post('/api/assignGuards',ensureAuthenticated, adminController.assignGuards);
     
     //Rishabh
     app.post('/api/createReport', ensureAuthenticated, reportController.createReport);
@@ -68,7 +69,6 @@ module.exports = function (app, passport) {
     app.get('/api/getGuard/:idguard', ensureAuthenticated, guardController.getGuard);
    //tested with rabbit mq
     app.get('/api/searchGuard',ensureAuthenticated, guardController.searchGuard);
-    app.get('/api/getGuardsForAssignments',ensureAuthenticated, guardController.getGuardsForAssignments);
 
     //Building
     //app.get(('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);

@@ -202,14 +202,9 @@ listAllClients=function(req,res){
 			}
 		});
 
-	};
-	exports.updateClientBillingInfo = updateClientBillingInfo;
-	exports.createClient = createClient;
-	exports.updateClient = updateClient;
-	exports.deleteClient = deleteClient;
-	exports.getClient = getClient;
-	exports.listAllClients = listAllClients;
 
+	};
+	
 getClientInfo=function(req,res){
 	
 	var msgPayload = {
@@ -241,24 +236,6 @@ getClientInfo=function(req,res){
 		
 };
 
-//Get the client details for which the guards are not assigned to their building
-getPendingClients = function(req,res){
-	var msgPayload = {
-		operation : "getPendingClients",
-		message :{
-			idperson : req.params.idperson
-		}
-	};
-
-	mq_client.make_request('client_queue',msgPayload,function(err,results){
-		if(err){
-			res.status(err.status).json(err);
-		}else{
-			res.status(results.status).json(results);
-		}
-	});
-}
-
 exports.updateClientBillingInfo = updateClientBillingInfo;
 exports.createClient = createClient;
 exports.updateClient = updateClient;
@@ -266,5 +243,5 @@ exports.deleteClient = deleteClient;
 exports.getClient = getClient;
 exports.listAllClients = listAllClients;
 exports.getClientInfo=getClientInfo;
-exports.getPendingClients=getPendingClients;
 
+exports.getPendingClients=getPendingClients;

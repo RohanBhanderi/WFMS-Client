@@ -302,29 +302,11 @@ searchGuard=function(req,res){
 	*/
 };
 
-//find the guards who can be assigned to a building based on the schedule.
-getGuardsForAssignments=function(req,res){
-	
-	var msgPayload = {
-		operation : "getGuardsForAssignments",
-		message : {}
-	};
-
-	mq_client.make_request('guard_queue',msgPayload,function(err,results){
-		if(err){
-			res.status(err.status).json(err);
-		}else{
-			res.status(results.status).json(results);
-		}
-	});
-};
-
 exports.createGuard = createGuard;
 exports.updateGuard=updateGuard;
 exports.listAllGuards=listAllGuards;
 exports.deleteGuard=deleteGuard;
 exports.getGuard = getGuard;
 exports.searchGuard=searchGuard;
-exports.getGuardsForAssignments=getGuardsForAssignments;
 
 

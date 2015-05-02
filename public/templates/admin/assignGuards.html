@@ -8,6 +8,7 @@
                           <table class="table table-striped">
                            <tbody>
                               <tr ng-if="(guardReqList | filter:criteria).length">
+                                 <th class="text-center">Select</th>
                                  <th class="text-center">First Name</th>
                                  <th class="text-center">Last Name</th>
                                  <th class="text-center">Start Date</th>
@@ -29,6 +30,7 @@
                                   </td>
                               </tr> -->
                               <tr ng-repeat="guard in guardReqList">
+                                 <td><input type="checkbox" ng-model="guard.isSelected" ng-change="selectGuard(guard)"/></td>
                                  <td class="text-center">{{guard.fname}}</td>
                                  <td class="text-center">{{guard.lname}}</td>
                                  <td class="text-center">{{guard.start_date | date : 'mediumDate'}}</td>

@@ -208,7 +208,37 @@ listAllClients=function(req,res){
 
 	};
 	
-getClientInfo=function(req,res){
+	
+	getClientInfo=function(req,res){
+		// mysql.queryDb('SELECT * FROM client left join person on client.idperson = person.idperson',function(err,rows){
+		// 	if (err) {
+		// 		console.log("Error while listing all the client details !!!"  + err);
+		// 		res.status(500).json({ status : 500, message : "Error while listing client details !!!" });
+		// 	} else {
+		// 		res.status(200).json({ status : 200, data : rows});
+		// 	}
+		// });
+
+	var msgPayload = {
+		operation : "getClientInfo",
+		message:{
+			idperson : req.params.idperson
+		}
+	};
+
+	mq_client.make_request('client_queue',msgPayload,function(err,results){
+		if(err){
+			res.status(err.status).json(err);
+		}else{
+			res.status(results.status).json(results);
+		}
+	});
+
+
+};
+	
+
+/*getClientInfo=function(req,res){
 	
 	var msgPayload = {
 			operation : "getClientInfo",
@@ -223,7 +253,7 @@ getClientInfo=function(req,res){
 			}else{
 				res.status(results.status).json(results);
 			}
-		});
+		});*/
 		
 		/*
 	idperson = req.params.idperson;
@@ -237,7 +267,7 @@ getClientInfo=function(req,res){
 });*/
 		
 		
-};
+//};
 
 exports.updateClientBillingInfo = updateClientBillingInfo;
 exports.createClient = createClient;

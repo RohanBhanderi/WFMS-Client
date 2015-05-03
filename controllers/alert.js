@@ -372,6 +372,7 @@ alertPerDay = function(req,res){
 exports.seenByClient = seenByClient;
 
 activeAdminAlerts= function(req,res){
+<<<<<<< HEAD
 	
 	 var msgPayload = {
 				operation : "activeAdminAlerts",
@@ -389,6 +390,9 @@ activeAdminAlerts= function(req,res){
 			});
 		};
 	/*mysql.queryDb('select * from alertinfo where status="F" ',function(err,rows){
+=======
+	mysql.queryDb('select alertinfo.*, building.buildingname, building.idclient,guard.idperson, client.idperson, personGuard.fname as guard_fname,personGuard.lname as guard_lname, personclient.fname as client_fname, personclient.lname as client_lname from alertinfo left join	building on alertinfo.idbuilding = building.idbuilding left join guard on alertinfo.idguard = guard.idguard	left join person as personGuard on guard.idperson = personGuard.idperson left join client on building.idclient = client.idclient left join person as personclient on client.idperson = personclient.idperson where status="F" ',function(err,rows){
+>>>>>>> 94a53cbfc352deb6615f1c00b929aaca9b5c8f95
 		if (err) {
 			console.log("Error while listing all the guard details !!!"  + err);
 			res.status(500).json({ status : 500, message : "Error while listing guard details !!!" });
@@ -436,6 +440,8 @@ seenByAdmin = function(req,res){
 
 };
 */
+
+
 
 exports.alertPerDay = alertPerDay;
 exports.alertPerClient = alertPerClient;

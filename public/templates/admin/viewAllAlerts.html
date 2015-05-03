@@ -2,35 +2,81 @@
 <div ng-controller="ViewAllAlertsCtrl" ng-init="getAllAlerts()">
 <section id="main-content">
           <section class="wrapper">            
-              
+         <div class="row">
+        <div class="col-lg-12">
+          <h3 class="page-header"><i class="fa fa-table"></i> Admin</h3>
+          <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href ng-click="setTemplate('adminHome')">Home</a></li>
+            <li><i class="fa fa-table"></i>ViewAllAlerts</li>
+            
+          </ol>
+        </div>
+      </div>   
       <div class="row"><h1>&nbsp;&nbsp;Alerts</h1></div>
 		
 		 		 <div class="row">
                   <div class="col-lg-12">
-                                             
-                          <table class="table table-striped table-advance table-hover">
-                           <tbody>
+                                 
+                          <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
+                          <button ng-click="tableParams.filter({})" class="btn btn-default pull-right">Clear filter</button>             
+                          <table ng-table="tableParams" show-filter="true" class="table table-striped table-advance table-hover">
+                           <!-- <tbody>
                               <tr>
                                  <th style="text-align: center;">Description</th>
                                  <th style="text-align: center;">Severity</th>
                                  <th style="text-align: center;">Date</th>
+                                 <th style="text-align: center;">Time</th>
+                                 <th style="text-align: center;">Building</th>
+                                 <th style="text-align: center;">Client</th>
+                                 <th style="text-align: center;">Guard</th>
                                  <th style="text-align: center;">Action</th>
                               </tr>
                                  <tr ng-repeat="activeAdminAlert in activeAdminAlerts">
                                  <td style="text-align: center;">{{activeAdminAlert.description}}</td>
                                  <td style="text-align: center;">{{activeAdminAlert.severity}}</td>
-                                 <td style="text-align: center;">{{activeAdminAlert.date}}</td>
-                                 <td style="text-align: center;">
-                                  <div class="btn-group">
+                                 <td style="text-align: center;">{{activeAdminAlert.date| date : 'mediumDate'}}</td>
+                                 <td style="text-align: center;">{{activeAdminAlert.date| date : ' h:mm'}}</td>
+                                 <td style="text-align: center;">{{activeAdminAlert.buildingname}}</td>
+                                 <td style="text-align: center;">{{activeAdminAlert.client_fname}} {{activeAdminAlert.client_lname}}</td>
+                                 <td style="text-align: center;">{{activeAdminAlert.guard_fname}} {{activeAdminAlert.guard_lname}}</td>
+                                 <td style="text-align: center;"> -->
+                                 <tr ng-repeat="activeAdminAlert in $data">
+                              
+                               <td data-title="'Date'" sortable="'date'" filter="{ 'date': 'text' }">
+                                 {{activeAdminAlert.date| date : 'yyyy-MM-dd'}}
+                               </td>
+                               <td data-title="'Time'" sortable="'date'" filter="{ 'date': 'text' }">
+                                 {{activeAdminAlert.date| date : ' h:mm'}}
+                               </td>
+                               <td data-title="'Description'" sortable="'description'" filter="{ 'description': 'text' }">
+                                 {{activeAdminAlert.description}}
+                               </td>
+                               <td data-title="'Severity'" sortable="'severity'" filter="{ 'severity': 'text' }">
+                                 {{activeAdminAlert.severity}}
+                               </td>
+                               <td data-title="'Building'" sortable="'buildingname'" filter="{ 'buildingname': 'text' }">
+                                 {{activeAdminAlert.buildingname}}
+                               </td>
+                               <td data-title="'Client'" sortable="'client_fname'" filter="{ 'client_fname': 'text' }">
+                                 {{activeAdminAlert.client_fname}} {{activeAdminAlert.client_lname}}
+                               </td>
+                               <td data-title="'Guard'" sortable="'guard_fname'" filter="{ 'guard_fname': 'text' }">
+                                 {{activeAdminAlert.guard_fname}} {{activeAdminAlert.guard_lname}}
+                               </td>
+                              <td>
+                              <div class="btn-group">
                                       <a href="#" ng-click="publishAlert(activeAdminAlert)">Publish</a>
                                     <!--   <a href ng-click="deleteCall(this)">Delete</a> -->
                                   </div>
-                                  </td>
+                              </td>
+                                </tr>
+                                  
+                                  <!-- </td>
                               </tr>
-                              </tbody>
+                              </tbody> -->
                               </table>
                            </div>
-              </div> 
+               </div> 
       </section>
       </section>
       </div>

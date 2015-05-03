@@ -229,6 +229,8 @@ create table if not exists `wfms`.`report` (
 engine = innodb
 default character set = utf8;
 
+alter table building add COLUMN guard_assign_status varchar(4) DEFAULT 'PNDG';
+ALTER TABLE gaurdbuildingschedule MODIFY COLUMN idschedule INT NOT NULL AUTO_INCREMENT;
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -25,12 +25,15 @@ wfms.controller("ClientController", function($scope, $rootScope,
 
 	$scope.logout = function(req,res){
 
+		console.log("I am getting called.");
+
 		DataService.getData('/api/logout').success(function(response){
-			if(response.data){
+			if(response){
 				$rootScope.idperson == "undefined";
 				$rootScope.idclient == "undefined";
 				$rootScope.idgaurd == "undefined";
 				console.log("I am getting logged out");
+				$location.path('/');
 			}else{
 				
 			}

@@ -547,6 +547,7 @@ getGuardInfo=function(req,res){
 };
 
 
+<<<<<<< HEAD
 addPatrolRecord = function(req, res) {
 	console.log("inside guard.js"+JSON.stringify(req.body));
 	if (!req.body.date || !req.body.description || !req.body.idguard
@@ -564,6 +565,14 @@ addPatrolRecord = function(req, res) {
 
 			
 
+=======
+//Will use filter in angular on these names returned
+searchGuard=function(req,res){
+	
+	var msgPayload = {
+			operation : "searchGuard",
+			message : {}
+>>>>>>> 94a53cbfc352deb6615f1c00b929aaca9b5c8f95
 		};
 
 		mq_client.make_request('guard_queue', msgPayload,
@@ -612,6 +621,7 @@ getGuardSchedule = function(req, res) {
 	});
 };
 
+<<<<<<< HEAD
 /*
  * mysql.queryDb('select b.buildingname,b.idbuilding,g.from, g.to, b.address
  * from gaurdbuildingschedule g JOIN building b on g.idbuilding=b.idbuilding
@@ -652,13 +662,21 @@ editGuard = function(req, res) {
  * res.status(200).json({ status : 200, message : "Guard has been updated
  * Succesfully" }); } }); } };
  */
+=======
+>>>>>>> 94a53cbfc352deb6615f1c00b929aaca9b5c8f95
 exports.createGuard = createGuard;
 exports.updateGuard = updateGuard;
 exports.listAllGuards = listAllGuards;
 exports.deleteGuard = deleteGuard;
 exports.getGuard = getGuard;
+<<<<<<< HEAD
 exports.searchGuard = searchGuard;
 exports.getGuardInfo = getGuardInfo;
 exports.addPatrolRecord = addPatrolRecord;
 exports.getGuardSchedule = getGuardSchedule;
 exports.editGuard = editGuard;
+=======
+exports.searchGuard=searchGuard;
+
+
+>>>>>>> 94a53cbfc352deb6615f1c00b929aaca9b5c8f95

@@ -3,8 +3,17 @@
 <section id="main-content">
           <section class="wrapper">            
               
-      <div class="row"><h1>&nbsp;&nbsp;Clients<a class="btn btn-primary" href="#" style="float:right;margin-right:1cm;">Add Client</a></h1></div>
-    
+      <!-- <div class="row"><h1>&nbsp;&nbsp;Clients<a class="btn btn-primary" href="#" style="float:right;margin-right:1cm;">Add Client</a></h1></div> -->
+    <div class="row">
+        <div class="col-lg-12">
+          <h3 class="page-header"><i class="fa fa-table"></i> Admin</h3>
+          <ol class="breadcrumb">
+            <li><i class="fa fa-home"></i><a href ng-click="setTemplate('adminHome')">Home</a></li>
+            <li><i class="fa fa-table"></i>ViewAllClients</li>
+            
+          </ol>
+        </div>
+      </div>   
          <div class="row">
                   <div class="col-lg-12">
                                              
@@ -32,24 +41,28 @@
                                  <td class="text-center">{{client.fname}}</td>
                                  <td class="text-center">{{client.lname}}</td>
                                  <td class="text-center">{{ billingInfo | sumByKey: 'Amount_Due'}}</td>
-                                 <td class="text-center">{{client.start_date | date : 'mediumDate'}}</td>
-                                 <td class="text-center">{{client.end_date | date : 'mediumDate'}}</td>
+                                 <td class="text-center">{{client.start_date | date: 'yyyy-MM-dd'}}</td>
+                                 <td class="text-center">{{client.end_date | date: 'yyyy-MM-dd'}}</td>
                                  <td class="text-center">{{client.address}}</td>
                                  <td class="text-center">{{client.city}}</td>
                                  <td class="text-center">{{client.zipcode}}</td>
                                  <td class="text-center">{{client.email}}</td>
                                  <td class="text-center">{{client.phonenumber}}</td>
-                                 <td class="text-center">
-                                  <div class="btn-group">
-                                      <a href="#">Edit</a>
-                                      <a href ng-click="deleteCall(this)">Delete</a>
-                                  </div>
+                                 <td>
+                                    <div class="btn-group">
+                                      <a class="btn btn-success" ng-click="modifyClient(client)" href="#"><i
+                                        class="icon_check_alt2"></i></a> <a class="btn btn-danger"
+                                        ng-click="deleteClient(client)" href="#"><i
+                                        class="icon_close_alt2"></i></a>
+                                    </div>
+                  
                                   </td>
                               </tr>
                               </tbody>
                               </table>
                            </div>
               </div>
+              
       </section>
       </section>
       </div>

@@ -24,9 +24,10 @@ module.exports = function (app, passport) {
     app.get('/api/listAllClients', ensureAuthenticated, clientController.listAllClients);
     app.put('/api/updateClient', ensureAuthenticated, clientController.updateClient);
     app.post('/api/createClient', ensureAuthenticated, clientController.createClient);
-    app.delete('/api/deleteClient', ensureAuthenticated, clientController.deleteClient);
+    app.delete('/api/deleteClient/:idperson', ensureAuthenticated, clientController.deleteClient);
     app.post('/api/updateClientBillingInfo', ensureAuthenticated, clientController.updateClientBillingInfo);
     app.get('/api/getClientInfo/:idperson', ensureAuthenticated, clientController.getClientInfo);
+    
 
     // Admin
     //app.post('/api/createAlert' ,adminController.createAlert);
@@ -34,7 +35,9 @@ module.exports = function (app, passport) {
     app.post('/api/addPatrol',adminController.addPatrol);
     
     //app.put('/api/createReport',reportController.createReport);
-
+    app.get('/api/getPendingClients', ensureAuthenticated, adminController.getPendingClients);
+    app.get('/api/getGuardsForAssignments',ensureAuthenticated, adminController.getGuardsForAssignments);
+    app.post('/api/assignGuards',ensureAuthenticated, adminController.assignGuards);
     
     //Rishabh
     app.post('/api/createReport', ensureAuthenticated, reportController.createReport);
@@ -43,7 +46,7 @@ module.exports = function (app, passport) {
     app.get('/api/reportPerClient/:idclient', ensureAuthenticated, reportController.reportPerClient);
     app.get('/api/reportPerDay/:date', ensureAuthenticated, reportController.reportPerDay);
     app.get('/api/reportPerGuard/:idguard', ensureAuthenticated, reportController.reportPerGuard);
-    
+    app.get('/api/alertByidalertInfo/:idalertInfo', ensureAuthenticated, reportController.alertByidalertInfo);
     app.post('/api/createAlert', ensureAuthenticated, alertController.createAlert);
     app.get('/api/alertPerBuilding/:idbuilding', ensureAuthenticated, alertController.alertPerBuilding);
     app.get('/api/alertPerClient/:idclient', ensureAuthenticated, alertController.alertPerClient);
@@ -52,11 +55,8 @@ module.exports = function (app, passport) {
     app.put('/api/alert/seenByClient', ensureAuthenticated, alertController.seenByClient);
     app.put('/api/alert/seenByAdmin', ensureAuthenticated, alertController.seenByAdmin);
     
-   
-
     app.get('/api/activeAdminAlerts', ensureAuthenticated, alertController.activeAdminAlerts);
-    
-
+    app.put('/api/editPerson', ensureAuthenticated, adminController.editPerson);
     
     //Guard
   //tested with rabbit mq
@@ -71,6 +71,7 @@ module.exports = function (app, passport) {
     app.get('/api/getGuard/:idguard', ensureAuthenticated, guardController.getGuard);
    //tested with rabbit mq
     app.get('/api/searchGuard',ensureAuthenticated, guardController.searchGuard);
+<<<<<<< HEAD
     
     app.get('/api/getGuardSchedule/:idguard', guardController.getGuardSchedule);
     app.get('/api/getGuardBuilding/:idguard', guardController.getGuardSchedule);
@@ -80,6 +81,10 @@ module.exports = function (app, passport) {
     app.post('/api/addPatrolRecord', ensureAuthenticated, guardController.addPatrolRecord);
    // app.post('/api/createAlertGuard', ensureAuthenticated, guardController.createAlert);
 
+=======
+
+    //Building
+>>>>>>> 94a53cbfc352deb6615f1c00b929aaca9b5c8f95
     //app.get(('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);
 
     app.get('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);
@@ -111,7 +116,6 @@ module.exports = function (app, passport) {
     });
 
     //Auth Middleware
-    
     function ensureAuthenticated(req, res, next) {
        // if (req.isAuthenticated()) 
     	{ 

@@ -2,6 +2,29 @@ var dateutil = require('../util/dateutil'),
 	moment = require('moment');
 var mq_client = require('../rpc/client');
 
+
+editPerson = function(req,res){
+console.log(JSON.stringify(req.body));
+	if(!req.body.idperson ){
+		res.status(400).json({status : 400, message : "Bad Request"});
+	}else{
+		
+		var msgPayload = {
+			operation : "editPerson",
+			message : req.body
+		};
+
+		mq_client.make_request('admin_queue',msgPayload,function(err,results){
+			if(err){
+				res.status(err.status).json(err);
+			}else{
+				res.status(results.status).json(results);
+			}
+		});
+
+	}
+
+};
 createAlert = function(req,res){
 	console.log(JSON.stringify(req.body));
 	if(!req.body.idalert || !req.body.heading || !req.body.description ){
@@ -197,7 +220,7 @@ assignGuards = function(req,res){
 		}
 	});
 };
-
+exports.editPerson = editPerson;
 exports.createAlert=createAlert;
 exports.publishAlert=publishAlert;
 exports.addPatrolRecord=addPatrolRecord;

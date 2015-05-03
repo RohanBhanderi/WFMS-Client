@@ -56,24 +56,41 @@ $scope.okay = function() {
 		if (isEdit) {
 			console.log(isEdit);
 
-			var params = {
-				
-				
+			
+			var paramsPerson = {
+					fname: $scope.firstname,
+					lname: $scope.lastname,
+					address: $scope.address,
+					city:  $scope.city,
+					zipcode: $scope.zipcode,
+					email: $scope.email,
+					phonenumber: $scope.phonenumber,
+			  		idperson: $scope.idperson
+						
+				};
+			DataService.putData("/api/editPerson",paramsPerson).success(
+				function(response) {
+					console.log("Login Successful");
+
+					var params = {
 					idperson:$scope.idperson,
 					start_date:$scope.start_date,
 					end_date : $scope.end_date
-					
-				
-			};
-			
-			
-			DataService.putData('api/updateClient', params)
-			.success(function(response) {
+					};
 
-				$modalInstance.close(true);
-			}).error(function(err) {
-				$modalInstance.close(false);
+					DataService.putData('api/updateClient', params)
+					.success(function(response) {
+
+						$modalInstance.close(true);
+					}).error(function(err) {
+						$modalInstance.close(false);
+					});
+							
+						}).error(function(err) {
+					console.log("Error while fetching data");
+			
 			});
+			
 
 
 

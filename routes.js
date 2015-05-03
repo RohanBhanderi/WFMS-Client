@@ -26,11 +26,13 @@ module.exports = function (app, passport) {
     app.post('/api/createClient', ensureAuthenticated, clientController.createClient);
     app.delete('/api/deleteClient', ensureAuthenticated, clientController.deleteClient);
     app.post('/api/updateClientBillingInfo', ensureAuthenticated, clientController.updateClientBillingInfo);
+    app.get('/api/getClientInfo/:idperson', ensureAuthenticated, clientController.getClientInfo);
 
     // Admin
     //app.post('/api/createAlert' ,adminController.createAlert);
     app.post('/api/publishAlert',adminController.publishAlert);
-    app.post('/api/addPatrolRecord',adminController.addPatrolRecord );
+    app.post('/api/addPatrol',adminController.addPatrol);
+    
     //app.put('/api/createReport',reportController.createReport);
 
     
@@ -57,16 +59,26 @@ module.exports = function (app, passport) {
 
     
     //Guard
+  //tested with rabbit mq
     app.post('/api/createGuard', ensureAuthenticated, guardController.createGuard);
+  //tested with rabbit mq
     app.put('/api/updateGuard/:idguard', ensureAuthenticated, guardController.updateGuard);
-    app.get('/api/listAllGuards', ensureAuthenticated, guardController.listAllGuards);
+    //tested with rabbit mq
     app.delete('/api/deleteGuard/:idguard', ensureAuthenticated, guardController.deleteGuard);
+    //tested with rabbit mq
+    app.get('/api/listAllGuards', ensureAuthenticated, guardController.listAllGuards);
+   //tested with rabbit mq
     app.get('/api/getGuard/:idguard', ensureAuthenticated, guardController.getGuard);
+   //tested with rabbit mq
     app.get('/api/searchGuard',ensureAuthenticated, guardController.searchGuard);
     
-
-    
-    //Building
+    app.get('/api/getGuardSchedule/:idguard', guardController.getGuardSchedule);
+    app.get('/api/getGuardBuilding/:idguard', guardController.getGuardSchedule);
+    //Guard
+    app.get('/api/getGuardInfo/:idperson', ensureAuthenticated, guardController.getGuardInfo);
+    //Building 
+    app.post('/api/addPatrolRecord', ensureAuthenticated, guardController.addPatrolRecord);
+   // app.post('/api/createAlertGuard', ensureAuthenticated, guardController.createAlert);
 
     //app.get(('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);
 

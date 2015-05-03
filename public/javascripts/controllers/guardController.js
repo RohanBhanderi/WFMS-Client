@@ -7,7 +7,7 @@ wfms.controller("GuardController", function($scope,$modal, $rootScope,
 
 	$scope.setTemplate = function(tabName){
 		$scope.template = "templates/"+tabName + ".html";
-	}
+	};
 
 	$scope.getTemplate = function(){
 		return $scope.template;
@@ -24,7 +24,7 @@ $scope.getAllData = function() {
 		
 		function getGuardDetails(){
 			console.log("I am called.gc");
-			var uri = urlConstants.GET_GUARD_DETAILS+"10";
+			var uri = "/api/getGuardInfo/"+"10";
 			DataService.getData(uri,[]).success(function(response){
 				angular.toJson(response);
 				console.log("guard detaiks"+response.data[0]);
@@ -61,7 +61,7 @@ $scope.getAllData = function() {
 			});
 		};
 		
-}
+};
 		
 	});
 		

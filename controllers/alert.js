@@ -6,11 +6,9 @@ createAlert = function(req, res) {
 	  console.log(JSON.stringify(req.body));
 	  console.log("This Api will be adding the alert");
 	  console.log("idbuilding" + req.body.idbuilding);
-	 
 	  
-	  
-	  if (!req.body.severity || !req.body.datemy || !req.body.idguard
-	      || !req.body.description || !req.body.timemy) {
+	
+	if(!req.body.idbuilding || !req.body.datemy || !req.body.idguard || !req.body.description || !req.body.timemy){	  
 	    res.status(400).json({
 	      status : 400,
 	      message : "Bad Request Error"
@@ -218,7 +216,7 @@ alertPerBuilding = function(req,res){
 	console.log(req.params.idbuilding);
 	if(!req.params.idbuilding){
 		res.status(400).json({status : 400, message : "Bad Request"});
-	} else {
+	} else /*{
 		mysql.queryDb('SELECT wfms.alertinfo.severity, wfms.alertinfo.date, wfms.alertinfo.idalertInfo FROM wfms.alertinfo where ?? = ?;',['idbuilding',req.params.idbuilding],function(err,resultAlert){
 			if (err) {
 				res.status(500).json({ status : 500, message : "Error while retrieving data" });
@@ -228,7 +226,22 @@ alertPerBuilding = function(req,res){
 		});
 	}
 }
+*/
+		 var msgPayload = {
+			operation : "alertPerBuilding",
+			message : {
+				idbuilding :req.params.idbuilding
+		}
+	}
 
+		mq_client.make_request('alert_queue',msgPayload,function(err,results){
+			if(err){
+				res.status(err.status).json(err);
+			}else{
+				res.status(results.status).json(results);
+			}
+		});
+	};
 
 alertPerClient = function(req,res){
 	console.log(JSON.stringify(req.body));
@@ -236,7 +249,27 @@ alertPerClient = function(req,res){
 	console.log(req.params.idclient);
 	if(!req.params.idclient){
 		res.status(400).json({status : 400, message : "Bad Request"});
-	} else {
+	} else{
+		 var msgPayload = {
+			operation : "alertPerClient",
+			message : {
+				idclient: req.params.idclient,
+				seenByClient : 'F'
+			}
+				
+		}
+	}
+
+		mq_client.make_request('alert_queue',msgPayload,function(err,results){
+			if(err){
+				res.status(err.status).json(err);
+			}else{
+				res.status(results.status).json(results);
+			}
+		});
+	};
+		
+		/*{
 		mysql.queryDb('SELECT * FROM wfms.alertinfo left outer join wfms.building on ?? = ?? where ?? = ? AND ?? = ?;',['wfms.building.idbuilding','wfms.alertinfo.idbuilding','idclient',req.params.idclient,'seenByClient','F'],function(err,resultAlert){
 
 			if (err) {
@@ -246,7 +279,8 @@ alertPerClient = function(req,res){
 			}
 		});
 	}
-}
+}*/
+		
 
 seenByClient = function(req,res){
 
@@ -256,7 +290,24 @@ seenByClient = function(req,res){
 	if(!req.body.idalertInfo || !req.body.seenByClient){
 		res.status(400).json({status : 400, message : "Bad Request"});
 	} else {
-		mysql.queryDb('UPDATE `wfms`.`alertinfo` SET ??= ? WHERE ?? = ?;',['seenByClient',req.body.seenByClient,'idalertInfo',req.body.idalertInfo],function(err,result){
+		
+		 var msgPayload = {
+					operation : "seenByClient",
+					message : {
+						idclient :req.params.idclient
+				}
+			}
+
+				mq_client.make_request('alert_queue',msgPayload,function(err,results){
+					if(err){
+						res.status(err.status).json(err);
+					}else{
+						res.status(results.status).json(results);
+					}
+				});
+			}
+};
+		/*mysql.queryDb('UPDATE `wfms`.`alertinfo` SET ??= ? WHERE ?? = ?;',['seenByClient',req.body.seenByClient,'idalertInfo',req.body.idalertInfo],function(err,result){
 
 			if (err) {
 				res.status(500).json({ status : 500, message : "Error while retrieving data" });
@@ -267,15 +318,38 @@ seenByClient = function(req,res){
 	}
 
 
-};
+};*/
 
 alertPerDay = function(req,res){
+	var date = String(req.params.date);
+	var fromDate = date + " 00:00:00";
+	var untilDate = String(req.params.date);
+	untilDate = untilDate + " 23:59:59";
+	
+
 	
 	console.log("This Api is for creating report based on date");
 	if(!req.params.date){
 		res.status(400).json({status : 400, message : "Bad Request"});
 	}else{
-		var date = String(req.params.date);
+		
+		 var msgPayload = {
+					operation : "alertPerDay",
+					message : {
+						date :date
+				}
+			}
+
+				mq_client.make_request('alert_queue',msgPayload,function(err,results){
+					if(err){
+						res.status(err.status).json(err);
+					}else{
+						res.status(results.status).json(results);
+					}
+				});
+			};
+};
+		/*var date = String(req.params.date);
 		var fromDate = date + " 00:00:00";
 		console
 		var untilDate = String(req.params.date);
@@ -292,13 +366,29 @@ alertPerDay = function(req,res){
 		});
 	}
 	
-}
+}*/
 
 
 exports.seenByClient = seenByClient;
 
 activeAdminAlerts= function(req,res){
-	mysql.queryDb('select * from alertinfo where status="F" ',function(err,rows){
+	
+	 var msgPayload = {
+				operation : "activeAdminAlerts",
+				message : {
+					
+			}
+		}
+
+			mq_client.make_request('alert_queue',msgPayload,function(err,results){
+				if(err){
+					res.status(err.status).json(err);
+				}else{
+					res.status(results.status).json(results);
+				}
+			});
+		};
+	/*mysql.queryDb('select * from alertinfo where status="F" ',function(err,rows){
 		if (err) {
 			console.log("Error while listing all the guard details !!!"  + err);
 			res.status(500).json({ status : 500, message : "Error while listing guard details !!!" });
@@ -306,7 +396,7 @@ activeAdminAlerts= function(req,res){
 			res.status(200).json({ status : 200, data : rows});
 		}
 	});
-};
+};*/
 
 seenByAdmin = function(req,res){
 
@@ -316,7 +406,24 @@ seenByAdmin = function(req,res){
 	if(!req.body.idalertInfo){
 		res.status(400).json({status : 400, message : "Bad Request"});
 	} else {
-		mysql.queryDb('UPDATE `wfms`.`alertinfo` SET ??= ? WHERE ?? = ?;',['status','T','idalertInfo',req.body.idalertInfo],function(err,result){
+		 var msgPayload = {
+					operation : "seenByAdmin",
+					message : {
+						idalertInfo :req.params.idalertInfo,
+						status : 'T'
+				}
+			}
+
+				mq_client.make_request('alert_queue',msgPayload,function(err,results){
+					if(err){
+						res.status(err.status).json(err);
+					}else{
+						res.status(results.status).json(results);
+					}
+				});
+			}
+};
+		/*mysql.queryDb('UPDATE `wfms`.`alertinfo` SET ??= ? WHERE ?? = ?;',['status','T','idalertInfo',req.body.idalertInfo],function(err,result){
 
 			if (err) {
 				res.status(500).json({ status : 500, message : "Error while retrieving data" });
@@ -328,11 +435,11 @@ seenByAdmin = function(req,res){
 
 
 };
-
+*/
 
 exports.alertPerDay = alertPerDay;
 exports.alertPerClient = alertPerClient;
-exports.alertPerBuilding = alertPerBuilding
+exports.alertPerBuilding = alertPerBuilding;
 exports.createAlert = createAlert;
 exports.activeAdminAlerts = activeAdminAlerts;
 exports.seenByAdmin = seenByAdmin;

@@ -76,7 +76,7 @@ publishAlert = function(req,res){
 	}
 };*/
 
-addPatrolRecord = function(req,res){
+addPatrol = function(req,res){
 	console.log(JSON.stringify(req.body));
 	if(!req.body.date || !req.body.description|| !req.body.idgaurd || !req.body.idbuilding || !req.body.idreport){
 		
@@ -104,6 +104,7 @@ addPatrolRecord = function(req,res){
 	}
 };
 
+
 exports.createAlert=createAlert;
 exports.publishAlert=publishAlert;
-exports.addPatrolRecord=addPatrolRecord;
+exports.addPatrol=addPatrol;

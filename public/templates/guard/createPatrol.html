@@ -1,4 +1,4 @@
-<div ng-controller="CreatePatrolCtrl" >
+<div ng-controller="CreatePatrolCtrl" ng-init="getGuardBuilding()" >
 	<section id="main-content">
           <section class="wrapper">            
               
@@ -40,7 +40,7 @@
                                           <div class="col-md-3">
 								           <div class="input-group bootstrap-timepicker">
 									       <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-									       <input type="time" ng-model="alert_time" class="form-control"/>
+									       <input type="time" ng-model="time" class="form-control"/>
 								          </div>
 							              </div>
 							              </div>
@@ -63,7 +63,12 @@
                                           <div class="form-group">
                                             <label class="control-label col-lg-2" for="tags">Building</label>
                                             <div class="col-lg-10">
-                                              <input type="text" class="form-control" id="tags" ng-model="idbuilding">
+                                            
+                                              <select class="form-control"  ng-model="idbuilding" >
+                                                  <option value="{{data.idbuilding}}" ng-repeat="data in guardSchedule | filter:building">{{data.buildingname}}</option>
+                   									
+                                                  
+                                                </select> 
                                             </div>
                                           </div>
                                           
@@ -71,7 +76,7 @@
                                           <div class="form-group">
                                              <!-- Buttons -->
                                              <div class="col-lg-offset-2 col-lg-9">
-                                                <button type="submit" href="setTemplate('patrolAdded')" class="btn btn-primary" ng-click="createPatrol()">Add Patrol Record</button>
+                                                <button type="submit"  class="btn btn-primary" ng-click="createPatrol()">Add Patrol Record</button>
                                                 <button type="submit" class="btn btn-danger">Save Draft</button>
                                                 <button type="reset" class="btn btn-default">Reset</button>
                                              </div>

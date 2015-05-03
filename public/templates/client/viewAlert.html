@@ -124,12 +124,12 @@
                                  <th><i class="icon_mail_alt"></i> Descrption</th>
                                  <th><i class="icon_cogs"></i> Action</th>
                                -->
-                                 <td > {{dataa.date | date:'yyyy-MM-dd'}}</td>
-                                 <td >{{dataa.time}}</td>
-                                 <td filter="{ 'severity': 'text' }">
+                                 <td data-title="'Date'" sortable="'date'" filter="{ 'date': 'text' }"> {{dataa.date | date:'yyyy-MM-dd'}}</td>
+                                 <td data-title="'Time'" sortable="'time'" filter="{ 'time': 'text' }">{{dataa.time}}</td>
+                                 <td data-title="'Severity'" sortable="'severity'" filter="{ 'severity': 'text' }">
                                   {{dataa.severity}}</td>
                                  
-                                 <td filter="{ 'description': 'text' }">
+                                 <td data-title="'Description'" sortable="'description'" filter="{ 'description': 'text' }">
                                   {{dataa.description}}</td>
                                  <td>
                                   <div class="btn-group">

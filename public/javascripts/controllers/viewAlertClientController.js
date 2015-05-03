@@ -14,32 +14,30 @@ wfms.controller("viewAlertClientController", function($scope, $rootScope, $filte
 		});
 	};
 	
-
 	$scope.tableParams = new ngTableParams({
-        page: 1,            // show first page
-        count: 10,
-        filter: {
-            severity: '',
-            description: ''      // initial filter
-        }        
-    }, {
-        total: data.length, // length of data
-        getData: function($defer, params) {
-            // use build-in angular filter
-            var orderedData = params.filter() ?
-                   $filter('filter')(data, params.filter()) :
-                   data;
+                                         page: 1,            // show first page
+                                         count: 10,          // count per page
+                                         filter: {
+                                                 description: ''       // initial filter
+                                         },
+                                         sorting: {
+                                                 description: ''     // initial sorting
+                                         }
+                         }, {
+                                         total: data.length, // length of data
+                                         getData: function($defer, params) {
+                                                         // use build-in angular filter
+                                                         var filteredData = params.filter() ?
+                                                                                         $filter('filter')(data, params.filter()) :
+                                                                                         data;
+                                                         var orderedData = params.sorting() ?
+                                                                                         $filter('orderBy')(filteredData, params.orderBy()) :
+                                                                                         data;
 
-            $scope.users = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-
-            params.total(orderedData.length); // set total for recalc pagination
-            $defer.resolve($scope.users);
- 		// total: data.length, // length of data
-   //      getData: function($defer, params) {
-   //          $defer.resolve(data.slice((params.page() - 1) * params.count(), params.page() * params.count()));
-        
-        }
-    });
+                                                         params.total(orderedData.length); // set total for recalc pagination
+                                                         $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                                         }
+                         });
 	
 
 	 $scope.severityOnSelect = function ($item, $model, $label) {

@@ -29,16 +29,17 @@ wfms.controller("ClientDashboard", function($scope, $rootScope, $modal,
 	
 	
 	
-	$scope.modifyClientInfo = function(data) {
+	$scope.modifyClientInfo = function() {
 		console.log("did i get called");
 
 		var modalInstance = $modal.open({
 			templateUrl : 'templates/client/editClientInformation.html',
-			controller : 'EditBuildingCtrl',
+			controller : 'EditClientProfileCtrl',
 			size : 'lg',
 			resolve : {
 				isEdit : function(){
-					return data;
+					return $scope.clientProperties;
+					//return data;
 				}
 		
 			}

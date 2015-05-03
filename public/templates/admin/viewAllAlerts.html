@@ -14,12 +14,14 @@
                                  <th style="text-align: center;">Description</th>
                                  <th style="text-align: center;">Severity</th>
                                  <th style="text-align: center;">Date</th>
+                                 <th style="text-align: center;">Time</th>
                                  <th style="text-align: center;">Action</th>
                               </tr>
                                  <tr ng-repeat="activeAdminAlert in activeAdminAlerts">
                                  <td style="text-align: center;">{{activeAdminAlert.description}}</td>
                                  <td style="text-align: center;">{{activeAdminAlert.severity}}</td>
-                                 <td style="text-align: center;">{{activeAdminAlert.date}}</td>
+                                 <td style="text-align: center;">{{activeAdminAlert.date| date : 'mediumDate'}}</td>
+                                 <td style="text-align: center;">{{activeAdminAlert.date| date : ' h:mm'}}</td>
                                  <td style="text-align: center;">
                                   <div class="btn-group">
                                       <a href="#" ng-click="publishAlert(activeAdminAlert)">Publish</a>

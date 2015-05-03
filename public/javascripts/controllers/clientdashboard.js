@@ -47,7 +47,7 @@ wfms.controller("ClientDashboard", function($scope, $rootScope, $modal,
 
 		modalInstance.result.then(function(isValid) {
 			if (isValid) {
-				getBuilding();
+				clientInfo();
 			}
 		}, function() {
 		});

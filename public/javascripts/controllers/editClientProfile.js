@@ -29,11 +29,11 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
 
 			var paramsPerson = {
 				idperson : 7,
-				fname : $scope.firstname,
-				lname : $scope.lastname,
+				fname : $scope.firstName,
+				lname : $scope.lastName,
 				address : $scope.address,
 				city : $scope.city,
-				zipcode : $scope.zipcode,
+				zipcode : $scope.ZipCode,
 				email : $scope.email,
 				phonenumber : $scope.phonenumber,
 				//idperson : $scope.idperson

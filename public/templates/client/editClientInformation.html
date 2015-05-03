@@ -33,9 +33,9 @@
 						class="form-control" placeholder="email" required>
 				</div>
 			</div>
-			
+
 		</div>
-		
+
 		<div class="row" style="padding-top: 2%;">
 			<div class="col-xs-6">
 				<div class="col-xs-3">
@@ -48,9 +48,9 @@
 						class="form-control" placeholder="phonenumber" required>
 				</div>
 			</div>
-			
+
 		</div>
-		
+
 		<div class="row" style="padding-top: 2%;">
 			<div class="col-xs-2" style="margin-left: 2%;">
 				<h5>
@@ -61,8 +61,8 @@
 				<textarea class="form-control" rows="2" ng-model="address"></textarea>
 			</div>
 		</div>
-		
-			<div class="row" style="padding-top: 2%;">
+
+		<div class="row" style="padding-top: 2%;">
 			<div class="col-xs-12">
 				<div class="col-xs-3">
 					<h5>
@@ -73,10 +73,10 @@
 					<input type="text" name="firstName" ng-model="city"
 						class="form-control" placeholder="city" required>
 				</div>
-				
+
 			</div>
 		</div>
-		
+
 		<div class="row" style="padding-top: 2%;">
 			<div class="col-xs-12">
 				<div class="col-xs-3">
@@ -88,12 +88,44 @@
 					<input type="text" name="ZipCode" ng-model="ZipCode"
 						class="form-control" placeholder="ZipCode" required>
 				</div>
-				
+			</div>
+		</div>
+
+<div class="row" style="padding-top: 2%;">
+			<div class="col-xs-12">
+				<div class="col-xs-3">
+					<h5>
+						<strong>Start Date</strong>
+					</h5>
+				</div>
+				<div class="col-xs-5 col-xs-pull-1">
+					<input type="date" name="ZipCode" ng-model="start_date"
+						class="form-control" value="start_date | date: 'yyyy-MM-dd'" required>
+				</div>
 			</div>
 		</div>
 		
-		
-	</form>
+		<div class="row" style="padding-top: 2%;">
+			<div class="col-xs-12">
+				<div class="col-xs-3">
+					<h5>
+						<strong>End Date</strong>
+					</h5>
+				</div>
+				<div class="col-xs-5 col-xs-pull-1">
+					<input type="date" name="ZipCode" ng-model="end_date"
+						class="form-control" value="end_date" required>
+				</div>
+			</div>
+		</div>
+
+
+	
+	</div>
+</div>
+
+
+</form>
 </div>
 
 <div class="modal-footer">

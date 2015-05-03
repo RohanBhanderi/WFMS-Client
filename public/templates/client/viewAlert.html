@@ -14,20 +14,20 @@
               <div class="row">
                   <div class="col-lg-12">
                       <section class="panel">
-                      <div class="panel-body">
+                      <!-- <div class="panel-body">
                            <form class="form-horizontal " action="#">
                               
                               <div class="form-group">
                                  
                                  
                                  <label class="control-label col-sm-1">Severity</label>
-                                 <div class="col-sm-3">
+                                 <div class="col-sm-3"> -->
                                  <!-- <pre>Severity: {{severitySearch | json}}</pre> -->
                                     <!-- <input id="cp2" type="text" typeahead = "htmlalert.severity as htmlalert.severity for htmlalert in alert | filter:$viewValue | limitTo:8" typeahead-on-select='severityOnSelect($item, $model, $label)' ng-model =  "severitySearch" size="16" class="form-control" placeholder = "Search By Severity" value="{{tableParams.filter()|json}}"> -->
                                    <!--  <input id="cp2" type="text" ng-model="params.filter()[severity]" size="16" ng-if="filter=='text'" class="form-control" placeholder = "Search By Severity" value="{{tableParams.filter()|json}}">{{params.filter()[severity]}}
                                     -->  
-                                 </div>
-                                 <label class="control-label col-sm-1">Descrption</label>
+                                 <!-- </div>
+                                 <label class="control-label col-sm-1">Descrption</label> -->
                                 
                                  <!-- <label class="control-label col-sm-1">Descrption</label>
                                  <div class="col-sm-3">
@@ -35,10 +35,10 @@
                                  </div> -->
                                  
 
-                                 
+                             <!--     
                               </div>
                               </form>
-                              </div>
+                              </div> -->
 
                           <!-- <label class="control-label col-sm-1">Severity</label>
 
@@ -46,7 +46,7 @@
                           <input type="text"  class="input-filter form-control ng-scope ng-pristine ng-valid">{{tableParams.filter()|json}} show-filter="true"-->
                          <!--  <p><strong>Filter:</strong> {{tableParams.filter()|json}} -->
                          
-                          <table ng-table = "tableParams" show-filter="true" class="table table-striped table-advance table-hover" cellpadding="10px">
+                          <table ng-table = "tableParams" show-filter="true" class="table table-striped table-advance table-hover" >
 
 
 
@@ -87,7 +87,7 @@
                                   </tr>
                                 </tbody> -->
 
-                                
+                          <!--       
                            <thead>
                                   <tr>
                                     <td>
@@ -106,22 +106,27 @@
                                       Action
                                     </td>
                                   </tr>
-                                </thead>
+                                </thead> -->
                            <tbody style= "padding:10px">
                               
-                               <!-- <tr>
-                                 <th><i class="icon_calendar"></i> Date</th>
+                               
+                               <!--   <th><i class="icon_calendar"></i> Date</th>
                                  <th><i class="icon_calendar"></i> Time</th>
                                  <th><i class="icon_mail_alt"></i> Severity</th>
                                  <th><i class="icon_mail_alt"></i> Descrption</th>
                                  <th><i class="icon_cogs"></i> Action</th>
-                              <tr> -->
+                               -->
                               
                                 <tr ng-repeat="dataa in $data">
-                                  
-                                 <td>{{dataa.date | date:'yyyy-MM-dd'}}</td>
+                                  <!--    <th><i class="icon_calendar"></i> Date</th>
+                                 <th><i class="icon_calendar"></i> Time</th>
+                                 <th><i class="icon_mail_alt"></i> Severity</th>
+                                 <th><i class="icon_mail_alt"></i> Descrption</th>
+                                 <th><i class="icon_cogs"></i> Action</th>
+                               -->
+                                 <td > {{dataa.date | date:'yyyy-MM-dd'}}</td>
                                  <td >{{dataa.time}}</td>
-                                 <td  filter="{ 'severity': 'text' }">
+                                 <td filter="{ 'severity': 'text' }">
                                   {{dataa.severity}}</td>
                                  
                                  <td filter="{ 'description': 'text' }">

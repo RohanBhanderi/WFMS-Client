@@ -55,6 +55,17 @@ wfms.controller("ClientsCtrl", function($scope, $rootScope, DataService, $modal)
 		});
 	};
 
+	$scope.deleteClient = function(client) {
+		
+		DataService.deleteData('api/deleteClient/'+client.idperson, []).success(function(response){
+			alert("Building Deleted Successfully");
+			loadclient();
+		}).error(function(err){
+			
+		});
+		
+	};
+
 
 }).filter('sumByKey', function () {
     return function (data, key) {

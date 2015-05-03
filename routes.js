@@ -24,7 +24,7 @@ module.exports = function (app, passport) {
     app.get('/api/listAllClients', ensureAuthenticated, clientController.listAllClients);
     app.put('/api/updateClient', ensureAuthenticated, clientController.updateClient);
     app.post('/api/createClient', ensureAuthenticated, clientController.createClient);
-    app.delete('/api/deleteClient', ensureAuthenticated, clientController.deleteClient);
+    app.delete('/api/deleteClient/:idperson', ensureAuthenticated, clientController.deleteClient);
     app.post('/api/updateClientBillingInfo', ensureAuthenticated, clientController.updateClientBillingInfo);
     app.get('/api/getClientInfo/:idperson', ensureAuthenticated, clientController.getClientInfo);
     
@@ -55,6 +55,7 @@ module.exports = function (app, passport) {
     app.put('/api/alert/seenByAdmin', ensureAuthenticated, alertController.seenByAdmin);
     
     app.get('/api/activeAdminAlerts', ensureAuthenticated, alertController.activeAdminAlerts);
+    app.put('/api/editPerson', ensureAuthenticated, adminController.editPerson);
     
     //Guard
   //tested with rabbit mq

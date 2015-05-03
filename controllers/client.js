@@ -145,7 +145,8 @@ getClient=function(req,res){
 
 deleteClient=function(req,res){
 	console.log(JSON.stringify(req.body));
-	if(!req.body.idperson){
+	
+	if(!req.params.idperson){
 		res.status(400).json({ status : 400, message : "Bad Request" });
 	}else{
 				// var idperson = req.body.idperson,
@@ -165,7 +166,9 @@ deleteClient=function(req,res){
 
 		var msgPayload = {
 			operation : "deleteClient",
-			message : req.body
+			message : {
+				idperson: req.params.idperson
+			}
 		};
 
 		mq_client.make_request('client_queue',msgPayload,function(err,results){
@@ -244,4 +247,4 @@ exports.getClient = getClient;
 exports.listAllClients = listAllClients;
 exports.getClientInfo=getClientInfo;
 
-exports.getPendingClients=getPendingClients;
+//exports.getPendingClients=getPendingClients;

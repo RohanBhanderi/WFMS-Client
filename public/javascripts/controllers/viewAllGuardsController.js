@@ -1,11 +1,16 @@
 'use strict';
-wfms.controller("ViewAllGuardsCtrl", function($scope, $rootScope, $modal, DataService) {
+wfms.controller("ViewAllGuardsCtrl", function($scope, $rootScope, $modal, $filter, DataService, ngTableParams) {
+
+	var data = [];
 
 	$scope.getData = function() {
 		
 		getAllGaurds();
 		
 	}
+
+	
+
 	$scope.deleteCall = function(guard){
 		
 		console.log("to delete"+guard.guard.fname);
@@ -20,7 +25,33 @@ wfms.controller("ViewAllGuardsCtrl", function($scope, $rootScope, $modal, DataSe
 		});
 		getAllGaurds();
 	}
+
+	$scope.tableParams = new ngTableParams({
+                                         page: 1,            // show first page
+                                         count: 10,          // count per page
+                                         filter: {
+                                                 fname: ''       // initial filter
+                                         },
+                                         sorting: {
+                                                 fname: ''     // initial sorting
+                                         }
+                         }, {
+                                         total: data.length, // length of data
+                                         getData: function($defer, params) {
+                                                         // use build-in angular filter
+                                                         var filteredData = params.filter() ?
+                                                                                         $filter('filter')(data, params.filter()) :
+                                                                                         data;
+                                                         var orderedData = params.sorting() ?
+                                                                                         $filter('orderBy')(filteredData, params.orderBy()) :
+                                                                                         data;
+
+                                                         params.total(orderedData.length); // set total for recalc pagination
+                                                         $defer.resolve(orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count()));
+                                         }
+                         });
 	
+
 	$scope.modifyGuard = function(data) {
 		console.log("edit guard");
 
@@ -44,19 +75,19 @@ wfms.controller("ViewAllGuardsCtrl", function($scope, $rootScope, $modal, DataSe
 		});
 		
 	};
-
 	function getAllGaurds(){
 		var uri = urlConstants.GET_ALL_GUARDS;
 			
 			DataService.getData(uri,[]).success(function(response){
 				if(response.data){
-					/*console.log(JSON.stringify(response.data));*/
+					data = response.data;
 					$scope.guardListResults = response.data;
 				}
 			}).error(function(err){
 				console.log(err.message);
 			});
 		};
+	
 	
 
 });

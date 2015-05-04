@@ -71,7 +71,7 @@ module.exports = function (app, passport) {
     app.get('/api/getGuard/:idguard', ensureAuthenticated, guardController.getGuard);
    //tested with rabbit mq
     app.get('/api/searchGuard',ensureAuthenticated, guardController.searchGuard);
-<<<<<<< HEAD
+
     
     app.get('/api/getGuardSchedule/:idguard', guardController.getGuardSchedule);
     app.get('/api/getGuardBuilding/:idguard', guardController.getGuardSchedule);
@@ -81,10 +81,7 @@ module.exports = function (app, passport) {
     app.post('/api/addPatrolRecord', ensureAuthenticated, guardController.addPatrolRecord);
    // app.post('/api/createAlertGuard', ensureAuthenticated, guardController.createAlert);
 
-=======
 
-    //Building
->>>>>>> 94a53cbfc352deb6615f1c00b929aaca9b5c8f95
     //app.get(('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);
 
     app.get('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);

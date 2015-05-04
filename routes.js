@@ -32,7 +32,8 @@ module.exports = function (app, passport) {
     // Admin
     //app.post('/api/createAlert' ,adminController.createAlert);
     app.post('/api/publishAlert',adminController.publishAlert);
-    app.post('/api/addPatrolRecord',adminController.addPatrolRecord );
+    app.post('/api/addPatrol',adminController.addPatrol);
+    
     //app.put('/api/createReport',reportController.createReport);
     app.get('/api/getPendingClients', ensureAuthenticated, adminController.getPendingClients);
     app.get('/api/getGuardsForAssignments',ensureAuthenticated, adminController.getGuardsForAssignments);
@@ -73,7 +74,16 @@ module.exports = function (app, passport) {
    //tested with rabbit mq
     app.get('/api/searchGuard',ensureAuthenticated, guardController.searchGuard);
 
-    //Building
+    
+    app.get('/api/getGuardSchedule/:idguard', guardController.getGuardSchedule);
+    app.get('/api/getGuardBuilding/:idguard', guardController.getGuardSchedule);
+    //Guard
+    app.get('/api/getGuardInfo/:idperson', ensureAuthenticated, guardController.getGuardInfo);
+    //Building 
+    app.post('/api/addPatrolRecord', ensureAuthenticated, guardController.addPatrolRecord);
+   // app.post('/api/createAlertGuard', ensureAuthenticated, guardController.createAlert);
+
+
     //app.get(('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);
 
     app.get('/api/getBuildingClientReport/:idperson', buildingController.getBuildingClientReport);

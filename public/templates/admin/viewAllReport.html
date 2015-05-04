@@ -1,17 +1,16 @@
-<div ng-controller="viewReportClientController" ng-init = "getData()">
-   <section id="main-content">
-      <section class="wrapper">
-         <div class="row">
-            <div class="col-lg-12">
-               <h3 class="page-header"><i class="fa fa-table"></i>Report</h3>
-               <ol class="breadcrumb">
-                  <li><i class="fa fa-home"></i><a href ng-click="setTemplate('clientHome')">Home</a></li>
-                  <li><i class="fa fa-table"></i>Report</li>
-               </ol>
-            </div>
+<div ng-controller="ViewAllReportAdminCntr" ng-init="getData()">
+<section id="main-content">
+   <section class="wrapper">
+      <div class="row">
+         <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-table"></i> Admin</h3>
+            <ol class="breadcrumb">
+               <li><i class="fa fa-home"></i><a href ng-click="setTemplate('adminHome')">Home</a></li>
+               <li><i class="fa fa-table"></i>ViewAllReport</li>
+            </ol>
          </div>
-        
-        <div class="row">
+      </div>
+      <div class="row">
          <div class="col-lg-12">
             <button ng-click="tableParams.sorting({})" class="btn btn-default pull-right">Clear sorting</button>
             <button ng-click="tableParams.filter({})" class="btn btn-default pull-right">Clear filter</button> 
@@ -19,6 +18,9 @@
                <tr ng-repeat="report in $data">
                   <td data-title="'Date'" sortable="'date'" filter="{ 'date': 'text' }">
                      {{report.date| date : 'yyyy-MM-dd'}}
+                  </td>
+                  <td data-title="'Customer Name'" sortable="'clientfirst'" filter="{ 'clientfirst': 'text' }">
+                     {{report.clientfirst}} {{report.clientlast}}
                   </td>
                   <td data-title="'Building Name'" sortable="'buildingname'" filter="{ 'buildingname': 'text' }">
                      {{report.buildingname}}
@@ -36,7 +38,7 @@
             </table>
          </div>
       </div>
-              <p>{{error}}</p>
+      <p>{{error}}</p>
      
          <div class="row">
             <div class=" col-lg-4 span2 panel panel-primary " >
@@ -165,6 +167,6 @@
                </div>
             </div>
          </div> -->
-      </section>
    </section>
+</section>
 </div>

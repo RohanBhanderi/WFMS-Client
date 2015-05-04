@@ -369,10 +369,10 @@ alertPerDay = function(req,res){
 }*/
 
 
-exports.seenByClient = seenByClient;
+
 
 activeAdminAlerts= function(req,res){
-<<<<<<< HEAD
+
 	
 	 var msgPayload = {
 				operation : "activeAdminAlerts",
@@ -449,3 +449,4 @@ exports.alertPerBuilding = alertPerBuilding;
 exports.createAlert = createAlert;
 exports.activeAdminAlerts = activeAdminAlerts;
 exports.seenByAdmin = seenByAdmin;
+exports.seenByClient = seenByClient;

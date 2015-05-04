@@ -170,12 +170,6 @@ addPatrol = function(req,res){
 	}
 };
 
-<<<<<<< HEAD
-
-exports.createAlert=createAlert;
-exports.publishAlert=publishAlert;
-exports.addPatrol=addPatrol;
-=======
 //find the guards who can be assigned to a building based on the schedule.
 getGuardsForAssignments=function(req,res){
 	
@@ -228,9 +222,10 @@ assignGuards = function(req,res){
 };
 exports.editPerson = editPerson;
 exports.createAlert=createAlert;
+exports.addPatrol=addPatrol;
 exports.publishAlert=publishAlert;
-exports.addPatrolRecord=addPatrolRecord;
+
 exports.getGuardsForAssignments=getGuardsForAssignments;
 exports.getPendingClients=getPendingClients;
 exports.assignGuards=assignGuards;
->>>>>>> 94a53cbfc352deb6615f1c00b929aaca9b5c8f95
+

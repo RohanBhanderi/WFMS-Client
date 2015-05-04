@@ -36,21 +36,21 @@ var urlConstants = {
 	"GET_ACTIVE_ADMIN_ALERTS":"/api/activeAdminAlerts",
 	"DELETE_BUILDING":"/api/deleteBuilding/",
 	"GET_ALL_CLIENTS":"/api/listAllClients",
-<<<<<<< HEAD
+
 		//Guard
 		"GET_GUARD_DETAILS" : "/api/getGuardInfo/",
 		"GET_GUARD_SCHEDULE" : "/api/getGuardSchedule/",
 		"GET_GUARD_BUILDING" : "/api/getGuardBuilding/",
 		"CREATE_ALERT" : "/api/createAlert",
 		"ADD_PATROL" : "/api/addPatrolRecord",
-		"GET_GUARD_BUILDING" : "/api/getGuardSchedule/"
+		"GET_GUARD_BUILDING" : "/api/getGuardSchedule/",
 
 		
-=======
+
 	"GET_PNDG_CLIENTS":"/api/getPendingClients",
 	"GET_GUARDS_ASSIGN":"/api/getGuardsForAssignments",
 	"ASSIGN_GUARDS":"/api/assignGuards"
->>>>>>> 94a53cbfc352deb6615f1c00b929aaca9b5c8f95
+
 	
 };
 

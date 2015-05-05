@@ -96,18 +96,25 @@ wfms.controller("EditGuardCtrl", function($scope, $modalInstance,
 	                  { name: 'WISCONSIN', abbreviation: 'WI'},
 	                  { name: 'WYOMING', abbreviation: 'WY' }
 	              ];
-	           	
-	$scope.open = function($event) {
-	    $event.preventDefault();
-	    $event.stopPropagation();
-
-	    $scope.opened = true;
-	  };
 	
+	//ZipCode Validation
 
-$scope.okay = function() {
-	if($scope.start_date && $scope.end_date){
-		
+	function isValidPostalCode(postalCode) {
+
+	        var postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+
+	        return postalCodeRegex.test(postalCode);
+
+	}
+
+
+
+	$scope.okay = function() {
+	if($scope.start_date && $scope.end_date && $scope.idguard && 
+			$scope.fname && $scope.lname && $scope.bgstatus && $scope.weekly_working_set &&
+			$scope.address && $scope.state && $scope.city && $scope.zipcode &&
+			$scope.email && $scope.phonenumber){
+			
 		if (isEdit) {
 			console.log(isEdit);
 
@@ -171,11 +178,12 @@ $scope.okay = function() {
 				$modalInstance.dismiss(false);
 			});
 		}
-	}
+			}
+	
 	
 	else{
 		
-		$scope.formError = "Form Invalid !!!";
+		$scope.formError = "Required field missing";
 	}
 
 };
@@ -185,5 +193,8 @@ $scope.cancel = function() {
 };
 
 });
+
+
+
 
 

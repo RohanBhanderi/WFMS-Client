@@ -39,6 +39,6 @@ exports.awsConfig = {
 * Redis config
  */
 exports.redisConfig = {
-	host : '',
+	host : 'localhost',
 	port : '6379'
 }

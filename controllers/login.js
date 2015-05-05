@@ -172,10 +172,7 @@ exports.checkLogin = function(req, res, next) {
 };
 
 exports.logout = function(req, res) {
-  console.log("In logout");
-    
-    //req.session.destroy();
-    
+    console.log("In logout");
     res.status(200).json({status:200});
 };
 

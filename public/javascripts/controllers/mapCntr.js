@@ -1,7 +1,20 @@
 'use strict';
 wfms.controller("mapCntr", function($scope, $rootScope,  
-		$location)  {
+		$location, DataService)  {
 $scope.map = { center: { latitude: 37.335847,  longitude: -121.886403 }, zoom: 8 };
+
+$scope.getBuilding = function(){
+
+		console.log("idclient: "+$rootScope.idclient);
+
+		DataService.getData("/api/getBuildingClientReport/"+$rootScope.idclient, []).success(
+				function(response) {
+					$scope.data = response.data;
+          console.log($scope.result);
+				}).error(function(err) {
+			console.log("Error while updating client billing information");
+		});
+};
 
 $scope.marker = {
       id: 0,
@@ -28,17 +41,15 @@ $scope.marker = {
         }
       }
 
-		alert("In Map");
-
-		getMap();
+		//getMap();
 
 		
 	}
 
-	function getMap(){
+	// function getMap(){
 		
-		$location.path('/client/map');
+	// 	$location.path('/client/map');
 		
 
-	}
+	// }
 });

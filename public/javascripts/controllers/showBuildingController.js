@@ -51,8 +51,8 @@ wfms.controller("ShowBuildingController", function($scope, $rootScope, $modal,
 	
 	function getBuilding(){
 		
-		//var uri = urlConstants.GET_USER_DETAILS+$rootScope.userId;
-		DataService.getData("/api/listBuilding/1",[]).success(function(response){
+		var uri ="/api/listBuilding/"+$rootScope.idclient;
+		DataService.getData(uri,[]).success(function(response){
 			$scope.building = response.data;
 		}).error(function(err){
 			console.log(err.message);

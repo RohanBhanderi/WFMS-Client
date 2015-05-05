@@ -36,6 +36,7 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 				function(response) {
 					console.log("Login Successful for client");
 					$rootScope.idclient = response.idclient;
+					$rootScope.idperson = response.idperson;
 					$rootScope.fname = response.fname;
 					$rootScope.lname = response.lname;
 					console.log("$rootScope.iclient:" + $rootScope.idclient);

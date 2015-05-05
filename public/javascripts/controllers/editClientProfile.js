@@ -71,7 +71,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
 			
 
 			var paramsPerson = {
-				idperson : 7,
+				idperson : $rootScope.idperson,
 				fname : $scope.firstName,
 				lname : $scope.lastName,
 				address : $scope.address,
@@ -86,8 +86,8 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
 						console.log("Editted Successfully");
 
 						var params = {
-								idperson : 7,
-							//idperson : $scope.idperson,
+							//	idperson : 7,
+							idperson : $rootScope.idperson,
 							start_date : $scope.start_date,
 							end_date : $scope.end_date
 						};
@@ -105,12 +105,12 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
 
 			});
 
-			DataService.putData('/api/editClient', params).success(
-					function(response) {
-						$modalInstance.close(true);
-					}).error(function(err) {
-				$modalInstance.close(false);
-			});
+//			DataService.putData('/api/editClient', params).success(
+//					function(response) {
+//						$modalInstance.close(true);
+//					}).error(function(err) {
+//				$modalInstance.close(false);
+//			});
 
 		}
 

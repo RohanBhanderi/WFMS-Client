@@ -38,7 +38,6 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 					$rootScope.idperson = response.idperson;
 					$rootScope.fname = response.fname;
 					$rootScope.lname = response.lname;
-					$rootScope.idperson = response.idperson;
 					$rootScope.email = response.email;
 					$rootScope.lastLogin = response.lastLogin;
 					$location.path('/client');

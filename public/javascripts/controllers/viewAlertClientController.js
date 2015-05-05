@@ -3,7 +3,7 @@ wfms.controller("viewAlertClientController", function($scope, $rootScope, $filte
 		$location, $window, DataService, ngTableParams)  {
 
 	var data = [];
-	$scope.getAlert = function(){
+	function getAll (){
 		DataService.getData("/api/alertPerClient/1", []).success(
 				function(response) {
 					angular.toJson(response);
@@ -12,6 +12,9 @@ wfms.controller("viewAlertClientController", function($scope, $rootScope, $filte
 				}).error(function(err) {
 			console.log("Error while fetching data");
 		});
+	}
+	$scope.getAlert = function(){
+		getAll();
 	};
 	
 	$scope.tableParams = new ngTableParams({
@@ -61,24 +64,24 @@ wfms.controller("viewAlertClientController", function($scope, $rootScope, $filte
 
 
 	$scope.seen = function(alertinfo){
-		console.log(angular.isObject(alertinfo));
-		angular.toJson(alertinfo);
-		console.log(alertinfo.data.idalertInfo);
+		//console.log(angular.isObject(alertinfo));
+		
+		console.log(alertinfo.idalertInfo);
 		console.log("Id Alert: "+ alertinfo);
 		var params = {
-				idalertInfo : alertinfo.data.idalertInfo,
+				idalertInfo : alertinfo.idalertInfo,
 				seenByClient : 'T'
 				
 			};
 
 		DataService.putData("/api/alert/seenByClient",params).success(function(response){
 				console.log("Done Successfully");
-
+				getAll();
 
 			}).error(function(err){
 				console.log("Error");
 			});
-			this.getAlert();
+			
 		
 	}
 });

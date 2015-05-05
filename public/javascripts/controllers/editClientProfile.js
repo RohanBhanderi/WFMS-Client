@@ -1,7 +1,7 @@
 'use strict';
 wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 
-		isEdit, $rootScope, DataService) {
+		isEdit, $rootScope, DataService, $window) {
 	
 	//ZipCode Validation
 	function isValidPostalCode(postalCode) {
@@ -9,7 +9,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
         return postalCodeRegex.test(postalCode);
 }
 
-	
+	//SSN Validation
 	function isSSN(ssn) {
         var ssnRegex =  /^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/;
         return ssnRegex.test(ssn);
@@ -62,6 +62,11 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 			$scope.formError = "Enter a valid ZipCode";
 			
 		}
+		else if(!(isSSN($scope.state))){
+			$scope.formError = "Enter a valid SSN";
+			
+		}
+		
 		else{
 		
 		
@@ -72,7 +77,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 			
 
 			var paramsPerson = {
-				idperson : $rootScope.idperson,
+				idperson : $window.sessionStorage.idperson,
 				fname : $scope.firstName,
 				lname : $scope.lastName,
 				address : $scope.address,
@@ -88,12 +93,13 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 
 						var params = {
 							//	idperson : 7,
-							idperson : $rootScope.idperson,
+							idperson : $window.sessionStorage.idperson,
 							start_date : $scope.start_date,
 							end_date : $scope.end_date
 						};
-
-						DataService.putData('api/updateClient', params)
+						//DataService.putData('/api/editClient', params)
+						//.success(
+					DataService.putData('api/updateClient', params)
 								.success(function(response) {
 
 									$modalInstance.close(true);
@@ -106,7 +112,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 
 			});
 
-//			DataService.putData('/api/editClient', params).success(
+//		DataService.putData('/api/editClient', params).success(
 //					function(response) {
 //						$modalInstance.close(true);
 //					}).error(function(err) {

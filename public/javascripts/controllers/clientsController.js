@@ -8,12 +8,10 @@ wfms.controller("ClientsCtrl", function($scope, $rootScope, DataService, $modal)
 				$scope.clientListResults = response.data;
 
 		var params = {
-<<<<<<< HEAD
 			idclient : $rootScope.idclient
-=======
-			idclient : $window.sessionStorage.idclient
 
->>>>>>> c93fed60e216325b6ff5723e26039f6453c9d560
+		//	idclient : $window.sessionStorage.idclient
+
 		};
 
 		DataService.postData("/api/updateClientBillingInfo", params).success(

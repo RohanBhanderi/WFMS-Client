@@ -30,6 +30,23 @@ createBuilding = function(req,res){
 		// 		res.status(200).json({ status : 200, message : "building has been added Succesfully" });
 		// 	}
 		// });
+		
+	    req.checkBody('buildingname', 'Please enter a valid name of building.').notEmpty();
+	    req.checkBody('start_date', 'Please enter a valid startdate.').notEmpty().isDate();
+	    req.checkBody('release_date', 'Please enter a valid release date.').notEmpty().isDate();
+	    req.checkBody('address', 'Please enter a valid address.').notEmpty();
+	    req.checkBody('checkpoint', 'Please enter a valid checkpoints.').notEmpty();
+	    req.checkBody('no_of_guards', 'Please enter a valid number of guards.').notEmpty().isInt();
+
+	    var errors = req.validationErrors();
+	    if (errors) {
+	        console.log(errors);
+	        var msg = errors[0].msg;
+	        res.status(400).json({
+	            status : 400,
+	            message : msg
+	        });
+	    }
 
 		var msgPayload = {
 			operation : "createBuilding",

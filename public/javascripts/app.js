@@ -27,8 +27,7 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable'])
 		requireBase : false
 	});
 
-})
-.run(['$rootScope','$window' ,'$location', 'DataService',function($rootScope,$window, $location,DataService) {
+}).run(['$rootScope','$window' ,'$location', 'DataService',function($rootScope,$window, $location,DataService) {
 	$rootScope.$on('$routeChangeStart', function(event) {
 
 
@@ -92,3 +91,7 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable'])
 	});
 
 }]);
+
+
+
+   

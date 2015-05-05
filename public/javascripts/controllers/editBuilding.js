@@ -74,8 +74,8 @@ $scope.okay = function() {
 		else {
 			var params = {
 					
-					//idclient : $rootScope.userId,
-					idclient : 1,
+					idclient : $rootScope.idclient,
+					//idclient : 1,
 					start_date:$scope.start_date,
 					release_date : $scope.release_date,
 					buildingname:  $scope.buildingname,

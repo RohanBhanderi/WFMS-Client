@@ -34,7 +34,6 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
       });
     });
   };
->>>>>>> 8feeaa0a8e9ccc36b47a070b063eaaf8c60f0f31
 
 	console.log("isEdit" + isEdit);
 

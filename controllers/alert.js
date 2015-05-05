@@ -248,7 +248,7 @@ alertPerClient = function(req,res){
 	console.log("This Api will be for fetching alerts according to clients");
 	console.log(req.params.idclient);
 	if(!req.params.idclient){
-		res.status(400).json({status : 400, message : "Bad Request"});
+		res.status(400).json({status : 400, message : "Bad RequestYes"});
 	} else{
 		 var msgPayload = {
 			operation : "alertPerClient",
@@ -294,7 +294,8 @@ seenByClient = function(req,res){
 		 var msgPayload = {
 					operation : "seenByClient",
 					message : {
-						idclient :req.params.idclient
+						idalertInfo : req.body.idalertInfo,
+						seenByClient : 'T'
 				}
 			}
 

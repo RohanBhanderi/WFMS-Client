@@ -14,6 +14,7 @@ wfms.controller("EditGuardCtrl", function($scope, $modalInstance,
 		$scope.address = isEdit.address;
 		$scope.zipcode = isEdit.zipcode;
 		$scope.city = isEdit.city;
+		$scope.state = isEdit.state;
 		$scope.email = isEdit.email;
 		$scope.phonenumber = isEdit.phonenumber;
 		
@@ -27,6 +28,7 @@ wfms.controller("EditGuardCtrl", function($scope, $modalInstance,
 		$scope.address = "";
 		$scope.zipcode = "";
 		$scope.city = "";
+		$scope.state = "";
 		$scope.email = "";
 		$scope.phonenumber = "";
 	};
@@ -49,7 +51,7 @@ $scope.okay = function() {
 			var params = {
 				
 				
-					//idclient : $rootScope.userId,
+		    //idclient : $rootScope.userId,
 			idperson : isEdit.idperson,
 			idguard : $scope.idguard,
 			fname : $scope.fname,
@@ -60,6 +62,7 @@ $scope.okay = function() {
 			end_date : $scope.end_date,
 			address : $scope.address,
 			zipcode : $scope.zipcode,
+			state : $scope.state,
 			city : $scope.city,
 			email : $scope.email,
 			phonenumber : $scope.phonenumber
@@ -92,10 +95,11 @@ $scope.okay = function() {
 					end_date : $scope.end_date,
 					address : $scope.address,
 					zipcode : $scope.zipcode,
+					state : $scope.state,
 					city : $scope.city,
 					email : $scope.email,
 					phonenumber : $scope.phonenumber,
-					password : $scope.city,
+					password : $scope.fname+$scope.lname,
 					usertype : "Guard"
 				};
 			DataService.postData("/api/createGuard",params).success(function(response){
@@ -118,8 +122,5 @@ $scope.cancel = function() {
 };
 
 });
-
-
-
 
 

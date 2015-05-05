@@ -30,6 +30,7 @@
                                  <th style="text-align: center;">End Date</th>
                                  <th style="text-align: center;">Address</th>
                                  <th style="text-align: center;">City</th>
+                                 <th style="text-align: center;">State</th>
                                  <th style="text-align: center;">Zipcode</th>
                                  <th style="text-align: center;">Email</th>
                                  <th style="text-align: center;">Phone Number</th>
@@ -50,6 +51,7 @@
                                  <td style="text-align: center;">{{guard.end_date| date : 'mediumDate'}}</td>
                                  <td style="text-align: center;">{{guard.address}}</td>
                                  <td style="text-align: center;">{{guard.city}}</td>
+                                 <td style="text-align: center;">{{guard.state}}</td>
                                  <td style="text-align: center;">{{guard.zipcode}}</td>
                                  <td style="text-align: center;">{{guard.email}}</td>
                                  <td style="text-align: center;">{{guard.phonenumber}}</td>
@@ -85,6 +87,9 @@
                                </td>
                                <td data-title="'City'" sortable="'city'" filter="{ 'city': 'text' }">
                                  {{guard.city}}
+                               </td>
+                                 <td data-title="'State'" sortable="'state'" filter="{ 'state': 'text' }">
+                                 {{guard.state}}
                                </td>
                                <td data-title="'Zipcode'" sortable="'zipcode'" filter="{ 'zipcode': 'text' }">
                                  {{guard.zipcode}}

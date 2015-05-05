@@ -177,8 +177,10 @@
 					</h5>
 				</div>
 				<div class="col-xs-9 col-xs-pull-1">
-					<input type="text" name="state" ng-model="state"
-						class="form-control" placeholder="State" required>
+					<select ng-model="state">
+					<option value="">-- Select a State --</option>
+    				<option ng-repeat="state in states" value="{{state.name}}" ng-model="state">{{state.name}}</option>
+					</select>
 				</div>
 				
 			</div>

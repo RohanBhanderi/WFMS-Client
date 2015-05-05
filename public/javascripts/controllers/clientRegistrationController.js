@@ -12,16 +12,11 @@ wfms.controller("ClientRegistrationController", function($scope, $modalInstance,
 	 
 	  
 		 
-	  
-	  $scope.searchUserNames = function(){
-        
-                        
-                                  $scope.searchInputs = usStates;
-                                  
-                          }
+	
 	  
 $scope.register = function() {
 
+	$scope.ssn=" ";
 	function isValidPostalCode(ZipCode) {
         var postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
         return postalCodeRegex.test(postalCode);
@@ -29,8 +24,11 @@ $scope.register = function() {
 
 	
 	function isSSN(ssn) {
+
         var ssnRegex =  /^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/;
+
         return ssnRegex.test(ssn);
+
 }
     
 	console.log("Inside register Funct"+$scope.firstname);
@@ -41,8 +39,15 @@ if(!($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.
 		
 		$scope.formError = "Form Invalid !!!";
 	}else{
-		
-		
+		if(!(isValidPostalCode(zipcode))){
+			
+			$scope.formError = "Invalid Zipcode !!!";
+		}
+		else if(!(isSSN(ssnError))){
+			$scope.ssn=" $scope.ssnError=" ";";
+			$scope.formError = "Invalid SSN Format !!!";
+		}
+		else{
 		var params = {
 				
 				fname : $scope.firstname,
@@ -63,6 +68,7 @@ if(!($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.
 		}).error(function(err){
 			$modalInstance.dismiss(false);
 		});
+	}
 	}
 };
 

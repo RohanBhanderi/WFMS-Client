@@ -405,16 +405,18 @@ activeAdminAlerts= function(req,res){
 
 seenByAdmin = function(req,res){
 
-	console.log(JSON.stringify(req.body));
+	console.log("***seen by admin"+JSON.stringify(req.body));
 	console.log("This Api will be for changing the status alert when seen by admin");
 	
 	if(!req.body.idalertInfo){
+		console.log("if if");
 		res.status(400).json({status : 400, message : "Bad Request"});
 	} else {
+		console.log("in else");
 		 var msgPayload = {
 					operation : "seenByAdmin",
 					message : {
-						idalertInfo :req.params.idalertInfo,
+						idalertInfo :req.body.idalertInfo,
 						status : 'T'
 				}
 			}

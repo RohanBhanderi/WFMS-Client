@@ -25,8 +25,7 @@ wfms.controller("clientBillingInfo", function($scope, $rootScope,
 
 
 
-		DataService.postData("/api/updateClientBillingInfo"+ params).success(
-
+		DataService.postData("/api/updateClientBillingInfo", params).success(
 				function(response) {
 					$scope.billingInfo = response.result;
 				}).error(function(err) {

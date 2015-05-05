@@ -73,7 +73,7 @@ getBuildingClientReport = function(req,res){
 
 //		mysql.queryDb('SELECT buildingname, address FROM building WHERE ? and buildingstatus = "Active"',[{idclient:req.params.idperson}],function(err,rows){
 
-		// mysql.queryDb('SELECT buildingname FROM building WHERE ? and buildingstatus = "Active"',[{idclient:req.params.idperson}],function(err,rows){
+//		mysql.queryDb('SELECT buildingname FROM building WHERE ? and buildingstatus = "Active"',[{idclient:req.params.idperson}],function(err,rows){
 
 		// 	if (err) {
 		// 		res.status(500).json({ status : 500, message : "Error while retrieving data" });

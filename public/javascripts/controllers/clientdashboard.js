@@ -13,13 +13,10 @@ wfms.controller("ClientDashboard", function($scope, $rootScope, $modal,
 	
 	
 	function clientInfo(){
-
+		var uri = "/api/getClientInfo/"+$rootScope.idperson;
+		DataService.getData("/api/getClientInfo/" + $window.sessionStorage.idperson,[]).success(function(response){
 	
 
-		DataService.getData("/api/getClientInfo/" + $window.sessionStorage.idperson,[]).success(function(response){
-
-
-			
 			//angular.toJson(response);
 			console.log(response.data[0]);
 			$scope.clientProperties = response.data[0];

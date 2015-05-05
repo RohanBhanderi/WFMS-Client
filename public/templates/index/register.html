@@ -34,7 +34,7 @@
                                       <div class="form-group ">
                                           <label for="zipcode" class="control-label col-lg-2">Zipcode<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="zipcode" id="zipcode" name="zipcode"  maxlength="5" type="number" ng-pattern="zipCodeRegex" required />
+                                              <input class="form-control" ng-model="zipcode" id="zipcode" name="zipcode"  required />
                                           	<!-- <span ng-show="form.zipcode.$error.pattern">Not a valid ZipCode!</span> -->
  
                                           </div>
@@ -45,14 +45,10 @@
                                               <input class="form-control" ng-model="email" id="email" type="email" name="email"  />
                                           </div>
                                       </div>
-                                    
-                                      
-                                      
-                                      
                                       <div class="form-group ">
                                           <label for="password" class="control-label col-lg-2">Password<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="password" id="password" type="password" name="password" ng-pattern="ssnRegex"  />
+                                              <input class="form-control" ng-model="password" id="password" type="password" name="password"  />
                                           </div>
                                       </div>
                                       <div class="form-group ">
@@ -64,7 +60,8 @@
                                       <div class="form-group ">
                                           <label for="ssn" class="control-label col-lg-2">SSN<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="ssn" id="ssn" type="number" name="ssn"  />
+                                              <input class="form-control" ng-model="ssn" id="ssn" type="number" name="ssn"  ng-pattern="ssnRegex" />
+                                              <span >{{ssnError}}</span>
                                           </div>
                                       </div>
                                       

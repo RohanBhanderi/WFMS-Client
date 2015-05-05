@@ -57,6 +57,11 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 	};
 
 	$scope.okay = function() {
+
+		console.log("address:" + $scope.address.formatted_address);
+		console.log("address:" + $scope.address.location.lat);
+		console.log("address:" + $scope.address.location.lng);
+		
 		
 		if(!(isValidPostalCode($scope.ZipCode))){
 			$scope.formError = "Enter a valid ZipCode";
@@ -71,7 +76,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 		
 		
 		if ($scope.firstName && $scope.lastName && $scope.email
-				&& $scope.phonenumber && $scope.address && $scope.city
+				&& $scope.phonenumber && $scope.address.formatted_address && $scope.city
 				&& $scope.ZipCode && $scope.start_date && $scope.end_date) {
 			
 			
@@ -80,7 +85,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 				idperson : $window.sessionStorage.idperson,
 				fname : $scope.firstName,
 				lname : $scope.lastName,
-				address : $scope.address,
+				address : $scope.address.formatted_address,
 				city : $scope.city,
 				zipcode : $scope.ZipCode,
 				email : $scope.email,

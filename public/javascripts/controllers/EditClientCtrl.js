@@ -1,6 +1,6 @@
 'use strict';
 wfms.controller("EditClientCtrl", function($scope, $modalInstance,
-		 isEdit, $rootScope, DataService) {
+		 isEdit, $rootScope, DataService,$http) {
 
 	
 	
@@ -8,7 +8,7 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 
 	if (isEdit) {
 		console.log("isEdit for the idperson: "+isEdit.idperson);
-		$scope.idperson = isEdit.idperson;
+		//$scope.idperson = isEdit.idperson;
 		$scope.firstname =isEdit.fname;
 		$scope.lastname =isEdit.lname;
 		$scope.start_date=isEdit.start_date;
@@ -65,7 +65,7 @@ $scope.okay = function() {
 					zipcode: $scope.zipcode,
 					email: $scope.email,
 					phonenumber: $scope.phonenumber,
-			  		idperson: $scope.idperson
+			  		idperson: $rootScope.idperson
 						
 				};
 			DataService.putData("/api/editPerson",paramsPerson).success(
@@ -73,7 +73,7 @@ $scope.okay = function() {
 					console.log("Login Successful");
 
 					var params = {
-					idperson:$scope.idperson,
+					idperson: $rootScope.idperson,
 					start_date:$scope.start_date,
 					end_date : $scope.end_date
 					};

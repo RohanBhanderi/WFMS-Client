@@ -18,6 +18,7 @@ $scope.marker = {
           $log.log(lat);
           $log.log(lon);
 
+
           $scope.marker.options = {
             draggable: true,
             labelContent: "lat: " + $scope.marker.coords.latitude + ' ' + 'lon: ' + $scope.marker.coords.longitude,
@@ -26,5 +27,18 @@ $scope.marker = {
           };
         }
       }
+
+		alert("In Map");
+
+		getMap();
+
+		
+	}
+
+	function getMap(){
+		
+		$location.path('/client/map');
+		
+
 	}
 });

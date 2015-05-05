@@ -21,6 +21,10 @@ app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // to support URL-encoded bodies
 app.use(expressValidator());
 app.use(cookieSession({ secret: '@cMpE@7#' , cookie: { maxAge: 60000 }}));
+<<<<<<< HEAD
+=======
+
+>>>>>>> d75630bfc0783af7bf54f9e41e7093bb51d52435
 app.engine('ejs', ejs.renderFile);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname , 'views'));

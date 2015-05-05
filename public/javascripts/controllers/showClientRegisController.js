@@ -41,6 +41,14 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 				};
 			DataService.postData("/api/login",params).success(
 				function(response) {
+<<<<<<< HEAD
+					$rootScope.idclient = response.idclient;
+					$rootScope.idperson = response.idperson;
+					$rootScope.fname = response.fname;
+					$rootScope.lname = response.lname;
+					$rootScope.email = response.email;
+					$rootScope.lastLogin = response.lastLogin;
+=======
 					console.log("window element:" + $window.sessionStorage.idperson);
 					
 					$window.sessionStorage.idclient = response.idclient;
@@ -57,6 +65,7 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 					$rootScope.fname = $window.sessionStorage.fname;
 					$rootScope.email = $window.sessionStorage.email;
 					
+>>>>>>> 117d74be4717d942426eec293c000f89b0a53779
 					$location.path('/client');
 				}).error(function(err) {
 			console.log("Error while fetching data");

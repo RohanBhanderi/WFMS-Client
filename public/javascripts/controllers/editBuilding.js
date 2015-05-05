@@ -1,6 +1,22 @@
 'use strict';
 wfms.controller("EditBuildingCtrl", function($scope, $modalInstance,
-		 isEdit, $rootScope, DataService) {
+		 isEdit, $rootScope, DataService, $http) {
+
+	$scope.getLocation = function(val) {
+    return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+      params: {
+        address: val,
+        sensor: false
+      }
+    }).then(function(response){
+      return response.data.results.map(function(item){
+        return {
+          location: item.geometry.location,
+          formatted_address: item.formatted_address
+        }
+      });
+    });
+  };
 
 	
 	
@@ -36,10 +52,14 @@ wfms.controller("EditBuildingCtrl", function($scope, $modalInstance,
 
 
 $scope.okay = function() {
+
+	console.log($scope.address.location.lat);
+	console.log($scope.address.location.lng );
+	console.log($scope.buildingname + $scope.start_date  + $scope.address.formatted_address);
 	if($scope.buildingname &&
 	$scope.start_date &&
 	$scope.release_date &&
-	$scope.address &&
+	$scope.address.formatted_address &&
 	$scope.checkpoint &&
 	$scope.no_of_guards){
 	
@@ -55,9 +75,11 @@ $scope.okay = function() {
 					start_date:$scope.start_date,
 					release_date : $scope.release_date,
 					buildingname:  $scope.buildingname,
-					address : $scope.address,
+					address : $scope.address.formatted_address,
 					no_of_guards: $scope.no_of_guards,
-					checkpoint : $scope.checkpoint
+					checkpoint : $scope.checkpoint,
+					latitude : $scope.address.location.lat,
+					longitude : $scope.address.location.lng
 				
 			};
 			
@@ -79,11 +101,16 @@ $scope.okay = function() {
 					start_date:$scope.start_date,
 					release_date : $scope.release_date,
 					buildingname:  $scope.buildingname,
-					address : $scope.address,
+					address : $scope.address.formatted_address,
 					no_of_guards: $scope.no_of_guards,
-					checkpoint : $scope.checkpoint
+					checkpoint : $scope.checkpoint,
+					latitude : $scope.address.location.lat,
+					longitude : $scope.address.location.lng
+				
 						
 				};
+				console.log($scope.address.location.lat);
+	console.log($scope.address.location.lng);
 			DataService.postData("/api/createBuilding",params).success(function(response){
 				$modalInstance.close(true);
 			}).error(function(err){

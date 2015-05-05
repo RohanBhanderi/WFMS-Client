@@ -23,11 +23,8 @@ wfms.controller("clientBillingInfo", function($scope, $rootScope,
 			//idclient : 1
 		};
 
-<<<<<<< HEAD
+
 		DataService.postData("/api/updateClientBillingInfo", params).success(
-=======
-		DataService.postData("/api/updateClientBillingInfo"+ params).success(
->>>>>>> d75630bfc0783af7bf54f9e41e7093bb51d52435
 				function(response) {
 					$scope.billingInfo = response.result;
 				}).error(function(err) {

@@ -16,15 +16,11 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapg
 	}).when('/logout', {
 		templateUrl : 'templates/index.ejs',
 		controller : 'IndexController'
-<<<<<<< HEAD
+
 	}).when('/map', {
 		templateUrl : 'templates/map.ejs',
 		controller : 'MapController'
-=======
-	}).when('/client/map', {
-		templateUrl : 'templates/map.html',
-		//controller : 'MapController'
->>>>>>> d75630bfc0783af7bf54f9e41e7093bb51d52435
+
 	}).otherwise({
 		redirectTo : '/'
 	});
@@ -41,6 +37,15 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapg
 
 }).run(['$rootScope','$window' ,'$location', 'DataService',function($rootScope,$window, $location,DataService) {
 	$rootScope.$on('$routeChangeStart', function(event) {
+
+
+					$rootScope.lastLogin = $window.sessionStorage.lastLogin;
+					$rootScope.idclient = $window.sessionStorage.idclient;
+					$rootScope.idperson = $window.sessionStorage.idperson;
+					$rootScope.fname = $window.sessionStorage.fname;
+					$rootScope.fname = $window.sessionStorage.fname;
+					$rootScope.email = $window.sessionStorage.email;
+					$rootScope.idguard = $window.sessionStorage.idguard;
 		
 	});
 

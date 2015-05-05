@@ -20,7 +20,9 @@ wfms.controller("ClientController", function($scope, $rootScope,
 		$scope.template = "templates/index/"+tabName + ".html";
 
 	}
-
+	$scope.setEJS = function(tabName){
+		$location.path('/client/map');
+	}
 	$scope.getTemplate = function(){
 		return $scope.template;
 	};

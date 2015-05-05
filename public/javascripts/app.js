@@ -1,5 +1,5 @@
 'use strict';
-var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable'])
+var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapgoogle-maps'])
 .config(function($routeProvider, $locationProvider) {
 	$routeProvider.when('/', {
 		templateUrl : 'templates/index.ejs',
@@ -16,12 +16,15 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable'])
 	}).when('/logout', {
 		templateUrl : 'templates/index.ejs',
 		controller : 'IndexController'
-	}).when('/client/map', {
+	}).when('/map', {
 		templateUrl : 'templates/map.ejs',
 		controller : 'MapController'
 	}).otherwise({
 		redirectTo : '/'
 	});
+
+
+	
 	/**
 	 * to remove hash in the URL
 	 */

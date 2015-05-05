@@ -3,15 +3,6 @@ wfms.controller("clientBillingInfo", function($scope, $rootScope,
 		$location, $window, DataService) {
 
 	
-	// $scope.template = "templates/client/clientHome.html";
-
-	// $scope.setTemplate = function(tabName){
-	// 	$scope.template = "templates/client/"+tabName + ".html";
-	// }
-
-	// $scope.getTemplate = function(){
-	// 	return $scope.template;
-	// };
 	
 
 	$scope.getTotal = function(){
@@ -28,11 +19,11 @@ wfms.controller("clientBillingInfo", function($scope, $rootScope,
 	$scope.getBillingInfo = function(){
 
 		var params = {
-			idclient : $rootScope.idclient
+			idclient : $window.sessionStorage.idclient
 			//idclient : 1
 		};
 
-		DataService.postData("/api/updateClientBillingInfo"+, params).success(
+		DataService.postData("/api/updateClientBillingInfo", params).success(
 				function(response) {
 					$scope.billingInfo = response.result;
 				}).error(function(err) {

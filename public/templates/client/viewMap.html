@@ -1,78 +1,19 @@
-
-
-<div ng-controller = "mapCntr" ng-init="redirect()"> 
-
-	<section id="main-content">
-        <section class="wrapper">            
-            <div class="row"><h1>Maps</h1></div>
-              
-            <div class="row" id="map-canvas"></div>
+<style type="text/css">
+  .angular-google-map-container {  height: 600px; }
   
-            <div class="row"></div>  
-			
-          </section>
-      </section>
+</style>
+
+<div ng-controller="mapCntr" >
+<section id="main-content">
+          <section class="wrapper">            
+
+Hi
+<div class = "col-lg-8 col-xs-push-2" >
+<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+ <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+        </ui-gmap-marker>
+</ui-gmap-google-map>
 </div>
-<!-- 
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Simple markers</title>
-    <style>
-      html, body, #map-canvas {
-        height: 100%;
-        margin: 0px;
-        padding: 0px
-      }
-
-    </style>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
-    <script>
-function initialize() {
-  var myLatlng = new google.maps.LatLng(37.335847, -121.886403);
-  var myLatlng1 = new google.maps.LatLng(37.335643, -121.886848);
-  var myLatlng2 = new google.maps.LatLng(37.335928, -121.886572);
-  var myLatlng3 = new google.maps.LatLng(37.335762, -121.886888);
-  var mapOptions = {
-    zoom: 20,
-    center: myLatlng
-  }
- /* var mapOptions1 = {
-    zoom: 20,
-    center: myLatlng1
-  }*/
-  var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-//var map1 = new google.maps.Map(document.getElementById('map-canvas'), mapOptions1);
-
-  var marker = new google.maps.Marker({
-      position: myLatlng,
-      map: map,
-      title: '1'
-  });
-  var marker1 = new google.maps.Marker({
-      position: myLatlng1,
-      map: map,
-      title: '2'
-  });
-  var marker1 = new google.maps.Marker({
-      position: myLatlng2,
-      map: map,
-      title: '3'
-  });
-  var marker1 = new google.maps.Marker({
-      position: myLatlng3,
-      map: map,
-      title: '4'
-  });
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
-  </head>
-  <body>
-    <div id="map-canvas"></div>
-  </body>
-</html> -->
+</section>
+</section>
+</div>

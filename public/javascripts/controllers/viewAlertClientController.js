@@ -4,7 +4,7 @@ wfms.controller("viewAlertClientController", function($scope, $rootScope, $filte
 
 	var data = [];
 	function getAll (){
-		DataService.getData("/api/alertPerClient/1", []).success(
+		DataService.getData("/api/alertPerClient/"+$rootScope.idclient, []).success(
 				function(response) {
 					angular.toJson(response);
 					$scope.alert = response.resultAlert;	

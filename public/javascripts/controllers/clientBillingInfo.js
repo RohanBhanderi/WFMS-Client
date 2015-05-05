@@ -28,8 +28,8 @@ wfms.controller("clientBillingInfo", function($scope, $rootScope,
 	$scope.getBillingInfo = function(){
 
 		var params = {
-			//idclient : $rootScope.idclient;
-			idclient : 1
+			idclient : $rootScope.idclient;
+			//idclient : 1
 		};
 
 		DataService.postData("/api/updateClientBillingInfo", params).success(

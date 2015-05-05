@@ -29,9 +29,11 @@ module.exports = function(passport) {
 
     passport.use(new LocalStrategy({
         usernameField: 'email',
-        passwordField: 'password'
-    },function(email, password, done) {
-    	mysql.queryDb('select * from login where email = ?',[email],function(err,rows){
+        passwordField: 'password',
+        passReqToCallback: true
+    },function(req, email, password, done) {
+        //console.log("req:" + JSON.stringify(req));
+    	mysql.queryDb('select * from login where email = ? and type = ?',[email,req.body.userType],function(err,rows){
         		if(err) {
     			console.log('Error while fetching login:' + err);
     			return done(err);

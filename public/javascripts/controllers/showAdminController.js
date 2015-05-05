@@ -12,7 +12,8 @@ wfms.controller("ShowAdminController", function($scope, $rootScope, $modal,
 			var params = {
 					
 					email : $scope.email,
-					password:  $scope.password
+					password:  $scope.password,
+					userType: "ADMIN"
 						
 				};
 			DataService.postData("/api/login",params).success(

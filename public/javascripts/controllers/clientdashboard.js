@@ -1,6 +1,6 @@
 'use strict';
 wfms.controller("ClientDashboard", function($scope, $rootScope, $modal,
-		$location, DataService) {
+		$location, DataService, $window) {
 
 	$scope.getData = function() {
 		
@@ -15,9 +15,7 @@ wfms.controller("ClientDashboard", function($scope, $rootScope, $modal,
 	function clientInfo(){
 
 	
-		console.log("$rootScope.idclient" + $rootScope.idclient)
-		//var uri = urlConstants.GET_USER_DETAILS+$rootScope.userId;
-		DataService.getData("/api/getClientInfo/" + $rootScope.idperson,[]).success(function(response){
+		DataService.getData("/api/getClientInfo/" + $window.sessionStorage.idperson,[]).success(function(response){
 
 			
 			//angular.toJson(response);

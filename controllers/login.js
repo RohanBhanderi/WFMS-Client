@@ -112,6 +112,7 @@ exports.checkLogin = function(req, res, next) {
             req.session.last_login = last_login;
             req.session.idperson = user.idperson;
             req.session.email = user.username;
+           
             console.log(moment(user.last_login).format('LLL'));
 
             //Async Query

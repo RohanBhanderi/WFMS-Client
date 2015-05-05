@@ -1,6 +1,21 @@
 'use strict';
 wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
-		isEdit, $rootScope, $http, DataService) {
+
+		isEdit, $rootScope, DataService) {
+	
+	//ZipCode Validation
+	function isValidPostalCode(postalCode) {
+        var postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+        return postalCodeRegex.test(postalCode);
+}
+
+	
+	function isSSN(ssn) {
+        var ssnRegex =  /^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/;
+        return ssnRegex.test(ssn);
+}
+
+	
 
 	
   // Any function returning a promise object can be used to load values asynchronously
@@ -19,6 +34,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
       });
     });
   };
+>>>>>>> 8feeaa0a8e9ccc36b47a070b063eaaf8c60f0f31
 
 	console.log("isEdit" + isEdit);
 
@@ -41,9 +57,19 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
 	};
 
 	$scope.okay = function() {
+		
+		if(!(isValidPostalCode($scope.ZipCode))){
+			$scope.formError = "Enter a valid ZipCode";
+			
+		}
+		else{
+		
+		
 		if ($scope.firstName && $scope.lastName && $scope.email
 				&& $scope.phonenumber && $scope.address && $scope.city
 				&& $scope.ZipCode && $scope.start_date && $scope.end_date) {
+			
+			
 
 			var paramsPerson = {
 				idperson : 7,
@@ -95,9 +121,12 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
 		}
 
 	};
+	}
 
 	$scope.cancel = function() {
 		$modalInstance.dismiss(false);
 	};
 
 });
+
+

@@ -1,8 +1,8 @@
 var config = require("./../conf/config.js");
 
 var redis = require('redis');
-//var client = redis.createClient(config.redisConfig.port,config.redisConfig.host);
-var client = redis.createClient();
+var cacheClient = redis.createClient(config.redisConfig.port,config.redisConfig.host);
+//var cacheClient = redis.createClient();
 var data=[{
 	"name":"rohan",
 	"lname":"bhanderi"
@@ -11,36 +11,35 @@ var data=[{
 	"lname":"skywalker"
 }];
 
-exports.populateCache = function(){
+exports.cacheData = function(key,data,cb) {
 	//Store data on redis
-	client.set('cache', JSON.stringify(data),function(err,reply){
-		if(err){
-			console.log(err);
-		} else {
-			console.log("Cache populated..");
-		}
-	});
+	if(typeof cacheClient !== 'undefined' && cacheClient){
+		cacheClient.set(key, JSON.stringify(data),function(err,reply){
+			if(err){
+				console.log(err);
+				if(cb) { cb(err,data); }
+			} else {
+				console.log("Data cached with Key:" + key);
+				cacheClient.expire(key, 5 * 60);
+				if(cb) { cb(null,data); }
+			}
+		});
+	}
 };
 
-var getCache = function(cb){
-	client.get('cache', function(err,data){
-		if(err){
-			console.log(err);
-			cb(err,data);
-		} else {
-			console.log("Cache populated..");
-			cb(null,JSON.parse(data));
-		}
-	});
+exports.getCachedData = function(key,cb){
+	if(typeof cacheClient !== 'undefined' && cacheClient){
+		cacheClient.get(key, function(err,data){
+			if(err){
+				console.log(err);
+				cb(err,null);
+			} else {
+				console.log("Get Cache data.. for Key:"+key);
+				cb(null,JSON.parse(data));
+			}
+		});
+	} else {
+		cb(null,null);
+	}
 };
 
-exports.getCachedData = function(req,res){
-	getCache(function(err,data){
-		if(err){
-			console.log(err);
-			res.status(500).json({status:500, message: err, data:data});
-		} else {
-			res.status(200).json({status:200, message: "Successfull", data:data});
-		}
-	});
-};

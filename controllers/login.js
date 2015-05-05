@@ -16,6 +16,7 @@ exports.register = function(req, res) {
     var city = req.body.city;
     var zipcode = req.body.zipcode;
     var phonenumber = req.body.phonenumber;
+    var state = req.body.state;
     var ssn = req.body.ssn;
 
     req.checkBody('email', 'Please enter a valid email.').notEmpty().isEmail();
@@ -57,7 +58,8 @@ exports.register = function(req, res) {
                   address: address,
                   city:city,
                   zipcode:zipcode,
-                  phonenumber:phonenumber
+                  phonenumber:phonenumber,
+                  state:state
                   },
         function(err,result){
           if(err) {
@@ -170,10 +172,7 @@ exports.checkLogin = function(req, res, next) {
 };
 
 exports.logout = function(req, res) {
-  console.log("In logout");
-    
-    //req.session.destroy();
-    
+    console.log("In logout");
     res.status(200).json({status:200});
 };
 

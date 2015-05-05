@@ -1,19 +1,30 @@
 'use strict';
-wfms.controller("ClientsCtrl", function($scope, $rootScope, DataService, $modal) {
-	
+wfms.controller("ClientsCtrl", function($scope, $rootScope, DataService, $window, $modal) {
+	console.log("$rootScope idclient inside load client:" + $rootScope.idclient);
+	console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
 	function loadclient(){
+		console.log("$rootScope idclient inside load client:" + $rootScope.idclient);
+	console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
+	
 	DataService.getData(urlConstants.GET_ALL_CLIENTS,[]).success(function(response){
 			if(response.data){
 				console.log(response.data);
+				console.log("$rootScope idclient inside load client:" + $rootScope.idclient);
+				console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
+	
 				$scope.clientListResults = response.data;
 
 		var params = {
+
 			idclient : $rootScope.idclient
 
 		//	idclient : $window.sessionStorage.idclient
 
-		};
 
+		//	idclient : $window.sessionStorage.idclient
+
+		};
+		console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
 		DataService.postData("/api/updateClientBillingInfo", params).success(
 				function(response) {
 					$scope.billingInfo = response.result;

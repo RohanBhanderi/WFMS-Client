@@ -3,6 +3,13 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 		$location, DataService,$window) {
 	
 	$scope.registerClient = function() {
+		
+		 $scope.zipCodeRegex = "/^\d{5}(?:[-\s]\d{4})?$/";
+		  $scope.ssnRegex = "/^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/";
+
+
+		
+
 		console.log("inside register Client");
 
 		var modalInstance = $modal.open({
@@ -18,7 +25,7 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 		}, function() {
 		});
 	};
-
+    
 	$scope.loginClient = function() {
 
 		console.log("Inside login client Funct");

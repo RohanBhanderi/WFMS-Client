@@ -34,7 +34,9 @@
                                       <div class="form-group ">
                                           <label for="zipcode" class="control-label col-lg-2">Zipcode<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="zipcode" id="zipcode" name="zipcode"  maxlength="5" type="number" required />
+                                              <input class="form-control" ng-model="zipcode" id="zipcode" name="zipcode"  maxlength="5" type="number" ng-pattern="zipCodeRegex" required />
+                                          	<!-- <span ng-show="form.zipcode.$error.pattern">Not a valid ZipCode!</span> -->
+ 
                                           </div>
                                       </div>
                                       <div class="form-group ">
@@ -46,7 +48,7 @@
                                       <div class="form-group ">
                                           <label for="password" class="control-label col-lg-2">Password<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="password" id="password" type="password" name="password" required />
+                                              <input class="form-control" ng-model="password" id="password" type="password" name="password" ng-pattern="ssnRegex" required />
                                           </div>
                                       </div>
                                       <div class="form-group ">
@@ -61,10 +63,15 @@
                                               <input class="form-control" ng-model="ssn" id="ssn" type="number" name="ssn" required />
                                           </div>
                                       </div>
+                                      
+ </form>
+</div>
                                       <div class="form-group">
                                           <div class="col-lg-offset-2 col-lg-10">
+                                              <div class="pull-left text-danger">{{formError}}</div>
                                               <button class="btn btn-primary" ng-click="register()">Register</button>
                                               <button class="btn btn-default" ng-click="cancel()">Cancel</button>
+                                              <button type="reset" class="btn btn-default"  onClick="this.form.reset()" >Reset</button>
                                           </div>
                                       </div>
                                   </form>

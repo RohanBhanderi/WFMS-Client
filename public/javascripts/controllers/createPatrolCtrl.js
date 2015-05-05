@@ -17,25 +17,33 @@ $scope.getGuardBuilding=function(){
 	};
 	
 $scope.createPatrol = function() {
-	
-	console.log("hello from create Patrol");
-	var params = {
+if(!($scope.desc || $scope.idbuilding || $scope.patrol_date ||  $scope.time)){
+		console.log("Form Invalid-Alert");
+		$scope.formError = "Form Invalid !!!";
+	}
+	else {
+		console.log("hello from create Patrol");
+		var params = {
+				
+				  idbuilding : $scope.idbuilding,
+					date : $scope.patrol_date,
+					idguard : "1",
+					description : $scope.desc,
+					time : $scope.time
 			
-			  idbuilding : $scope.idbuilding,
-				date : $scope.date,
-				idguard : "1",
-				description : $scope.desc,
-				time : $scope.time
+			};
 		
-		};
+		DataService.postData(urlConstants.ADD_PATROL,params).success(function(response){
+			
+			console.log("Alert Info"+response.data);
+		}).error(function(err){
+			console.log(err.message);
+		});
+			
+			
+	}
+		
+
 	
-	DataService.postData(urlConstants.ADD_PATROL,params).success(function(response){
-		
-		console.log("Alert Info"+response.data);
-	}).error(function(err){
-		console.log(err.message);
-	});
-		
-		
-}
+};
 });

@@ -2,7 +2,7 @@
 wfms.controller("ShowAdminController", function($scope, $rootScope, $modal,
 		$location, DataService,$window) {
 	
-	$scope.loginGuard = function() {
+	$scope.loginAdmin = function() {
 
 		console.log("Inside login admin Funct");
 		if($scope.email=== "" ||  $scope.password === ""){
@@ -17,8 +17,11 @@ wfms.controller("ShowAdminController", function($scope, $rootScope, $modal,
 				};
 			DataService.postData("/api/login",params).success(
 				function(response) {
-					console.log("Login Successful");
-					
+					$rootScope.fname = response.fname;
+					$rootScope.lname = response.lname;
+					$rootScope.idperson = response.idperson;
+					$rootScope.email = response.email;
+					$rootScope.lastLogin = response.lastLogin;
 					$location.path('/admin');
 				}).error(function(err) {
 			console.log("Error while fetching data");

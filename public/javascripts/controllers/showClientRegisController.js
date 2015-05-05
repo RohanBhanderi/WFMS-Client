@@ -3,6 +3,13 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 		$location, DataService,$window) {
 	
 	$scope.registerClient = function() {
+		
+		 $scope.zipCodeRegex = "/^\d{5}(?:[-\s]\d{4})?$/";
+		  $scope.ssnRegex = "/^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/";
+
+
+		
+
 		console.log("inside register Client");
 
 		var modalInstance = $modal.open({
@@ -18,7 +25,7 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 		}, function() {
 		});
 	};
-
+    
 	$scope.loginClient = function() {
 
 		console.log("Inside login client Funct");
@@ -34,13 +41,13 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 				};
 			DataService.postData("/api/login",params).success(
 				function(response) {
-					console.log("Login Successful for client");
 					$rootScope.idclient = response.idclient;
+					$rootScope.idperson = response.idperson;
 					$rootScope.fname = response.fname;
 					$rootScope.lname = response.lname;
-					console.log("$rootScope.iclient:" + $rootScope.idclient);
-					console.log("$rootScope.fname:" + $rootScope.fname);
-					console.log("$rootScope.lname:" + $rootScope.lname);
+					$rootScope.idperson = response.idperson;
+					$rootScope.email = response.email;
+					$rootScope.lastLogin = response.lastLogin;
 					$location.path('/client');
 				}).error(function(err) {
 			console.log("Error while fetching data");

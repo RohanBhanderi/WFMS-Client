@@ -7,7 +7,15 @@ var urlConstants = {
 	"IS_LOGGED_IN" : "/api/user/valid",
 	"GET_ALL_USERS" : "/api/user",
 	"LOGOUT" : "/logout",
-	"GET_USER_DETAILS" : "/api/user/",
+	
+	//Guard
+	"GET_GUARD_DETAILS" : "/api/getGuard/",
+	"GET_GUARD_SCHEDULE" : "/api/getGuardSchedule/",
+	"CREATE_ALERT" : "/api/createAlert",
+	"ADD_PATROL" : "/api/addPatrol",
+	"GET_GUARD_BUILDING" : "/api/getGuardSchedule/",
+
+	
 	"GET_EMPLOYMENT_DETAILS":"/api/user/experience/",
 	"GET_SUMMARY":"/api/user/summary/",
 	"GET_EDUCATION_DETAILS":"/api/user/education/",
@@ -35,22 +43,7 @@ var urlConstants = {
 	"DELETE_GUARD":"/api/deleteGuard",
 	"GET_ACTIVE_ADMIN_ALERTS":"/api/activeAdminAlerts",
 	"DELETE_BUILDING":"/api/deleteBuilding/",
-	"GET_ALL_CLIENTS":"/api/listAllClients",
-
-		//Guard
-		"GET_GUARD_DETAILS" : "/api/getGuardInfo/",
-		"GET_GUARD_SCHEDULE" : "/api/getGuardSchedule/",
-		"GET_GUARD_BUILDING" : "/api/getGuardBuilding/",
-		"CREATE_ALERT" : "/api/createAlert",
-		"ADD_PATROL" : "/api/addPatrolRecord",
-		"GET_GUARD_BUILDING" : "/api/getGuardSchedule/",
-
-		
-
-	"GET_PNDG_CLIENTS":"/api/getPendingClients",
-	"GET_GUARDS_ASSIGN":"/api/getGuardsForAssignments",
-	"ASSIGN_GUARDS":"/api/assignGuards"
-
+	"GET_ALL_CLIENTS":"/api/listAllClients"
 	
 };
 

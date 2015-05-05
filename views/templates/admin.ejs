@@ -101,10 +101,17 @@
                       <a href="javascript:;" class="">
                           <i class="icon_table"></i>
                           <span>Alerts</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
+                          
                       </a>
                       <ul class="sub">
                           <li><a class="" href ng-click="setTemplate('viewAllAlerts')">View all Alerts</a></li>
+                      </ul>
+                  </li>
+
+                  <li class="sub-menu">
+                      
+                      <ul class="sub">
+                          <li><a class="" href ng-click="setTemplate('viewAllReport')">View all Report</a></li>
                       </ul>
                   </li>
                   
@@ -121,7 +128,12 @@
                           <li><a class="" href="404.html">404 Error</a></li>
                       </ul>
                   </li> -->
-                  
+                  <li class="sub-menu">
+                      <a class="" href ng-click=  "logout()">
+                          <i class="icon_key_alt"></i>
+                          <span>Logout</span>                          
+                      </a>
+                  </li>
               </ul>
               <!-- sidebar menu end-->
           </div>

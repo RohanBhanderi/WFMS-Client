@@ -6,6 +6,25 @@ wfms.controller("LoginController", function($scope, $rootScope,
 	$scope.getTemplate = function(){
 		return $scope.template;
 	};
+
+	$scope.logout = function(req,res){
+
+		console.log("I am getting called.");
+
+		DataService.getData('/api/logout').success(function(response){
+			if(response){
+				$rootScope.idperson == "undefined";
+				$rootScope.idclient == "undefined";
+				$rootScope.idgaurd == "undefined";
+				console.log("I am getting logged out");
+				$location.path('/');
+			}else{
+				
+			}
+		}).error(function(err){
+			console.log(err.message);
+		});
+	}
 	// $scope.signInFormError = "";
 
 	// $scope.signIn = function() {

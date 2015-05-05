@@ -4,6 +4,83 @@ moment = require('moment');
 
 var mq_client = require('../rpc/client');
 
+reportDataPerClientClient = function(req,res){
+
+ console.log(JSON.stringify(req.body));
+
+        var outputary = "";
+
+        console.log("This Api will be for fetching alerts and patrols according to reportDataPerClientClient");
+
+        console.log(req.params.idclient);
+
+        if(!req.params.idclient){
+
+                res.status(400).json({status : 400, message : "Bad Request"});
+
+        } else 
+        
+
+                var msgPayload = {
+                        operation : "reportDataPerClientClient",
+                        message : {
+                                 idclient:req.params.idclient
+                        }
+                };
+
+                mq_client.make_request('report_queue',msgPayload,function(err,results){
+                        if(err){
+                                res.status(err.status).json(err);
+                        }else{
+                                res.status(results.status).json(results);
+                        }
+                });
+
+
+        
+    //}
+
+}
+
+reportDataPerClient = function(req,res){
+
+     console.log(JSON.stringify(req.body));
+
+        var outputary = "";
+
+        console.log("This Api will be for fetching alerts and patrols according to clients");
+
+        //console.log(req.params.idclient);
+
+        // if(!req.params.idclient){
+
+        //         res.status(400).json({status : 400, message : "Bad Request"});
+
+        // } else 
+        
+
+                var msgPayload = {
+                        operation : "reportDataPerClient",
+                        message : {
+                                // idclient:req.params.idclient
+                        }
+                };
+
+                mq_client.make_request('report_queue',msgPayload,function(err,results){
+                        if(err){
+                                res.status(err.status).json(err);
+                        }else{
+                                res.status(results.status).json(results);
+                        }
+                });
+
+
+        
+    //}
+
+
+};
+
 alertByidalertInfo = function(req,res){
 
     console.log(JSON.stringify(req.body));
@@ -481,10 +558,11 @@ reportPerDay = function(req,res){
 
 }
 
+exports.reportDataPerClient = reportDataPerClient;
 exports.reportPerClientPerBuilding = reportPerClientPerBuilding;
 exports.alertByidalertInfo = alertByidalertInfo;
 exports.reportPerGuard = reportPerGuard;
-
+exports.reportDataPerClientClient = reportDataPerClientClient;
 exports.reportPerDay = reportPerDay;
 
 exports.reportPerClient = reportPerClient;

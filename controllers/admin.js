@@ -128,7 +128,7 @@ publishAlert = function(req,res){
 	}
 };*/
 
-addPatrolRecord = function(req,res){
+addPatrol = function(req,res){
 	console.log(JSON.stringify(req.body));
 	if(!req.body.date || !req.body.description|| !req.body.idgaurd || !req.body.idbuilding || !req.body.idreport){
 		
@@ -222,8 +222,10 @@ assignGuards = function(req,res){
 };
 exports.editPerson = editPerson;
 exports.createAlert=createAlert;
+exports.addPatrol=addPatrol;
 exports.publishAlert=publishAlert;
-exports.addPatrolRecord=addPatrolRecord;
+
 exports.getGuardsForAssignments=getGuardsForAssignments;
 exports.getPendingClients=getPendingClients;
 exports.assignGuards=assignGuards;
+

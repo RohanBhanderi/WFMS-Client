@@ -56,7 +56,7 @@ updateClientBillingInfo = function(req,res){
 				
 				// 	}
 				// });
-
+		
 		var msgPayload = {
 			operation : "updateClientBillingInfo",
 			message : req.body

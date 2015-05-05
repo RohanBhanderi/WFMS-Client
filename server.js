@@ -4,6 +4,7 @@ var ejs = require('ejs');
 var passport = require('passport');
 var crypto = require('crypto');
 var cookieParser = require('cookie-parser');
+var compression = require('compression')
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var cookieSession = require('cookie-session');
@@ -14,6 +15,7 @@ var app = express();
 var renderGUI = express.Router();
 
 app.set('port', process.env.PORT || 3000);
+app.use(compression());
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
@@ -53,8 +55,6 @@ app.get('*', function(req, res){
 //Connection pool initialization
 mysql.createConnPool();
 
-//PopulateCache
-//cache.populateCache();
 app.listen(app.get('port'), function() {
     console.log('%s: Node server started on %d ...', Date(Date.now()), app.get('port'));
 });

@@ -5,7 +5,7 @@ moment = require('moment');
 var crypto = require('crypto');
 
 var mq_client = require('../rpc/client');
-
+var cache = require('./cache');
 createGuard = function(req, res) {
 
 	if (!req.body.email || !req.body.password || !req.body.start_date
@@ -330,9 +330,11 @@ listAllGuards = function(req, res) {
 			res.status(err.status).json(err);
 
 		} else {
-
+			
 			res.status(results.status).json(results);
 
+			//Caching the results after the result has been sent
+			cache.cacheData(req.originalUrl,results);
 		}
 
 	});

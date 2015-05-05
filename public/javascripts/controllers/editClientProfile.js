@@ -1,5 +1,5 @@
 'use strict';
-wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
+wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 
 		isEdit, $rootScope, DataService) {
 	
@@ -34,6 +34,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
       });
     });
   };
+
 
 	console.log("isEdit" + isEdit);
 
@@ -125,6 +126,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
 	$scope.cancel = function() {
 		$modalInstance.dismiss(false);
 	};
+
 
 });
 

@@ -23,7 +23,7 @@
                                          <div class="form-group">
                                             <label class="control-label col-lg-2" for="tags">Date</label>
                                              <div class="col-lg-10">
-                                              <input type="date" class="form-control" id="tags" ng-model="date">
+                                              <input type="date" class="form-control" id="tags" ng-model="patrol_date" value="patrol_date | date: 'yyyy-MM-dd'" required>
                                             </div> 
                                             </div>
                                            
@@ -31,16 +31,16 @@
                                           <div class="form-group">
                                             <label class="control-label col-lg-2" for="content">Description</label>
                                             <div class="col-lg-10">
-                                              <textarea class="form-control" id="content" ng-model="desc"></textarea>
+                                              <textarea class="form-control" id="content" ng-model="desc" required></textarea>
                                             </div>
                                           </div>  
                                           
                                           <div class="form-group">
                                           <label class="control-label col-lg-2" for="tags">Time</label>
-                                          <div class="col-md-3">
+                                          <div class="col-md-10">
 								           <div class="input-group bootstrap-timepicker">
 									       <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
-									       <input type="time" ng-model="time" class="form-control"/>
+									       <input type="time" ng-model="time" class="form-control"/ required>
 								          </div>
 							              </div>
 							              </div>
@@ -76,6 +76,7 @@
                                           <div class="form-group">
                                              <!-- Buttons -->
                                              <div class="col-lg-offset-2 col-lg-9">
+                                              <div class="pull-right text-danger">{{formError}}</div>
                                                 <button type="submit"  class="btn btn-primary" ng-click="createPatrol()">Add Patrol Record</button>
                                                 <button type="submit" class="btn btn-danger">Save Draft</button>
                                                 <button type="reset" class="btn btn-default">Reset</button>

@@ -16,6 +16,9 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable'])
 	}).when('/logout', {
 		templateUrl : 'templates/index.ejs',
 		controller : 'IndexController'
+	}).when('/client/map', {
+		templateUrl : 'templates/map.ejs',
+		controller : 'MapController'
 	}).otherwise({
 		redirectTo : '/'
 	});

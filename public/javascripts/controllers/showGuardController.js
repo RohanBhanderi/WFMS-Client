@@ -17,12 +17,21 @@ wfms.controller("ShowGuardController", function($scope, $rootScope, $modal,
 				};
 			DataService.postData("/api/login",params).success(
 				function(response) {
-					$rootScope.idguard = response.idguard;
-					$rootScope.fname = response.fname;
-					$rootScope.lname = response.lname;
-					$rootScope.idperson = response.idperson;
-					$rootScope.email = response.email;
-					$rootScope.lastLogin = response.lastLogin;
+
+					$window.sessionStorage.idguard = response.idguard;
+					$window.sessionStorage.idperson = response.idperson;
+					$window.sessionStorage.fname = response.fname;
+					$window.sessionStorage.lname = response.lname;
+					$window.sessionStorage.email = response.email;
+					$window.sessionStorage.lastLogin = response.lastLogin;
+					
+					$rootScope.lastLogin = $window.sessionStorage.lastLogin;
+					$rootScope.idguard = $window.sessionStorage.idguard;
+					$rootScope.idperson = $window.sessionStorage.idperson;
+					$rootScope.fname = $window.sessionStorage.fname;
+					$rootScope.fname = $window.sessionStorage.fname;
+					$rootScope.email = $window.sessionStorage.email;
+
 					$location.path('/guard');
 				}).error(function(err) {
 			console.log("Error while fetching data");

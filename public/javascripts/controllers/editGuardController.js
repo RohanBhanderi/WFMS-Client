@@ -106,7 +106,10 @@ wfms.controller("EditGuardCtrl", function($scope, $modalInstance,
 	
 
 $scope.okay = function() {
-	if($scope.start_date && $scope.end_date){
+	if($scope.start_date && $scope.end_date && $scope.idguard && 
+			$scope.fname && $scope.lname && $scope.bgstatus && $scope.weekly_working_set &&
+			$scope.address && $scope.state && $scope.city && $scope.zipcode &&
+			$scope.email && $scope.phonenumber){
 		
 		if (isEdit) {
 			console.log(isEdit);
@@ -175,7 +178,7 @@ $scope.okay = function() {
 	
 	else{
 		
-		$scope.formError = "Form Invalid !!!";
+		$scope.formError = "Required field missing";
 	}
 
 };
@@ -185,5 +188,8 @@ $scope.cancel = function() {
 };
 
 });
+
+
+
 
 

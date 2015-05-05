@@ -9,26 +9,39 @@ wfms.controller("ClientRegistrationController", function($scope, $modalInstance,
 
 	    $scope.opened = true;
 	  };
-
+	 
+	  
+		 
+	  
+	  $scope.searchUserNames = function(){
+        
+                        
+                                  $scope.searchInputs = usStates;
+                                  
+                          }
+	  
 $scope.register = function() {
 
-/*
-    $scope.zipCodeRegex = "/^\d{5}(?:[-\s]\d{4})?$/";
-    $scope.ssnRegex = "/^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/";
-*/
+	function isValidPostalCode(ZipCode) {
+        var postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+        return postalCodeRegex.test(postalCode);
+}
 
+	
+	function isSSN(ssn) {
+        var ssnRegex =  /^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/;
+        return ssnRegex.test(ssn);
+}
     
 	console.log("Inside register Funct"+$scope.firstname);
 	console.log($scope.ssn + $scope.firstname + $scope.lastname + $scope.address + $scope.city + $scope.zipcode + $scope.email + $scope.number +  $scope.password);
-	if($scope.firstname=="")
-		{
-		$scope.formError = "Form Invalid - Firstname only !!!";
-		}
-/*	if(!($scope.ssn || $scope.firstname || $scope.lastname || $scope.address || $scope.city || $scope.zipcode || $scope.email ||  $scope.number ||  $scope.password)){
+	
+if(!($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="")){
 		
 		
-		//$scope.formError = "Form Invalid !!!";
-	}*/else{
+		$scope.formError = "Form Invalid !!!";
+	}else{
+		
 		
 		var params = {
 				

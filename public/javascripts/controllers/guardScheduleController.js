@@ -17,7 +17,8 @@ $scope.getGuardSchedule = function() {
 		
 		
 			console.log("inside guard schedule");
-			var uri = urlConstants.GET_GUARD_SCHEDULE+"1";
+			var idguard=$window.sessionStorage.idguard;
+			var uri = urlConstants.GET_GUARD_SCHEDULE+idguard;
 			DataService.getData(uri,[]).success(function(response){
 				angular.toJson(response);
 				console.log(response.data);

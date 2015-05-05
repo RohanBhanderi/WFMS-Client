@@ -24,7 +24,9 @@ $scope.getAllData = function() {
 		
 		function getGuardDetails(){
 			console.log("I am called.gc");
-			var uri = "/api/getGuardInfo/"+"10";
+			var idperson=$window.sessionStorage.idperson;
+			console.log(idperson);
+			var uri = "/api/getGuardInfo/"+idperson;
 			DataService.getData(uri,[]).success(function(response){
 				angular.toJson(response);
 				console.log("guard detaiks"+response.data[0]);

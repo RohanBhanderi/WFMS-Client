@@ -15,8 +15,8 @@ wfms.controller("viewReportClientController", function($scope, $rootScope,
 
 		console.log("getdata is getting called ");
 
-		//var idclient = $rootScope.idclient;
-		var idclient = 1;
+		var idclient = $rootScope.idclient;
+		//var idclient = 1;
 
 		DataService.getData("/api/reportDataPerClientClient/"+idclient, []).success(
 				function(response) {
@@ -102,44 +102,6 @@ wfms.controller("viewReportClientController", function($scope, $rootScope,
 		}
 
 	}
-	// $scope.generateReport = function(){
-
-	// 	//angular.toJson(buildingName);
-	// 	//console.log("Date :"+ $scope.reportDate);
-	// 	//console.log("buildingname: "+buildingName.buildingname);
-	// 	console.log("BuildingName in generate report"+$scope.selectedbuilding);
-
-	// 			//idclient: $rootScope.idclient;
-	// 		var params = {
-	// 			idclient :  1,
-	// 			date : $scope.reportDate,
-	// 			idbuilding: $scope.selectedbuilding
-	// 		};
-
-	// 	DataService.postData("/api/reportPerClientPerBuilding/", params ).success(
-	// 			function(response) {
-	// 				console.log("Message: "+response.message);	
-	// 				console.log("Status: "+response.status);	
-	// 				angular.toJson(response);
-	// 				if(response.status == 501 ){
-	// 					console.log("Message: "+response.message);
-	// 					$scope.error = response.message;
-	// 				}
-	// 				else{
-	// 					angular.toJson(response);
-	// 					console.log("Response "+ response.resultAlert + response.resultPatrol[1].description);
-	// 					$scope.resultPatrol = response.resultPatrol;
-	// 					$scope.resultAlert = response.resultAlert;
-						
-	// 				}
-					
-	// 			}).error(function(err) {
-	// 		console.log("Error while fetching data");
-
-	// 	});
-
-	// }
-
 	$scope.tableParams = new ngTableParams({
                                          page: 1,            // show first page
                                          count: 10,          // count per page

@@ -218,6 +218,8 @@ listAllClients=function(req,res){
 		// 		res.status(200).json({ status : 200, data : rows});
 		// 	}
 		// });
+		
+		console.log("getclientIdperosn: "+req.params.idperson);
 
 	var msgPayload = {
 		operation : "getClientInfo",

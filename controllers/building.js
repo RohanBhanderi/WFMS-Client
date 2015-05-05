@@ -195,7 +195,7 @@ deleteBuilding=function(req,res){
 		// });
 		
 		var msgPayload = {
-			operation : "getBuilding",
+			operation : "deleteBuilding",
 			message : {
 				buildingid:req.params.buildingid
 			}

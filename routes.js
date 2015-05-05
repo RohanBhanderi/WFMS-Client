@@ -51,10 +51,12 @@ module.exports = function (app, passport) {
     app.get('/api/alertPerBuilding/:idbuilding', ensureAuthenticated, alertController.alertPerBuilding);
     app.get('/api/alertPerClient/:idclient', ensureAuthenticated, alertController.alertPerClient);
     app.get('/api/alertPerDay/:date', ensureAuthenticated, alertController.alertPerDay);
+    
 
     app.put('/api/alert/seenByClient', ensureAuthenticated, alertController.seenByClient);
     app.put('/api/alert/seenByAdmin', ensureAuthenticated, alertController.seenByAdmin);
-    
+    app.get('/api/reportDataPerClient', ensureAuthenticated, reportController.reportDataPerClient);
+    app.get('/api/reportDataPerClientClient/:idclient', ensureAuthenticated, reportController.reportDataPerClientClient);
     app.get('/api/activeAdminAlerts', ensureAuthenticated, alertController.activeAdminAlerts);
     app.put('/api/editPerson', ensureAuthenticated, adminController.editPerson);
     

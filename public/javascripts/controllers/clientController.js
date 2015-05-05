@@ -11,6 +11,8 @@ wfms.controller("ClientController", function($scope, $rootScope,
 
 
 	$scope.setTemplate = function(tabName){
+		console.log("Am i getting called");
+		console.log("templates/client/"+tabName + ".html");
 		$scope.template = "templates/client/"+tabName + ".html";
 	}
 

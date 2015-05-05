@@ -131,32 +131,37 @@ exports.checkLogin = function(req, res, next) {
                   var idguard;
                    if(user.type === "CLNT")
                     {
-                        mysql.queryDb("select idclient from client where ?",[{idperson:user.idperson}],function(err,result){
+                        mysql.queryDb("select idclient from client where ?",[{idperson:user.idperson}],function(err,results){
                         if(err) {
                           console.log("inside chk login alkfewee");
                             console.log(err);
                            // res.status(500).json({status:500,message : "Please try again later"});
                         } else {
-                          idclient = result[0].idclient;
+                          console.log("inside client else fname" + JSON.stringify(results));
+                          idclient = results[0].idclient;
                           res.status(200).json({status:200, idperson:user.idperson, idclient:idclient, email:user.username, fname : result[0].fname, lname: result[0].lname, lastLogin:last_login});
                         }
                     });
                     }
-                    else
+                    else if(user.type === "Guard")
                     {
-                      mysql.queryDb("select idguard from guard where ?",[{idperson:user.idperson}],function(err,result){
+                      mysql.queryDb("select idguard from guard where ?",[{idperson:user.idperson}],function(err,results){
                         if(err) {
                           console.log("inside chk login alkfewee");
                             console.log(err);
                             //res.status(500).json({status:500,message : "Please try again later"});
                         } else {
-                          idguard = result[0].idguard;
+                          idguard = results[0].idguard;
                           res.status(200).json({status:200, idperson:user.idperson, idguard:idguard, email:user.username, fname : result[0].fname, lname: result[0].lname, lastLogin:last_login});
                          }
                     });
 
                     }
-                    
+                    else
+                    {
+                        console.log("inside else");
+                         res.status(200).json({status:200, idperson:user.idperson, email:user.username, fname : result[0].fname, lname: result[0].lname, lastLogin:last_login});
+                    }
                 }
             });            
         });

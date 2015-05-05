@@ -10,7 +10,7 @@ wfms.controller("ShowBuildingController", function($scope, $rootScope, $modal,
 	
 	$scope.modifyBuilding = function(data) {
 		console.log("did i get called");
-
+		console.log("$rootScope.idclient" + $rootScope.idclient);
 		var modalInstance = $modal.open({
 			templateUrl : 'templates/client/editBuilding.html',
 			controller : 'EditBuildingCtrl',
@@ -51,8 +51,8 @@ wfms.controller("ShowBuildingController", function($scope, $rootScope, $modal,
 	
 	function getBuilding(){
 		
-		//var uri = urlConstants.GET_USER_DETAILS+$rootScope.userId;
-		DataService.getData("/api/listBuilding/1",[]).success(function(response){
+		var uri ="/api/listBuilding/"+$rootScope.idclient;
+		DataService.getData(uri,[]).success(function(response){
 			$scope.building = response.data;
 		}).error(function(err){
 			console.log(err.message);

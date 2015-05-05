@@ -5,6 +5,8 @@ wfms.controller("AdminController", function($scope, $rootScope,
 	$scope.template = "templates/admin/adminhome.html";
 
 	$scope.setTemplate = function(tabName){
+
+		console.log("call me " + tabName);
 		$scope.template = "templates/admin/"+tabName + ".html";
 	}
 

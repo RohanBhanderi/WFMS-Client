@@ -3,6 +3,11 @@
 </div>
 
 <div class="modal-body">
+<script type="text/ng-template" id="my-custom-messages">
+  <div ng-message="required">This field is required</div>
+  <div ng-message="minlength">This field is too short</div>
+</script>
+
 	<form>
 		<div class="row">
 			<div class="col-xs-12">
@@ -13,7 +18,7 @@
 				</div>
 				<div class="col-xs-9 col-xs-pull-1">
 					<input type="text" name="firstName" ng-model="buildingname"
-						class="form-control" placeholder="Building Name" required>
+						class="form-control" placeholder="Building Name"  minlength="5" required>
 				</div>
 
 			</div>

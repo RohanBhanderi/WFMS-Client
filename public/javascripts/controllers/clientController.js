@@ -20,7 +20,9 @@ wfms.controller("ClientController", function($scope, $rootScope,
 		$scope.template = "templates/index/"+tabName + ".html";
 
 	}
-
+	$scope.setEJS = function(tabName){
+		$location.path('/client/map');
+	}
 	$scope.getTemplate = function(){
 		return $scope.template;
 	};
@@ -31,9 +33,16 @@ wfms.controller("ClientController", function($scope, $rootScope,
 
 		DataService.getData('/api/logout').success(function(response){
 			if(response){
-				$rootScope.idperson == "undefined";
+				/*$rootScope.idperson == "undefined";
 				$rootScope.idclient == "undefined";
-				$rootScope.idgaurd == "undefined";
+				$rootScope.idgaurd == "undefined";*/
+				$window.sessionStorage.idguard = "undefined";
+				$window.sessionStorage.idclient = "undefined";
+				$window.sessionStorage.idperson = "undefined";
+				$window.sessionStorage.fname = "undefined";
+				$window.sessionStorage.lname = "undefined";
+				$window.sessionStorage.email = "undefined";
+				$window.sessionStorage.lastLogin = "undefined";
 				console.log("I am getting logged out");
 				$location.path('/');
 			}else{

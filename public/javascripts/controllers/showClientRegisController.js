@@ -58,6 +58,7 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 					$rootScope.fname = $window.sessionStorage.fname;
 					$rootScope.email = $window.sessionStorage.email;
 
+
 					$location.path('/client');
 				}).error(function(err) {
 			console.log("Error while fetching data");

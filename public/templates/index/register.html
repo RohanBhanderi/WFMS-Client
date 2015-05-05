@@ -10,25 +10,25 @@
                                       <div class="form-group ">
                                           <label for="firstname" class="control-label col-lg-2">First Name <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="firstname" id="firstname" name="firstname" type="text" required />
+                                              <input class="form-control" ng-model="firstname" id="firstname" name="firstname" type="text" />
                                           </div>
                                       </div>
                                        <div class="form-group ">
                                           <label for="lastname" class="control-label col-lg-2">Last Name <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="lastname" id="lastname" name="lastname" type="text" required />
+                                              <input class="form-control" ng-model="lastname" id="lastname" name="lastname" type="text"  />
                                           </div>
                                       </div>
                                       <div class="form-group ">
                                           <label for="address" class="control-label col-lg-2">Address<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="address" id="address" name="address" type="text" required />
+                                              <input class="form-control" ng-model="address" id="address" name="address" type="text" />
                                           </div>
                                       </div>
                                       <div class="form-group ">
                                           <label for="city" class="control-label col-lg-2">City<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="city" id="city" name="city"  type="text" required />
+                                              <input class="form-control" ng-model="city" id="city" name="city"  type="text" />
                                           </div>
                                       </div>
                                       <div class="form-group ">
@@ -42,13 +42,25 @@
                                       <div class="form-group ">
                                           <label for="email" class="control-label col-lg-2">E-Mail <span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="email" id="email" type="email" name="email" required />
+                                              <input class="form-control" ng-model="email" id="email" type="email" name="email"  />
                                           </div>
                                       </div>
+                                      <!-- dropdown testing -->
+                                      <input type="text" class="form-control" placeholder="search for people, jobs, companies and more..."
+                                               name="searchBox" ng-model="selectedInput"
+                                               ng-change="searchUserNames()"
+                                               typeahead="name as name.name for name in searchInputs | filter:$viewValue | limitTo:8" typeahead-editable ='false'>
+
+                                      
+                                      <!-- end here -->
+                                      
+                                      
+                                      
+                                      
                                       <div class="form-group ">
                                           <label for="password" class="control-label col-lg-2">Password<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="password" id="password" type="password" name="password" ng-pattern="ssnRegex" required />
+                                              <input class="form-control" ng-model="password" id="password" type="password" name="password" ng-pattern="ssnRegex"  />
                                           </div>
                                       </div>
                                       <div class="form-group ">
@@ -60,7 +72,7 @@
                                       <div class="form-group ">
                                           <label for="ssn" class="control-label col-lg-2">SSN<span class="required">*</span></label>
                                           <div class="col-lg-10">
-                                              <input class="form-control" ng-model="ssn" id="ssn" type="number" name="ssn" required />
+                                              <input class="form-control" ng-model="ssn" id="ssn" type="number" name="ssn"  />
                                           </div>
                                       </div>
                                       

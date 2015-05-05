@@ -1,6 +1,24 @@
 'use strict';
 wfms.controller("EditClientProfileCtrl", function($scope, $modalInstance,
-		isEdit, $rootScope, DataService) {
+		isEdit, $rootScope, $http, DataService) {
+
+	
+  // Any function returning a promise object can be used to load values asynchronously
+  $scope.getLocation = function(val) {
+    return $http.get('http://maps.googleapis.com/maps/api/geocode/json', {
+      params: {
+        address: val,
+        sensor: false
+      }
+    }).then(function(response){
+      return response.data.results.map(function(item){
+        return {
+          location: item.geometry.location,
+          formatted_address: item.formatted_address
+        }
+      });
+    });
+  };
 
 	console.log("isEdit" + isEdit);
 

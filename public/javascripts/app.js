@@ -35,7 +35,6 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapg
 	$rootScope.$on('$routeChangeStart', function(event) {
 		
 	});
-
 }]);
 
 

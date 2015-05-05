@@ -6,6 +6,14 @@ wfms.controller("mapCntr", function($scope, $rootScope, $filter,
 
 		alert("In Map");
 
+		getMap();
+
+		
+	}
+
+	function getMap(){
+		
 		$location.path('/client/map');
+		
 	}
 }

@@ -1,12 +1,17 @@
 
-
+<script>
+(function iife() = {
+  alert("Hello");
+  comsole.log("Hello");
+})();
+</script>
 <div ng-controller = "mapCntr" ng-init="redirect()"> 
 
 	<section id="main-content">
         <section class="wrapper">            
             <div class="row"><h1>Maps</h1></div>
               
-            <div class="row" id="map-canvas"></div>
+             <div id="map-canvas"></div>
   
             <div class="row"></div>  
 			

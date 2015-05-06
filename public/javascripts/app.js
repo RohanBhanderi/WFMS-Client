@@ -24,13 +24,10 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapg
 	}).when('/client/map', {
 		templateUrl : 'templates/map.html',
 		//controller : 'MapController'
-<<<<<<< HEAD
 
-=======
 	}).when('/map', {
 		templateUrl : 'templates/map.ejs',
 		controller : 'MapController'
->>>>>>> 663bbc6dac243260fbbe40ba11f140bb3f0b2330
 	}).otherwise({
 		redirectTo : '/'
 	});
@@ -46,7 +43,7 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapg
 }).run(['$rootScope','$window' ,'$location', 'DataService',function($rootScope,$window, $location,DataService) {
 	$rootScope.$on('$routeChangeStart', function(event) {
 
-
+				if($rootScope.idperson){
 					$rootScope.lastLogin = $window.sessionStorage.lastLogin;
 					$rootScope.idclient = $window.sessionStorage.idclient;
 					$rootScope.idperson = $window.sessionStorage.idperson;
@@ -54,6 +51,18 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapg
 					$rootScope.fname = $window.sessionStorage.fname;
 					$rootScope.email = $window.sessionStorage.email;
 					$rootScope.idguard = $window.sessionStorage.idguard;
+				}
+				else
+				{
+					$rootScope.lastLogin = "undefined";
+					$rootScope.idclient = "undefined";
+					$rootScope.idperson = "undefined";
+					$rootScope.fname = "undefined";
+					$rootScope.fname = "undefined";
+					$rootScope.email = "undefined";
+					$rootScope.idguard = "undefined";
+					$location.path('/');
+				}
 		
 	});
 }]);

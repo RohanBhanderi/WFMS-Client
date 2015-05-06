@@ -85,6 +85,7 @@ wfms.controller("ClientRegistrationController", function($scope, $modalInstance,
 
 	    $scope.opened = true;
 	  };
+
 		function isValidPostalCode(postalCode) {
 			console.log("inside postal check");
 	        var postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
@@ -120,71 +121,52 @@ $scope.register = function() {
 			   {
 			   $scope.formError = "Invalid Phone Number!!!";
 			   }*/
-		   else if(!(isValidateEmail($scope.email)))
+		   if(!(isValidateEmail($scope.email)))
 			   {
 			   $scope.formError = "Invalid Email-Id!!!";
 			   }
-			else if(!(isSSN($scope.ssn))){
+			if(!(isSSN($scope.ssn))){
 				console.log($scope.ssn);
 				$scope.formError = "Invalid SSN Format !!!";
 			}
 
 
-	else {
-			console.log("Inside register Funct"+$scope.firstname);
-			console.log($scope.ssn + $scope.firstname + $scope.lastname + $scope.address.formatted_address + $scope.city + $scope.zipcode + $scope.email + $scope.number +  $scope.password +$scope.state);
+			else {
+				console.log("Inside register Funct"+$scope.firstname);
+				console.log($scope.ssn + $scope.firstname + $scope.lastname + $scope.address.formatted_address + $scope.city + $scope.zipcode + $scope.email + $scope.number +  $scope.password +$scope.state);
 
-		if(($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state=="")){
-			
-			$scope.formError = "Invalid Zipcode !!!";
-		}
-		else if(!(isSSN(ssnError))){
-			$scope.ssn="$scope.ssnError=";
-			$scope.formError = "Invalid SSN Format !!!";
-		}
-		else{
-		var params = {
-				
-				fname : $scope.firstname,
-				lname:  $scope.lastname,
-				address : $scope.address,
-				city : $scope.city,
-				zipcode : $scope.zipcode,
-				email : $scope.email,
-				phonenumber : $scope.number,
-				password : $scope.password,
-				ssn : $scope.ssn,
-				usertype: "CLNT"
-			
-			$scope.formError = "Form Invalid !!!";
-		}else{
-			
-			var params = {
+				if(($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state=="")){
 					
-					fname : $scope.firstname,
-					lname:  $scope.lastname,
-					address : $scope.address.formatted_address,
-					city : $scope.city,
-					zipcode : $scope.zipcode,
-					email : $scope.email,
-					phonenumber : $scope.number,
-					password : $scope.password,
-					ssn : $scope.ssn,
-					state : $scope.state,
-					usertype: "CLNT"
-						
-				};
-				console.log("Params value:" + JSON.stringify(params));
-			DataService.postData("/api/register",params).success(function(response){
-				$modalInstance.close(true);
-			}).error(function(err){
-				$modalInstance.dismiss(false);
-			});
-		
-	}
+					$scope.formError = "Invalid Zipcode !!!";
+				}
+				else{
+					
+					var params = {
+							
+							fname : $scope.firstname,
+							lname:  $scope.lastname,
+							address : $scope.address.formatted_address,
+							city : $scope.city,
+							zipcode : $scope.zipcode,
+							email : $scope.email,
+							phonenumber : $scope.number,
+							password : $scope.password,
+							ssn : $scope.ssn,
+							state : $scope.state,
+							usertype: "CLNT"
+								
+						};
+						console.log("Params value:" + JSON.stringify(params));
+					DataService.postData("/api/register",params).success(function(response){
+						$modalInstance.close(true);
+					}).error(function(err){
+						$modalInstance.dismiss(false);
+					});
+				
+			}
 
-	}
-};
+			}
+		};
 
 $scope.cancel = function() {
 	$modalInstance.dismiss(false);

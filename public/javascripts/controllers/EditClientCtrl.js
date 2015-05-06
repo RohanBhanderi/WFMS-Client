@@ -3,14 +3,13 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 		 isEdit, $rootScope, DataService,$http) {
 
 	
-<<<<<<< HEAD
+
 	$scope.states= [
-=======
+
 	$scope.getStates= function(){
 		
 		
 		var country= [
->>>>>>> 663bbc6dac243260fbbe40ba11f140bb3f0b2330
 	                  { name: 'ALABAMA', abbreviation: 'AL'},
 	                  { name: 'ALASKA', abbreviation: 'AK'},
 	                  { name: 'AMERICAN SAMOA', abbreviation: 'AS'},
@@ -71,14 +70,12 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 	                  { name: 'WISCONSIN', abbreviation: 'WI'},
 	                  { name: 'WYOMING', abbreviation: 'WY' }
 	              ];
-<<<<<<< HEAD
-=======
+
 	  
 
 	}
 	
 	
->>>>>>> 663bbc6dac243260fbbe40ba11f140bb3f0b2330
 	console.log("isEdit"+ isEdit);
 
 	if (isEdit) {

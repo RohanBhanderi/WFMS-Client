@@ -21,18 +21,11 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapg
 		templateUrl : 'templates/map.ejs',
 		controller : 'MapController'
 
-<<<<<<< HEAD
-	}).when('/client/map', {
-		templateUrl : 'templates/map.html',
-		//controller : 'MapController'
 
 	}).when('/map', {
 		templateUrl : 'templates/map.ejs',
 		controller : 'MapController'
-=======
 
-
->>>>>>> ebbec29ca6843239a1a963815d7724d0a4b216de
 	}).otherwise({
 		redirectTo : '/'
 	});

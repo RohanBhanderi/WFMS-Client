@@ -3,6 +3,71 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 
 		isEdit, $rootScope, DataService, $window) {
 	
+	
+	
+	$scope.states= [
+	                  { name: 'ALABAMA', abbreviation: 'AL'},
+	                  { name: 'ALASKA', abbreviation: 'AK'},
+	                  { name: 'AMERICAN SAMOA', abbreviation: 'AS'},
+	                  { name: 'ARIZONA', abbreviation: 'AZ'},
+	                  { name: 'ARKANSAS', abbreviation: 'AR'},
+	                  { name: 'CALIFORNIA', abbreviation: 'CA'},
+	                  { name: 'COLORADO', abbreviation: 'CO'},
+	                  { name: 'CONNECTICUT', abbreviation: 'CT'},
+	                  { name: 'DELAWARE', abbreviation: 'DE'},
+	                  { name: 'DISTRICT OF COLUMBIA', abbreviation: 'DC'},
+	                  { name: 'FEDERATED STATES OF MICRONESIA', abbreviation: 'FM'},
+	                  { name: 'FLORIDA', abbreviation: 'FL'},
+	                  { name: 'GEORGIA', abbreviation: 'GA'},
+	                  { name: 'GUAM', abbreviation: 'GU'},
+	                  { name: 'HAWAII', abbreviation: 'HI'},
+	                  { name: 'IDAHO', abbreviation: 'ID'},
+	                  { name: 'ILLINOIS', abbreviation: 'IL'},
+	                  { name: 'INDIANA', abbreviation: 'IN'},
+	                  { name: 'IOWA', abbreviation: 'IA'},
+	                  { name: 'KANSAS', abbreviation: 'KS'},
+	                  { name: 'KENTUCKY', abbreviation: 'KY'},
+	                  { name: 'LOUISIANA', abbreviation: 'LA'},
+	                  { name: 'MAINE', abbreviation: 'ME'},
+	                  { name: 'MARSHALL ISLANDS', abbreviation: 'MH'},
+	                  { name: 'MARYLAND', abbreviation: 'MD'},
+	                  { name: 'MASSACHUSETTS', abbreviation: 'MA'},
+	                  { name: 'MICHIGAN', abbreviation: 'MI'},
+	                  { name: 'MINNESOTA', abbreviation: 'MN'},
+	                  { name: 'MISSISSIPPI', abbreviation: 'MS'},
+	                  { name: 'MISSOURI', abbreviation: 'MO'},
+	                  { name: 'MONTANA', abbreviation: 'MT'},
+	                  { name: 'NEBRASKA', abbreviation: 'NE'},
+	                  { name: 'NEVADA', abbreviation: 'NV'},
+	                  { name: 'NEW HAMPSHIRE', abbreviation: 'NH'},
+	                  { name: 'NEW JERSEY', abbreviation: 'NJ'},
+	                  { name: 'NEW MEXICO', abbreviation: 'NM'},
+	                  { name: 'NEW YORK', abbreviation: 'NY'},
+	                  { name: 'NORTH CAROLINA', abbreviation: 'NC'},
+	                  { name: 'NORTH DAKOTA', abbreviation: 'ND'},
+	                  { name: 'NORTHERN MARIANA ISLANDS', abbreviation: 'MP'},
+	                  { name: 'OHIO', abbreviation: 'OH'},
+	                  { name: 'OKLAHOMA', abbreviation: 'OK'},
+	                  { name: 'OREGON', abbreviation: 'OR'},
+	                  { name: 'PALAU', abbreviation: 'PW'},
+	                  { name: 'PENNSYLVANIA', abbreviation: 'PA'},
+	                  { name: 'PUERTO RICO', abbreviation: 'PR'},
+	                  { name: 'RHODE ISLAND', abbreviation: 'RI'},
+	                  { name: 'SOUTH CAROLINA', abbreviation: 'SC'},
+	                  { name: 'SOUTH DAKOTA', abbreviation: 'SD'},
+	                  { name: 'TENNESSEE', abbreviation: 'TN'},
+	                  { name: 'TEXAS', abbreviation: 'TX'},
+	                  { name: 'UTAH', abbreviation: 'UT'},
+	                  { name: 'VERMONT', abbreviation: 'VT'},
+	                  { name: 'VIRGIN ISLANDS', abbreviation: 'VI'},
+	                  { name: 'VIRGINIA', abbreviation: 'VA'},
+	                  { name: 'WASHINGTON', abbreviation: 'WA'},
+	                  { name: 'WEST VIRGINIA', abbreviation: 'WV'},
+	                  { name: 'WISCONSIN', abbreviation: 'WI'},
+	                  { name: 'WYOMING', abbreviation: 'WY' }
+	              ];
+	
+	
 	//ZipCode Validation
 	function isValidPostalCode(postalCode) {
         var postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
@@ -15,7 +80,26 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
         return ssnRegex.test(ssn);
 }
 
+//date validation
 	
+	  function compareDate(first,second) {
+	      if(first>second){return false;}
+	      else{return true;}
+	}
+	  
+	  function isValidPhone(phone)
+	  {	if(phone>0)
+	  	{
+	  	var phoneRegex = /^\d{10}$/;
+	  	return phoneRegex.test(phone);
+	  	}
+	  	return false;
+	  }
+	  
+	  function isValidateEmail(email) {
+		    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+		    return re.test(email);
+		}
 
 	
   // Any function returning a promise object can be used to load values asynchronously
@@ -45,6 +129,7 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 	$scope.phonenumber = isEdit.phonenumber;
 	$scope.address = isEdit.address;
 	$scope.city = isEdit.city;
+	$scope.state = isEdit.state;
 	$scope.ZipCode = isEdit.zipcode;
 	$scope.start_date = isEdit.start_date;
 	$scope.end_date = isEdit.end_date;
@@ -57,26 +142,38 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 	};
 
 	$scope.okay = function() {
-
-		console.log("address:" + $scope.address.formatted_address);
-		console.log("address:" + $scope.address.location.lat);
-		console.log("address:" + $scope.address.location.lng);
 		
+		var first = $scope.start_date ;
+		  var second = $scope.end_date ;
+		
+//		console.log("address:" + $scope.address.formatted_address);
+//		console.log("address:" + $scope.address.location.lat);
+//		console.log("address:" + $scope.address.location.lng);
+		console.log("state"+$scope.state);
 		
 		if(!(isValidPostalCode($scope.ZipCode))){
 			$scope.formError = "Enter a valid ZipCode";
 			
 		}
-		else if(!(isSSN($scope.state))){
-			$scope.formError = "Enter a valid SSN";
+		else if((compareDate(second,first))){
+			console.log("did i come here")
+			$scope.formError = "start date cannot be greater then end date!!!"	
 			
 		}
+		else if(!(isValidateEmail($scope.email)))
+		   {
+		   $scope.formError = "Invalid Email-Id!!!";
+		   }
 		
+		else if(!(isValidPhone($scope.phonenumber)))
+		   {
+		   $scope.formError = "Invalid phonenumber !!!";
+		   }
 		else{
 		
 		
 		if ($scope.firstName && $scope.lastName && $scope.email
-				&& $scope.phonenumber && $scope.address.formatted_address && $scope.city
+				&& $scope.phonenumber && $scope.address && $scope.city
 				&& $scope.ZipCode && $scope.start_date && $scope.end_date) {
 			
 			
@@ -85,8 +182,9 @@ wfms.controller("EditClientProfileCtrl", function($scope, $http, $modalInstance,
 				idperson : $window.sessionStorage.idperson,
 				fname : $scope.firstName,
 				lname : $scope.lastName,
-				address : $scope.address.formatted_address,
+				address : $scope.address,
 				city : $scope.city,
+				state : $scope.state,
 				zipcode : $scope.ZipCode,
 				email : $scope.email,
 				phonenumber : $scope.phonenumber,

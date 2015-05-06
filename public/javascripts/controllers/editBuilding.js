@@ -18,6 +18,21 @@ wfms.controller("EditBuildingCtrl", function($scope, $modalInstance,
     });
   };
 
+  
+  function compareDate(first,second) {
+      if(first>second){return false;}
+      else{return true;}
+}
+  
+  function checkGuardNumber(guardnum){
+	  
+	  return (!isNaN(guardnum) && guardnum > 0 && guardnum <= 4)
+  }
+  
+function checkCheckPoint(checkpoint){
+	  
+	  return (!isNaN(checkpoint) && checkpoint > 0 && checkpoint <= 4)
+  }
 	
 	
 	console.log("isEdit"+ isEdit);
@@ -31,6 +46,7 @@ wfms.controller("EditBuildingCtrl", function($scope, $modalInstance,
 		$scope.checkpoint = isEdit.checkpoint;
 		$scope.no_of_guards = isEdit.no_of_guards;
 		
+		
 	} else {
 		$scope.buildingname ="";
 		$scope.start_date = "";
@@ -40,6 +56,9 @@ wfms.controller("EditBuildingCtrl", function($scope, $modalInstance,
 		$scope.no_of_guards=""
 	};
 	
+	
+	
+
 	
 	$scope.open = function($event) {
 	    $event.preventDefault();
@@ -52,7 +71,32 @@ wfms.controller("EditBuildingCtrl", function($scope, $modalInstance,
 
 
 $scope.okay = function() {
-
+	
+	 var first = $scope.start_date ;
+     var second = $scope.release_date ;
+     var guardnum =  $scope.no_of_guards;
+     var checkpoint = $scope.checkpoint;
+	if((compareDate(second,first))){
+		console.log("did i come here")
+		$scope.formError = "start date cannot be greater then end date!!!"	
+		
+	}
+	else if(!(checkGuardNumber(guardnum))){
+		
+		$scope.formError = "Guard should be number between 1-4!!!"
+		
+	}
+	
+else if(!(checkCheckPoint(checkpoint))){
+		
+		$scope.formError = "CheckPoint should be number between 1-4!!!"
+		
+	}
+	
+	
+	
+	else{
+		
 	console.log($scope.address.location.lat);
 	console.log($scope.address.location.lng );
 	console.log($scope.buildingname + $scope.start_date  + $scope.address.formatted_address);
@@ -122,6 +166,7 @@ $scope.okay = function() {
 	else{
 		
 		$scope.formError = "Form Invalid !!!";
+	}
 	}
 
 };

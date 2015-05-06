@@ -1,5 +1,5 @@
 'use strict';
-wfms.controller("ViewAllGuardsCtrl", function($scope, $rootScope, $modal, $filter, DataService, ngTableParams) {
+wfms.controller("ViewAllGuardsCtrl", function($scope, $rootScope, $modal, $filter, DataService, ngTableParams,$location,$route) {
 
 	var data = [];
 
@@ -23,7 +23,8 @@ wfms.controller("ViewAllGuardsCtrl", function($scope, $rootScope, $modal, $filte
 		}).error(function(err){
 			
 		});
-		getAllGaurds();
+		$route.reload();
+		//getAllGaurds();
 	}
 
 	$scope.tableParams = new ngTableParams({

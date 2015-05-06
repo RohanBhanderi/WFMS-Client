@@ -68,7 +68,7 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 
 	  
 
-	}
+	
 
 	console.log("isEdit"+ isEdit);
 

@@ -97,67 +97,87 @@ wfms.controller("EditGuardCtrl", function($scope, $modalInstance,
 	                  { name: 'WYOMING', abbreviation: 'WY' }
 	              ];
 	
-	//ZipCode Validation
 
-	function isValidPostalCode(postalCode) {
-	        var postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
-	        return postalCodeRegex.test(postalCode);
-	}
-	function isSSN(ssn) 
-	{
-	        var ssnRegex =  /^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/;
-	        return ssnRegex.test(ssn);
-	}
-	function isValidPhone(phone)
-	{
-		var phoneRegex = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}/;
-		return phoneRegex.test(phone);
-	}
-	function isValidateEmail(email) {
-	    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-	    return re.test(email);
-	}
+
 
 
 	$scope.okay = function() {
-
-	if(!(isValidPostalCode($scope.zipcode))){
-		console.log("inside invalid zip");
-		$scope.formError = "Invalid Zipcode !!!";
-	}
-  /* else if(!(isValidPhone($scope.phone)))
-	   {
-	   $scope.formError = "Invalid Phone Number!!!";
-	   }*/
-   else if(!(isValidateEmail($scope.email)))
-	   {
-	   $scope.formError = "Invalid Email-Id!!!";
-	   }
-	else if(!(isSSN($scope.idguard))){
-		console.log("Invalid SSN Format "+$scope.idguard);
-		$scope.formError = "Invalid SSN Format !!!";
-	}
-	else
-	{
-		if(($scope.idguard =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state=="")){			
-			$scope.formError = "Invalid Data !!!";
+		var ssn = $scope.idguard;
+		var weeklyworkinghours = $scope.weekly_working_set;
+		var first = $scope.start_date ;
+		var second = $scope.end_date ;
+		var phone = $scope.phonenumber;
+		if(!(isSSN(ssn))){
+			$scope.formError = "Invalid SSN Format !!!";
+			}
+		else if(!(checkWeeklyWorkingHours(weeklyworkinghours)))
+			{
+			$scope.formError = "Working hours should be number between 20-80!!!";
+			}
+		else if((compareDate(second,first))){
+			$scope.formError = "start date cannot be greater then end date!!!";
+			}
+		else if(!(isValidPostalCode($scope.zipcode))){
+			$scope.formError = "Invalid Zipcode!!!";
 		}
+		 else if(!(isValidateEmail($scope.email)))
+		   {
+		   $scope.formError = "Invalid Email-Id!!!";
+		   }
+		 else if(!(isValidPhone(phone)))
+		   {
+		   $scope.formError = "Invalid phonenumber !!!";
+		   }
 		else
-		{
-				if($scope.start_date && $scope.end_date && $scope.idguard && 
-					$scope.fname && $scope.lname && $scope.bgstatus && $scope.weekly_working_set &&
-					$scope.address && $scope.state && $scope.city && $scope.zipcode &&
-					$scope.email && $scope.phonenumber){
+			{
+			$scope.formError ="";																																				
+	if($scope.start_date && $scope.end_date && $scope.idguard && 
+			$scope.fname && $scope.lname && $scope.bgstatus && $scope.weekly_working_set &&
+			$scope.address && $scope.state && $scope.city && $scope.zipcode &&
+			$scope.email && $scope.phonenumber){
+			
+		
+		if (isEdit) {
+			console.log(isEdit);
+
+			var params = {
+				
+				
+		    //idclient : $rootScope.userId,
+			idperson : isEdit.idperson,
+			idguard : $scope.idguard,
+			fname : $scope.fname,
+			lname : $scope.lname,
+			bgstatus : $scope.bgstatus,
+			weekly_working_set : $scope.weekly_working_set,
+			start_date : $scope.start_date,
+			end_date : $scope.end_date,
+			address : $scope.address,
+			zipcode : $scope.zipcode,
+			state : $scope.state,
+			city : $scope.city,
+			email : $scope.email,
+			phonenumber : $scope.phonenumber
+				
+			};
+			
+			var uri='/api/updateGuard/'+isEdit.idguard;
+			console.log(uri);
+			DataService.putData(uri, params)
+			.success(function(response) {
+				$modalInstance.close(true);
+			}).error(function(err) {
+				$modalInstance.close(false);
+			});
+
+}
+		
+		
+		else {
+			var params = {
 					
-				if (isEdit) {
-					console.log(isEdit);
-
-
-					var params = {
-						
-						
-				    //idclient : $rootScope.userId,
-					idperson : isEdit.idperson,
+					//idclient : $rootScope.userId,
+					//idperson : isEdit.idperson,
 					idguard : $scope.idguard,
 					fname : $scope.fname,
 					lname : $scope.lname,
@@ -170,62 +190,76 @@ wfms.controller("EditGuardCtrl", function($scope, $modalInstance,
 					state : $scope.state,
 					city : $scope.city,
 					email : $scope.email,
-					phonenumber : $scope.phonenumber
-						
-					};
-					
-					var uri='/api/updateGuard/'+isEdit.idguard;
-					console.log(uri);
-					DataService.putData(uri, params)
-					.success(function(response) {
-						$modalInstance.close(true);
-					}).error(function(err) {
-						$modalInstance.close(false);
-					});
-
-				}
-				else {
-					var params = {
-							
-							//idclient : $rootScope.userId,
-							//idperson : isEdit.idperson,
-							idguard : $scope.idguard,
-							fname : $scope.fname,
-							lname : $scope.lname,
-							bgstatus : $scope.bgstatus,
-							weekly_working_set : $scope.weekly_working_set,
-							start_date : $scope.start_date,
-							end_date : $scope.end_date,
-							address : $scope.address,
-							zipcode : $scope.zipcode,
-							state : $scope.state,
-							city : $scope.city,
-							email : $scope.email,
-							phonenumber : $scope.phonenumber,
-							password : $scope.fname+$scope.lname,
-							usertype : "Guard"
-						};
-					DataService.postData("/api/createGuard",params).success(function(response){
-						$modalInstance.close(true);
-					}).error(function(err){
-						$modalInstance.dismiss(false);
-					});
-				}
-					}
-			
-			else{
-				
-				$scope.formError = "Required field missing";
-			}
+					phonenumber : $scope.phonenumber,
+					password : $scope.fname+$scope.lname,
+					usertype : "Guard"
+				};
+			DataService.postData("/api/createGuard",params).success(function(response){
+				$modalInstance.close(true);
+			}).error(function(err){
+				$scope.formError="Invalid Username/Password";
+				console.log(formError+"response"+response.message);
+				$modalInstance.dismiss(false);
+			});
 		}
-	}
+			}
 	
+	
+	else{
+		
+		$scope.formError = "Required field missing";
+	}
+			}
 
 };
 
 $scope.cancel = function() {
 	$modalInstance.dismiss(false);
 };
+
+function isSSN(ssn) {
+
+    var ssnRegex = /^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/;
+
+    return ssnRegex.test(ssn);
+
+ }
+
+function checkWeeklyWorkingHours(weeklyworkinghours){
+
+	 
+
+	  return (!isNaN(weeklyworkinghours) && weeklyworkinghours > 20 && weeklyworkinghours <= 80)
+
+	  }
+
+function compareDate(first,second) {
+
+    if(first>second){return false;}
+
+    else{return true;}
+
+}
+
+function isValidPostalCode(postalCode) {
+	console.log("inside postal check");
+    var postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
+    return postalCodeRegex.test(postalCode);
+}
+
+function isValidateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+    return re.test(email);
+}
+
+function isValidPhone(phone)
+{	if(phone>0)
+	{
+	var phoneRegex = /^\d{10}$/;
+	return phoneRegex.test(phone);
+	}
+	return false;
+}
 
 });
 

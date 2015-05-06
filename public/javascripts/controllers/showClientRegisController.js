@@ -69,6 +69,7 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 
 					$location.path('/client');
 				}).error(function(err) {
+					$scope.formError="Invalid Username/Password";
 			console.log("Error while fetching data");
 			$location.path('/');
 		});

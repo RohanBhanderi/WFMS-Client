@@ -1,11 +1,110 @@
-<section id="main-content">
-          <section class="wrapper">            
-              
-      <div class="row"><h1>Admin Home Page</h1></div>
-              
-            <div class="row"></div>
-  
-            <div class="row"></div>  
+<section id="main-content" ng-controller= "AdminDashBoard" ng-init="getData()">
+          <section class="wrapper">
+		  <div class="row">
+				<div class="col-lg-12">
+					<h3 class="page-header"><i class="fa fa-user-md"></i> Profile</h3>
+					<button ng-click="" class="btn btn-default pull-right">Add Admin</button> 
+					
+					<ol class="breadcrumb">
+						<li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+						<li><i class="fa fa-user-md"></i>Profile</li>
+						
+					</ol>
+					
+				</div>
+			</div>
+              <div class="row">
+                <!-- profile-widget -->
+                <div class="col-lg-12">
+                    <div class="profile-widget profile-widget-info">
+                          <div class="panel-body">
+                            <div class="col-lg-2 col-sm-2">
+                                           
+                              <div class="follow-ava">
+                                  <img src="img/adminlogo.png" alt="">
+                              </div>
+                              <h6>Admin</h6>
+                            </div>
+                            <div class="col-lg-4 col-sm-4 follow-info">
+                                <p>{{adminProperties.fname}} {{adminProperties.lname}}</p>
+								<p><i class="fa fa-twitter">{{adminProperties.email}}</i></p>
+                                <h6>
+                                    <span><i class="icon_clock_alt"></i>Last Login: {{lastlogin}}</span>
+                                   
+                                </h6>
+                            </div>
+                         
+                          </div>
+                    </div>
+                </div>
+              </div>
+              <!-- page start-->
+              <div class="row">
+                 <div class="col-lg-12">
+                    <section class="panel">
+                       
+                    
+						
+						
+						<!--  I have added here -->
+						                                           <!-- profile -->
+                                  <div id="profile" class="tab-pane">
+                                    <section class="panel">
+                                      <div class="bio-graph-heading">
+                                              Your Information
+                                      </div>
+                                      <div class="panel-body bio-graph-info">
+                                          <h1>Bio Graph</h1>
+                                          <div class="row">
+                                              <div class="bio-row">
+                                                  <p><span>First Name </span>: {{adminProperties.fname}} </p>
+                                              </div>
+                                              <div class="bio-row">
+                                                  <p><span>Last Name </span>: {{adminProperties.lname}} </p>
+                                              </div>                                              
+                                              <div class="bio-row">
+                                                  <p><span>Address</span>: {{adminProperties.address}}</p>
+                                              </div>
+                                             
+                                              <div class="bio-row">
+                                                  <p><span>ZipCode </span>: {{adminProperties.zipcode}} </p>
+                                              </div>
+                                               <div class="bio-row">
+                                                  <p><span>City </span>:  {{adminProperties.city}}</p>
+                                              </div>
+                                               <div class="bio-row">
+                                                  <p><span>State</span>:  {{adminProperties.state}}</p>
+                                              </div>
+                                              
+                                              <div class="bio-row">
+                                                  <p><span>Mobile </span>: {{adminProperties.phonenumber}} </p>
+                                              </div>
+                                             
+                                             <div class="bio-row">
+                                                  <p><span>Email </span>:{{adminProperties.email}} </p>
+                                              </div>
+                                              
+                                               
+                                          </div>
+                                      </div>
+                                    </section>
+                                      <section>
+                                          <div class="row">                                              
+                                          </div>
+                                      </section>
+                                     
+                                  </div>
+						
+						
+						
+						<!--  -->
+						
+						
+                      </section>
+                 </div>
+              </div>
 
+              <!-- page end-->
           </section>
       </section>
+      <!--main content end-->

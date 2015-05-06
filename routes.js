@@ -43,7 +43,7 @@ module.exports = function (app, passport) {
     //Rishabh
     app.post('/api/createReport', ensureAuthenticated, reportController.createReport);
     app.get('/api/reportPerBuilding/:idbuilding', ensureAuthenticated, reportController.reportPerBuilding);
-    app.post('/api/reportPerClientPerBuilding/', ensureAuthenticated, reportController.reportPerClientPerBuilding);
+    app.post('/api/reportPerClientPerBuilding/', ensureAuthenticated, checkCache ,reportController.reportPerClientPerBuilding);
     app.get('/api/reportPerClient/:idclient', ensureAuthenticated, reportController.reportPerClient);
     app.get('/api/reportPerDay/:date', ensureAuthenticated, reportController.reportPerDay);
     app.get('/api/reportPerGuard/:idguard', ensureAuthenticated, reportController.reportPerGuard);
@@ -97,6 +97,11 @@ module.exports = function (app, passport) {
     app.post('/api/createBuilding', buildingController.createBuilding);
     app.put('/api/editBuilding', buildingController.editBuilding);
     app.delete('/api/deleteBuilding/:buildingid', buildingController.deleteBuilding);
+
+    
+    //Get person Info
+    
+    app.get('/api/getPersonInfo/:idperson', ensureAuthenticated, clientController.getPersonInfo);
 
     
     //Elastick beanstalk healthcheck

@@ -1,5 +1,9 @@
 'use strict';
+<<<<<<< HEAD
 wfms.controller("CreatePatrolCtrl", function($scope, $rootScope, DataService, $window, $location) {
+=======
+wfms.controller("CreatePatrolCtrl", function($scope, $rootScope, DataService,$window) {
+>>>>>>> 1c1915247e2e3ce0b714e05f58593233775ddf45
 	
 $scope.getGuardBuilding=function(){
 		

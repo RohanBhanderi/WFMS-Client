@@ -1,7 +1,7 @@
 var config = require("./../conf/config.js");
 
 var redis = require('redis');
-var cacheClient = redis.createClient(config.redisConfig.port,config.redisConfig.host);
+//var cacheClient = redis.createClient(config.redisConfig.port,config.redisConfig.host);
 //var cacheClient = redis.createClient();
 var data=[{
 	"name":"rohan",

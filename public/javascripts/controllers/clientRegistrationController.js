@@ -157,7 +157,9 @@ $scope.register = function() {
 				};
 				console.log("Params value:" + JSON.stringify(params));
 			DataService.postData("/api/register",params).success(function(response){
-				$modalInstance.close(true);
+				console.log("email id exits"+response);
+				$scope.formError=response.message;
+				//$modalInstance.close(true);
 			}).error(function(err){
 				$modalInstance.dismiss(false);
 			});

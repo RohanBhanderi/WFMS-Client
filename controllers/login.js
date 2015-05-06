@@ -29,8 +29,93 @@ exports.register = function(req, res) {
             message : msg
         });
     }
-    
-    var new_salt = Math.round((new Date().valueOf() * Math.random())) + '';
+    mysql.queryDb("select *  from person where ?",[{email:un}],function(err,result){
+    		    		
+    if(err) {
+    		   res.status(500).json({ status : 500, message : "Please try again later" });
+    		} 
+    		    		
+     else {
+    	 console.log(result.length);
+    	 if(!(result.length==0))
+    		 {
+    		 console.log("inside if"+result.length);
+    		 res.status(200).json({ status : 200, message : "User-EmailID already Exists-" });
+    		  console.log("Email ID already Exists");
+    		 }
+    	 else
+    		 {
+    		 
+    		 console.log("User will be registered");
+    		 var new_salt = Math.round((new Date().valueOf() * Math.random())) + '';
+    		    var pw = crypto.createHmac('sha1', new_salt).update(pwu).digest('hex');
+    		    var created = dateutil.now();
+    		    
+    		    var data={
+    		        email:un,
+    		        password_hash:pw,
+    		        status:true,
+    		        type:usertype,
+    		        created_date:created,
+    		        last_login:created,
+    		        password_salt:new_salt
+    		    };
+
+    		    mysql.queryDb('insert into login set ?',data,function(err,result){
+    		      if(err) {
+    		        console.log(err);
+    		            res.status(500).json({ status : 500, message : "Please try again later" });
+    		      } else {
+    		            
+    		        var idperson = result.insertId;
+
+    		        mysql.queryDb('insert into person set ?',{idperson: idperson,fname : fn,
+    		                  lname : ln,
+    		                  email : un,
+    		                  address: address,
+    		                  city:city,
+    		                  zipcode:zipcode,
+    		                  phonenumber:phonenumber,
+    		                  state:state
+    		                  },
+    		        function(err,result){
+    		          if(err) {
+    		            res.status(500).json({ status : 500, message : "Please try again later" });
+    		          } else {
+
+    		             mysql.queryDb("INSERT INTO client SET ?", {idperson : idperson, idclient : ssn }, function(err, response) {
+    		              if (err) {
+    		                console.log("Error while perfoming query !!!");
+    		                res.status(500).json({ status : 500, message : "Please try again later" });
+    		              } else {
+    		                 req.session.idperson = idperson;
+    		                  passport.authenticate('local')(req, res, function () {
+    		                                 lastLogin = new Date();
+    		                                 req.session.email = un;
+
+    		                                res.status(200).json({
+    		                                    status : 200,
+    		                                    idperson : idperson,
+    		                                    email : un,
+    		                                    name : req.body.fname + " " + req.body.lname,
+    		                                    lastLogin : lastLogin.toDateString() + " " + lastLogin.toLocaleTimeString(),
+    		                                    message : "Client has been Registered Succesfully" 
+    		                                });
+    		                    });
+    		               // res.status(200).json({ status : 200, message : "Client has been Registered Succesfully" });
+    		              }
+    		            });
+    		          }
+    		        });
+    		      }
+    		 });
+    		 }
+    	}
+    });
+     
+};
+
+   /* var new_salt = Math.round((new Date().valueOf() * Math.random())) + '';
     var pw = crypto.createHmac('sha1', new_salt).update(pwu).digest('hex');
     var created = dateutil.now();
     
@@ -90,9 +175,8 @@ exports.register = function(req, res) {
             });
           }
         });
-      }
-    });
-};
+      }*/
+
 
 exports.checkLogin = function(req, res, next) {
 

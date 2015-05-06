@@ -44,7 +44,7 @@ if(!($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.
 			$scope.formError = "Invalid Zipcode !!!";
 		}
 		else if(!(isSSN(ssnError))){
-			$scope.ssn=" $scope.ssnError=" ";";
+			$scope.ssn=" $scope.ssnError=";
 			$scope.formError = "Invalid SSN Format !!!";
 		}
 		else{

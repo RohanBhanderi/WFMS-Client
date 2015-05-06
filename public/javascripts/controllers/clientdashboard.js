@@ -14,6 +14,7 @@ wfms.controller("ClientDashboard", function($scope, $rootScope, $modal,
 	
 	function clientInfo(){
 		var uri = "/api/getClientInfo/"+$rootScope.idperson;
+		console.log($rootScope.idperson);
 		DataService.getData("/api/getClientInfo/" + $window.sessionStorage.idperson,[]).success(function(response){
 	
 

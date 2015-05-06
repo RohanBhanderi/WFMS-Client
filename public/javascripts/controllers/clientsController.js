@@ -2,19 +2,19 @@
 wfms.controller("ClientsCtrl", function($scope, $rootScope, DataService, $modal) {
 	
 	function loadclient(){
+		console.log
 	DataService.getData(urlConstants.GET_ALL_CLIENTS,[]).success(function(response){
 			if(response.data){
 				console.log(response.data);
 				$scope.clientListResults = response.data;
-
+				console.log(JSON.strigfy($rootScope));
 		var params = {
-<<<<<<< HEAD
-			idclient : $rootScope.idclient
-=======
-			idclient : $window.sessionStorage.idclient
 
->>>>>>> c93fed60e216325b6ff5723e26039f6453c9d560
+			idclient : $rootScope.idclient
+
 		};
+		console.log("idclient: "+idclient);
+
 
 		DataService.postData("/api/updateClientBillingInfo", params).success(
 				function(response) {

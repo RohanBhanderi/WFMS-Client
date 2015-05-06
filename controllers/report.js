@@ -3,6 +3,8 @@ var dateutil = require('../util/dateutil'),
 moment = require('moment');
 
 var mq_client = require('../rpc/client');
+var cache = require('./cache');
+
 
 reportDataPerClientClient = function(req,res){
 
@@ -33,6 +35,9 @@ reportDataPerClientClient = function(req,res){
                                 res.status(err.status).json(err);
                         }else{
                                 res.status(results.status).json(results);
+
+                                //Caching the results after the result has been sent
+                                cache.cacheData(req.originalUrl,results);
                         }
                 });
 
@@ -71,6 +76,9 @@ reportDataPerClient = function(req,res){
                                 res.status(err.status).json(err);
                         }else{
                                 res.status(results.status).json(results);
+                                
+                                //Caching the results after the result has been sent
+                                cache.cacheData(req.originalUrl,results);
                         }
                 });
 

@@ -1,21 +1,39 @@
 'use strict';
-wfms.controller("ClientsCtrl", function($scope, $rootScope, DataService, $modal) {
-	
+wfms.controller("ClientsCtrl", function($scope, $rootScope, DataService, $window, $modal) {
+	console.log("$rootScope idclient inside load client:" + $rootScope.idclient);
+	console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
 	function loadclient(){
+<<<<<<< HEAD
 		console.log
+=======
+		console.log("$rootScope idclient inside load client:" + $rootScope.idclient);
+	console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
+	
+>>>>>>> 2a0520902ca22bdf0756f878e95bebc34704456a
 	DataService.getData(urlConstants.GET_ALL_CLIENTS,[]).success(function(response){
 			if(response.data){
 				console.log(response.data);
+				console.log("$rootScope idclient inside load client:" + $rootScope.idclient);
+				console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
+	
 				$scope.clientListResults = response.data;
 				console.log(JSON.strigfy($rootScope));
 		var params = {
 
 			idclient : $rootScope.idclient
 
+<<<<<<< HEAD
 		};
 		console.log("idclient: "+idclient);
+=======
+		//	idclient : $window.sessionStorage.idclient
+>>>>>>> 2a0520902ca22bdf0756f878e95bebc34704456a
 
 
+		//	idclient : $window.sessionStorage.idclient
+
+		};
+		console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
 		DataService.postData("/api/updateClientBillingInfo", params).success(
 				function(response) {
 					$scope.billingInfo = response.result;

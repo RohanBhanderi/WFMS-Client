@@ -5,6 +5,7 @@ var reportController = require('./controllers/report');
 var alertController = require('./controllers/alert');
 var guardController = require('./controllers/guard');
 var buildingController = require('./controllers/building');
+var cache = require('./controllers/cache');
 
 module.exports = function (app, passport) {
 
@@ -21,7 +22,7 @@ module.exports = function (app, passport) {
     
     // Client
     app.get('/api/getClient/:idperson', ensureAuthenticated, clientController.getClient);
-    app.get('/api/listAllClients', ensureAuthenticated, clientController.listAllClients);
+    app.get('/api/listAllClients', ensureAuthenticated, checkCache,clientController.listAllClients);
     app.put('/api/updateClient', ensureAuthenticated, clientController.updateClient);
     app.post('/api/createClient', ensureAuthenticated, clientController.createClient);
     app.delete('/api/deleteClient/:idperson', ensureAuthenticated, clientController.deleteClient);
@@ -55,7 +56,7 @@ module.exports = function (app, passport) {
 
     app.put('/api/alert/seenByClient', ensureAuthenticated, alertController.seenByClient);
     app.put('/api/alert/seenByAdmin', ensureAuthenticated, alertController.seenByAdmin);
-    app.get('/api/reportDataPerClient', ensureAuthenticated, reportController.reportDataPerClient);
+    app.get('/api/reportDataPerClient', ensureAuthenticated, checkCache,reportController.reportDataPerClient);
     app.get('/api/reportDataPerClientClient/:idclient', ensureAuthenticated, reportController.reportDataPerClientClient);
     app.get('/api/activeAdminAlerts', ensureAuthenticated, alertController.activeAdminAlerts);
     app.put('/api/editPerson', ensureAuthenticated, adminController.editPerson);
@@ -68,7 +69,11 @@ module.exports = function (app, passport) {
     //tested with rabbit mq
     app.delete('/api/deleteGuard/:idguard', ensureAuthenticated, guardController.deleteGuard);
     //tested with rabbit mq
-    app.get('/api/listAllGuards', ensureAuthenticated, guardController.listAllGuards);
+    
+    //without cache
+    app.get('/api/listAllGuards', ensureAuthenticated,guardController.listAllGuards);
+ //With cache
+ //   app.get('/api/listAllGuards', ensureAuthenticated, checkCache,guardController.listAllGuards);
    //tested with rabbit mq
     app.get('/api/getGuard/:idguard', ensureAuthenticated, guardController.getGuard);
    //tested with rabbit mq
@@ -132,4 +137,22 @@ module.exports = function (app, passport) {
 
         }
        }
+
+    function checkCache(req,res,next){
+        console.log("checkCache");
+        cache.getCachedData(req.originalUrl,function(err,data){
+            if(err){
+                console.log(err);
+                next();
+            } else {
+                if(data){
+                    console.log("CACHE HIT");
+                    res.status(data.status).json(data);
+                } else {
+                    console.log("CACHE MISSED");
+                    next();
+                }
+            }
+        });
+    }
 };

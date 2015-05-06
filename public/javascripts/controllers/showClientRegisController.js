@@ -4,8 +4,8 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 	
 	$scope.registerClient = function() {
 		
-		 $scope.zipCodeRegex = "/^\d{5}(?:[-\s]\d{4})?$/";
-		  $scope.ssnRegex = "/^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/";
+		 //$scope.zipCodeRegex = "/^\d{5}(?:[-\s]\d{4})?$/";
+		  //$scope.ssnRegex = "/^(?!000)(?!666)(?!9)\d{3}[- ]?(?!00)\d{2}[- ]?(?!0000)\d{4}$/";
 
 
 		
@@ -36,7 +36,8 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 			var params = {
 					
 					email : $scope.email,
-					password:  $scope.password
+					password:  $scope.password,
+					userType: "CLNT"
 						
 				};
 			DataService.postData("/api/login",params).success(

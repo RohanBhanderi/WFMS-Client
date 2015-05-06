@@ -1,7 +1,8 @@
 		var dateutil = require('../util/dateutil'),
 		moment = require('moment');
 		var mq_client = require('../rpc/client');
-
+		var cache = require('./cache');
+		
 		createClient = function(req,res){
 			console.log(JSON.stringify(req.body));
 			if(!req.body.idperson || !req.body.start_date || !req.body.end_date || !req.body.idclient){
@@ -56,7 +57,7 @@ updateClientBillingInfo = function(req,res){
 				
 				// 	}
 				// });
-
+		
 		var msgPayload = {
 			operation : "updateClientBillingInfo",
 			message : req.body
@@ -202,6 +203,8 @@ listAllClients=function(req,res){
 				res.status(err.status).json(err);
 			}else{
 				res.status(results.status).json(results);
+				//Caching the results after the result has been sent
+				cache.cacheData(req.originalUrl,results);
 			}
 		});
 

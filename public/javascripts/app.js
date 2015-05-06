@@ -29,7 +29,7 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapg
 	}).otherwise({
 		redirectTo : '/'
 	});
-	
+	// ,
 	/**
 	 * to remove hash in the URL
 	 */

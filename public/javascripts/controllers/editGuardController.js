@@ -133,12 +133,13 @@ wfms.controller("EditGuardCtrl", function($scope, $modalInstance,
 	   {
 	   $scope.formError = "Invalid Email-Id!!!";
 	   }
-	else if(!(isSSN($scope.ssn))){
+	else if(!(isSSN($scope.idguard))){
+		console.log("Invalid SSN Format "+$scope.idguard);
 		$scope.formError = "Invalid SSN Format !!!";
 	}
 	else
 	{
-		if(($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state=="")){			
+		if(($scope.idguard =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state=="")){			
 			$scope.formError = "Invalid Data !!!";
 		}
 		else

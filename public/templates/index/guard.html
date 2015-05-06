@@ -12,6 +12,7 @@
                 <input type="password" class="form-control" ng-model="password" placeholder="Password">
             </div>
             <button class="btn btn-primary btn-lg btn-block" ng-click="loginGuard()">Guard Login</button>
+             <div class="pull-left text-danger">{{formError}}</div>
           </div>
       </form>
   </div>

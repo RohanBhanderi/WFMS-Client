@@ -18,7 +18,7 @@ wfms.controller("ShowAdminController", function($scope, $rootScope, $modal,
 				};
 			DataService.postData("/api/login",params).success(
 				function(response) {
-
+					$window.sessionStorage.type = "ADMIN";
 					$window.sessionStorage.idperson = response.idperson;
 					$window.sessionStorage.fname = response.fname;
 					$window.sessionStorage.lname = response.lname;
@@ -34,10 +34,13 @@ wfms.controller("ShowAdminController", function($scope, $rootScope, $modal,
 					$location.path('/admin');
 				}).error(function(err) {
 			console.log("Error while fetching data");
+			$scope.formError="Invalid Username/Password";
 			$location.path('/');
 		});
 		}
 	};
+	
+	
 	
 	
 	

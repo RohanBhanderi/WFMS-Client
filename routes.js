@@ -69,7 +69,11 @@ module.exports = function (app, passport) {
     //tested with rabbit mq
     app.delete('/api/deleteGuard/:idguard', ensureAuthenticated, guardController.deleteGuard);
     //tested with rabbit mq
-    app.get('/api/listAllGuards', ensureAuthenticated, checkCache,guardController.listAllGuards);
+    
+    //without cache
+    app.get('/api/listAllGuards', ensureAuthenticated,guardController.listAllGuards);
+ //With cache
+ //   app.get('/api/listAllGuards', ensureAuthenticated, checkCache,guardController.listAllGuards);
    //tested with rabbit mq
     app.get('/api/getGuard/:idguard', ensureAuthenticated, guardController.getGuard);
    //tested with rabbit mq
@@ -117,21 +121,16 @@ module.exports = function (app, passport) {
 
     //Auth Middleware
     function ensureAuthenticated(req, res, next) {
-       // if (req.isAuthenticated()) 
-    	{ 
+       //if (req.isAuthenticated()) 
+    	//{ 
             return next(); 
 
             //Rishabh Sanghvi
 //        } else {
-//            //res.redirect('/login');
-//           res.status(401).json({message : "Unauthorized access !!"}); 
-
-    //   } else {
-            //res.redirect('/login');
-      //  	res.status(401).json({message : "Unauthorized access !!"}); 
-
-
-        }
+//          res.redirect('/login');
+//          res.status(401).json({message : "Unauthorized access !!"}); 
+//
+//       } 
        }
 
     function checkCache(req,res,next){

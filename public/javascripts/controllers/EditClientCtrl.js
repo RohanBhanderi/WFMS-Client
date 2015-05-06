@@ -1,12 +1,8 @@
 'use strict';
 wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 		 isEdit, $rootScope, DataService,$http) {
-
 	
-
-	$scope.states= [
-
-	$scope.getStates= function(){
+	
 		
 	
 		var country= [
@@ -74,8 +70,6 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 
 	  
 
-	}
-	
 
 	if (isEdit) {
 		console.log("isEdit for the idperson: "+isEdit.idperson);

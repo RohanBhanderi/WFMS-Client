@@ -2,7 +2,13 @@
 wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 		 isEdit, $rootScope, DataService,$http) {
 
+	
 
+	$scope.states= [
+
+	$scope.getStates= function(){
+		
+	
 		var country= [
 
 	                  { name: 'ALABAMA', abbreviation: 'AL'},
@@ -68,9 +74,14 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 
 	  
 
+<<<<<<< HEAD
 	
 
 	console.log("isEdit"+ isEdit);
+=======
+	}
+	
+>>>>>>> ebbec29ca6843239a1a963815d7724d0a4b216de
 
 	if (isEdit) {
 		console.log("isEdit for the idperson: "+isEdit.idperson);
@@ -157,10 +168,6 @@ $scope.okay = function() {
 					console.log("Error while fetching data");
 			
 			});
-			
-
-
-
 }
 		
 		else {

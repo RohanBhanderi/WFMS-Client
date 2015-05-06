@@ -135,8 +135,11 @@ $scope.register = function() {
 				console.log("Inside register Funct"+$scope.firstname);
 				console.log($scope.ssn + $scope.firstname + $scope.lastname + $scope.address.formatted_address + $scope.city + $scope.zipcode + $scope.email + $scope.number +  $scope.password +$scope.state);
 
-				if(($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state=="")){
-
+		    if(!(($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state==""))){
+               
+					console.log("Inside query");
+				var params={
+					
 					fname : $scope.firstname,
 					lname:  $scope.lastname,
 					address : $scope.address.formatted_address,

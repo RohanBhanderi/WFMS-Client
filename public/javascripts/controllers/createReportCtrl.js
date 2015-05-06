@@ -6,7 +6,8 @@ wfms.controller("CreateReportCtrl", function($scope, $rootScope, DataService, $l
 	$scope.getGuardBuilding=function(){
 	
 		console.log("guard Building");
-		var uri = urlConstants.GET_GUARD_BUILDING+"1";
+		var idguard=$window.sessionStorage.idguard;
+		var uri = urlConstants.GET_GUARD_BUILDING+idguard;
 		DataService.getData(uri,[]).success(function(response){
 			angular.toJson(response);
 			console.log("in controller"+response.data);

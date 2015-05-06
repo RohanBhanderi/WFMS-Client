@@ -76,7 +76,6 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 
 	}
 	
-	console.log("isEdit"+ isEdit);
 
 	if (isEdit) {
 		console.log("isEdit for the idperson: "+isEdit.idperson);
@@ -163,10 +162,6 @@ $scope.okay = function() {
 					console.log("Error while fetching data");
 			
 			});
-			
-
-
-
 }
 		
 		else {

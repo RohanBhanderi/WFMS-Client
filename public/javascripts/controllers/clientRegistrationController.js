@@ -121,11 +121,11 @@ $scope.register = function() {
 			   {
 			   $scope.formError = "Invalid Phone Number!!!";
 			   }*/
-		   if(!(isValidateEmail($scope.email)))
+		   else if(!(isValidateEmail($scope.email)))
 			   {
 			   $scope.formError = "Invalid Email-Id!!!";
 			   }
-			if(!(isSSN($scope.ssn))){
+			else if(!(isSSN($scope.ssn))){
 				console.log($scope.ssn);
 				$scope.formError = "Invalid SSN Format !!!";
 			}
@@ -137,7 +137,7 @@ $scope.register = function() {
 
 				if(($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state=="")){
 					
-					$scope.formError = "Invalid Zipcode !!!";
+					$scope.formError = "Invalid Data !!!";
 				}
 				else{
 					

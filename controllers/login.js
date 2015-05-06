@@ -226,7 +226,7 @@ exports.checkLogin = function(req, res, next) {
                         } else {
                           console.log("inside client else fname" + JSON.stringify(results));
                           idclient = results[0].idclient;
-                          res.status(200).json({status:200, idperson:user.idperson, idclient:idclient, email:user.username, fname : result[0].fname, lname: result[0].lname, lastLogin:last_login});
+                          res.status(200).json({status:200, idperson:user.idperson, idclient:idclient, email:user.username, fname : result[0].fname, lname: result[0].lname, lastLogin:last_login,type:'CLNT'});
                         }
                     });
                     }
@@ -247,7 +247,7 @@ exports.checkLogin = function(req, res, next) {
                         		{
                         		 console.log("Active Guard");
                         		 idguard = results[0].idguard;
-                                 res.status(200).json({status:200, idperson:user.idperson, idguard:idguard, email:user.username, fname : result[0].fname, lname: result[0].lname, lastLogin:last_login});
+                                 res.status(200).json({status:200, idperson:user.idperson, idguard:idguard, email:user.username, fname : result[0].fname, lname: result[0].lname, lastLogin:last_login,type:'GUARD'});
                              
                         		}
                             }
@@ -272,5 +272,15 @@ exports.logout = function(req, res) {
 
 // route to test if the user is logged in or not 
 exports.loggedin = function(req, res) {
-    res.send(req.isAuthenticated() ? req.user : '0'); 
+   // res.send(req.isAuthenticated() ? req.user : '0'); 
+	 if(req.isAuthenticated)
+	 {console.log("In 200");
+	     res.status(200).json({status:200});
+	 }
+	 else
+	 {console.log("In 401");
+	     res.status(401).json({status:401});
+	 }
 };
+
+

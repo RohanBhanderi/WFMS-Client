@@ -212,7 +212,7 @@ listAllClients=function(req,res){
 	};
 	
 	
-	getClientInfo=function(req,res){
+getClientInfo=function(req,res){
 		// mysql.queryDb('SELECT * FROM client left join person on client.idperson = person.idperson',function(err,rows){
 		// 	if (err) {
 		// 		console.log("Error while listing all the client details !!!"  + err);

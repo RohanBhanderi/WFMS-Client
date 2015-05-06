@@ -41,26 +41,78 @@ var wfms = angular.module("wfms", [ 'ngRoute', 'ui.bootstrap','ngTable','uiGmapg
 }).run(['$rootScope','$window' ,'$location', 'DataService',function($rootScope,$window, $location,DataService) {
 	$rootScope.$on('$routeChangeStart', function(event) {
 
-				if($rootScope.idperson){
-					$rootScope.lastLogin = $window.sessionStorage.lastLogin;
-					$rootScope.idclient = $window.sessionStorage.idclient;
-					$rootScope.idperson = $window.sessionStorage.idperson;
-					$rootScope.fname = $window.sessionStorage.fname;
-					$rootScope.fname = $window.sessionStorage.fname;
-					$rootScope.email = $window.sessionStorage.email;
-					$rootScope.idguard = $window.sessionStorage.idguard;
-				}
-				else
-				{
-					$rootScope.lastLogin = "undefined";
-					$rootScope.idclient = "undefined";
-					$rootScope.idperson = "undefined";
-					$rootScope.fname = "undefined";
-					$rootScope.fname = "undefined";
-					$rootScope.email = "undefined";
-					$rootScope.idguard = "undefined";
-					$location.path('/');
-				}
+//				if($rootScope.idperson){
+//					$rootScope.lastLogin = $window.sessionStorage.lastLogin;
+//					$rootScope.idclient = $window.sessionStorage.idclient;
+//					$rootScope.idperson = $window.sessionStorage.idperson;
+//					$rootScope.fname = $window.sessionStorage.fname;
+//					$rootScope.fname = $window.sessionStorage.fname;
+//					$rootScope.email = $window.sessionStorage.email;
+//					$rootScope.idguard = $window.sessionStorage.idguard;
+//				}
+//				else
+//				{
+//					$rootScope.lastLogin = "undefined";
+//					$rootScope.idclient = "undefined";
+//					$rootScope.idperson = "undefined";
+//					$rootScope.fname = "undefined";
+//					$rootScope.fname = "undefined";
+//					$rootScope.email = "undefined";
+//					$rootScope.idguard = "undefined";
+//					$location.path('/');
+//				}
+		
+		
+        console.log("Called in app.js first");
+
+		DataService.getData("/api/loggedin",{}).success(
+                function(response) {
+                                if($window.sessionStorage.idperson && $window.sessionStorage.type=='CLNT'){
+                                        $rootScope.lastLogin = $window.sessionStorage.lastLogin;
+                                        $rootScope.idclient = $window.sessionStorage.idclient;
+                                        $rootScope.idperson = $window.sessionStorage.idperson;
+                                        $rootScope.fname = $window.sessionStorage.fname;
+                                        $rootScope.fname = $window.sessionStorage.fname;
+                                        $rootScope.email = $window.sessionStorage.email;
+                                       // $rootScope.idguard = $window.sessionStorage.idguard;
+                                        $location.path('/client');
+                                        console.log("Called in app.js");
+                                }
+                                else if($window.sessionStorage.idperson && $window.sessionStorage.type=='GUARD'){
+                                	 $rootScope.lastLogin = $window.sessionStorage.lastLogin;
+                                   //  $rootScope.idclient = $window.sessionStorage.idclient;
+                                     $rootScope.idperson = $window.sessionStorage.idperson;
+                                     $rootScope.fname = $window.sessionStorage.fname;
+                                     $rootScope.fname = $window.sessionStorage.fname;
+                                     $rootScope.email = $window.sessionStorage.email;
+                                     $rootScope.idguard = $window.sessionStorage.idguard;
+                                     $location.path('/guard');
+                                     console.log("Called in app.js");
+                                
+                                }
+                                else if($window.sessionStorage.idperson &&  $window.sessionStorage.type == "ADMIN"){
+                               	 $rootScope.lastLogin = $window.sessionStorage.lastLogin;
+                                  //  $rootScope.idclient = $window.sessionStorage.idclient;
+                                    $rootScope.idperson = $window.sessionStorage.idperson;
+                                    $rootScope.fname = $window.sessionStorage.fname;
+                                    $rootScope.fname = $window.sessionStorage.fname;
+                                    $rootScope.email = $window.sessionStorage.email;
+                                  //  $rootScope.idguard = $window.sessionStorage.idguard;
+                                    $location.path('/admin');
+                                    console.log("Called in app.js");
+                               
+                               }
+                               
+                                else{
+                                        $location.path('/');
+                                }
+
+                        console.log("inside loggedin");
+                        
+                }).error(function(err) {
+        console.log("Error while fetching data");
+        $location.path('/');
+});
 		
 	});
 }]);

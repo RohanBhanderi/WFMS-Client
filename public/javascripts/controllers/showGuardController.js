@@ -20,7 +20,7 @@ wfms.controller("ShowGuardController", function($scope, $rootScope, $modal,
 				function(response) {
 
 					
-					
+					$window.sessionStorage.type = response.type;
 					$window.sessionStorage.idguard = response.idguard;
 					$window.sessionStorage.idperson = response.idperson;
 					$window.sessionStorage.fname = response.fname;

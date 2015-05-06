@@ -52,7 +52,7 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 					$rootScope.lastLogin = response.lastLogin;
 
 					console.log("window element:" + $window.sessionStorage.idperson);
-					
+					$window.sessionStorage.type = response.type;
 					$window.sessionStorage.idclient = response.idclient;
 					$window.sessionStorage.idperson = response.idperson;
 					$window.sessionStorage.fname = response.fname;
@@ -60,6 +60,7 @@ wfms.controller("ShowClientRegisController", function($scope, $rootScope, $modal
 					$window.sessionStorage.email = response.email;
 					$window.sessionStorage.lastLogin = response.lastLogin;
 					
+					$rootScope.type = $window.sessionStorage.type;
 					$rootScope.lastLogin = $window.sessionStorage.lastLogin;
 					$rootScope.idclient = $window.sessionStorage.idclient;
 					$rootScope.idperson = $window.sessionStorage.idperson;

@@ -232,15 +232,25 @@ exports.checkLogin = function(req, res, next) {
                     }
                     else if(user.type === "Guard")
                     {
-                      mysql.queryDb("select idguard from guard where ?",[{idperson:user.idperson}],function(err,results){
+                      mysql.queryDb('select idguard from guard where ? and status="Active"',[{idperson:user.idperson}],function(err,results){
                         if(err) {
                           console.log("inside chk login alkfewee");
                             console.log(err);
-                            //res.status(500).json({status:500,message : "Please try again later"});
+                           
                         } else {
-                          idguard = results[0].idguard;
-                          res.status(200).json({status:200, idperson:user.idperson, idguard:idguard, email:user.username, fname : result[0].fname, lname: result[0].lname, lastLogin:last_login});
-                         }
+                        	if(results.length==0)
+                        		{
+                        		 console.log("Disabled Guard");
+                        		 res.status(300).json({status:300,message : "Inactive Credentials"});
+                        		}
+                        	else
+                        		{
+                        		 console.log("Active Guard");
+                        		 idguard = results[0].idguard;
+                                 res.status(200).json({status:200, idperson:user.idperson, idguard:idguard, email:user.username, fname : result[0].fname, lname: result[0].lname, lastLogin:last_login});
+                             
+                        		}
+                            }
                     });
 
                     }

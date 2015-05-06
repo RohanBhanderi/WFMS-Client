@@ -19,6 +19,8 @@ wfms.controller("ShowGuardController", function($scope, $rootScope, $modal,
 			DataService.postData("/api/login",params).success(
 				function(response) {
 
+					
+					
 					$window.sessionStorage.idguard = response.idguard;
 					$window.sessionStorage.idperson = response.idperson;
 					$window.sessionStorage.fname = response.fname;
@@ -36,7 +38,9 @@ wfms.controller("ShowGuardController", function($scope, $rootScope, $modal,
 					$location.path('/guard');
 				}).error(function(err) {
 			console.log("Error while fetching data");
-			$location.path('/');
+			$scope.formError="Inactive Guard Id";
+			console.log(formError+"in Guard");
+			//$location.path('/');
 		});
 		}
 	};

@@ -1,5 +1,5 @@
 'use strict';
-wfms.controller("CreateReportCtrl", function($scope, $rootScope, DataService, $location) {
+wfms.controller("CreateReportCtrl", function($scope, $rootScope, DataService, $location, $window) {
 	
 	
 	//to fetch guard building schedule
@@ -50,13 +50,14 @@ $scope.publish = function() {
 				datemy : $scope.alert_date,
 				severity : $scope.severity,
 				timemy : $scope.time
-			
+			    
 				
 			};
 		
 		DataService.postData(urlConstants.CREATE_ALERT,params).success(function(response){
-			console.log("Alert Info"+response.data);
-			$location.path('/guard');
+			console.log("Alert Info"+response);
+			alert("Alert Succesfully Created");
+			$location.path('/');
 		}).error(function(err){
 			console.log(err.message);
 		});

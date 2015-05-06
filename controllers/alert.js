@@ -203,6 +203,7 @@ createAlert = function(req, res) {
 					if(err){
 						res.status(err.status).json(err);
 					}else{
+						console.log("successful");
 						res.status(results.status).json(results);
 					}
 				});

@@ -1,5 +1,5 @@
 'use strict';
-wfms.controller("CreatePatrolCtrl", function($scope, $rootScope, DataService) {
+wfms.controller("CreatePatrolCtrl", function($scope, $rootScope, DataService, $window, $location) {
 	
 $scope.getGuardBuilding=function(){
 		
@@ -30,13 +30,15 @@ if(!($scope.desc || $scope.idbuilding || $scope.patrol_date ||  $scope.time)){
 					date : $scope.patrol_date,
 					idguard : "1",
 					description : $scope.desc,
-					time : $scope.time
+					time : $scope.time,
+					
 			
 			};
 		
 		DataService.postData(urlConstants.ADD_PATROL,params).success(function(response){
 			
-			console.log("Alert Info"+response.data);
+			alert("Patrol Details Succesfully Inserted");
+			$location.path('/');
 		}).error(function(err){
 			console.log(err.message);
 		});

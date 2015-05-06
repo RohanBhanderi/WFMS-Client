@@ -121,21 +121,16 @@ module.exports = function (app, passport) {
 
     //Auth Middleware
     function ensureAuthenticated(req, res, next) {
-       // if (req.isAuthenticated()) 
-    	{ 
+       //if (req.isAuthenticated()) 
+    	//{ 
             return next(); 
 
             //Rishabh Sanghvi
 //        } else {
-//            //res.redirect('/login');
-//           res.status(401).json({message : "Unauthorized access !!"}); 
-
-    //   } else {
-            //res.redirect('/login');
-      //  	res.status(401).json({message : "Unauthorized access !!"}); 
-
-
-        }
+//          res.redirect('/login');
+//          res.status(401).json({message : "Unauthorized access !!"}); 
+//
+//       } 
        }
 
     function checkCache(req,res,next){

@@ -18,7 +18,7 @@ wfms.controller("ShowAdminController", function($scope, $rootScope, $modal,
 				};
 			DataService.postData("/api/login",params).success(
 				function(response) {
-
+					$window.sessionStorage.type = "ADMIN";
 					$window.sessionStorage.idperson = response.idperson;
 					$window.sessionStorage.fname = response.fname;
 					$window.sessionStorage.lname = response.lname;
@@ -39,6 +39,8 @@ wfms.controller("ShowAdminController", function($scope, $rootScope, $modal,
 		});
 		}
 	};
+	
+	
 	
 	
 	

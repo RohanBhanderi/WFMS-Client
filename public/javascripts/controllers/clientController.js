@@ -43,6 +43,7 @@ wfms.controller("ClientController", function($scope, $rootScope,
 				$window.sessionStorage.lname = "undefined";
 				$window.sessionStorage.email = "undefined";
 				$window.sessionStorage.lastLogin = "undefined";
+				$window.sessionStorage.type ="undefined"
 				console.log("I am getting logged out");
 				$location.path('/');
 			}else{

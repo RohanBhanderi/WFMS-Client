@@ -15,7 +15,14 @@ wfms.controller("ClientsCtrl", function($scope, $rootScope, DataService, $window
 				$scope.clientListResults = response.data;
 
 		var params = {
-			idclient : $window.sessionStorage.idclient
+
+			idclient : $rootScope.idclient
+
+		//	idclient : $window.sessionStorage.idclient
+
+
+		//	idclient : $window.sessionStorage.idclient
+
 		};
 		console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
 		DataService.postData("/api/updateClientBillingInfo", params).success(

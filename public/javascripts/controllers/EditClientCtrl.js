@@ -8,8 +8,9 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 
 	$scope.getStates= function(){
 		
-		
+	
 		var country= [
+
 	                  { name: 'ALABAMA', abbreviation: 'AL'},
 	                  { name: 'ALASKA', abbreviation: 'AK'},
 	                  { name: 'AMERICAN SAMOA', abbreviation: 'AS'},
@@ -75,7 +76,6 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 
 	}
 	
-	
 	console.log("isEdit"+ isEdit);
 
 	if (isEdit) {
@@ -104,6 +104,7 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 	};
 	
 	
+	
 	$scope.open = function($event) {
 	    $event.preventDefault();
 	    $event.stopPropagation();
@@ -111,8 +112,7 @@ wfms.controller("EditClientCtrl", function($scope, $modalInstance,
 	    $scope.opened = true;
 	  };
 	  
-	  
-
+	 
 
 $scope.okay = function() {
 	if($scope.firstname &&
@@ -136,6 +136,7 @@ $scope.okay = function() {
 					city:  $scope.city,
 					zipcode: $scope.zipcode,
 					email: $scope.email,
+					state : $scope.state,
 					phonenumber: $scope.phonenumber,
 			  		idperson: $rootScope.idperson
 						

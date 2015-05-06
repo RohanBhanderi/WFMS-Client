@@ -48,9 +48,9 @@
                                             </div> 
                                             </div>
                                           <div class="form-group">
-                                            <label class="control-label col-lg-2" for="tags" ng-model="severity" required>Severity</label>
+                                            <label class="control-label col-lg-2" for="tags"  required>Severity</label>
                                             <div class="col-lg-10">                               
-                                                <select class="form-control">
+                                                <select class="form-control" ng-model="severity">
                                                   <option value="">- Choose Cateogry -</option>
                                                   <option value="1">Low</option>
                                                   <option value="2">Medium</option>
@@ -79,7 +79,7 @@
                                              <div class="col-lg-offset-2 col-lg-9">
                                                 <div class="pull-left text-danger">{{formError}}</div>
                                                 <button type="submit" class="btn btn-primary" ng-click="publish()">Publish</button>
-                                                <button type="submit" class="btn btn-danger">Save Draft</button>
+                                           
                                                 <button type="reset" class="btn btn-default"  onClick="this.form.reset()" >Reset</button>
                                              </div>
                                           </div>

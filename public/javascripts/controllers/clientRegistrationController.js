@@ -199,9 +199,9 @@ $scope.register = function() {
 				
 			}
 		};
-
+});
 $scope.cancel = function() {
 	$modalInstance.dismiss(false);
 };
-});
+
 

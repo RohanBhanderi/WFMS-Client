@@ -99,6 +99,11 @@ module.exports = function (app, passport) {
     app.delete('/api/deleteBuilding/:buildingid', buildingController.deleteBuilding);
 
     
+    //Get person Info
+    
+    app.get('/api/getPersonInfo/:idperson', ensureAuthenticated, clientController.getPersonInfo);
+
+    
     //Elastick beanstalk healthcheck
     app.get('/health',function(req,res){ res.send(200); });
     

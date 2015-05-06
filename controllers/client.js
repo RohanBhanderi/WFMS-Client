@@ -241,7 +241,8 @@ getClientInfo=function(req,res){
 
 
 };
-	
+
+
 
 /*getClientInfo=function(req,res){
 	
@@ -274,6 +275,26 @@ getClientInfo=function(req,res){
 		
 //};
 
+
+getPersonInfo=function(req,res){
+	var idperson = req.params.idperson;
+	console.log("in getPersonInfo"+idperson)
+	 mysql.queryDb('SELECT * FROM person where ?',[{idperson:idperson}],function(err,rows){
+	 	if (err) {
+	 		console.log("Error while listing all the admin details !!!"  + err);
+	 		res.status(500).json({ status : 500, message : "Error while listing client details !!!" });
+	 	} else {
+	 		res.status(200).json({ status : 200, data : rows});
+	 	}
+	 });
+	
+	console.log("getclientIdperosn: "+req.params.idperson);
+
+
+};
+
+
+exports.getPersonInfo=getPersonInfo;
 exports.updateClientBillingInfo = updateClientBillingInfo;
 exports.createClient = createClient;
 exports.updateClient = updateClient;

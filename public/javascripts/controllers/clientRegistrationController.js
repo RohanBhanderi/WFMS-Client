@@ -85,6 +85,7 @@ wfms.controller("ClientRegistrationController", function($scope, $modalInstance,
 
 	    $scope.opened = true;
 	  };
+
 		function isValidPostalCode(postalCode) {
 			console.log("inside postal check");
 	        var postalCodeRegex = /^\d{5}(?:[-\s]\d{4})?$/;
@@ -130,18 +131,12 @@ $scope.register = function() {
 			}
 
 
-	else {
-			console.log("Inside register Funct"+$scope.firstname);
-			console.log($scope.ssn + $scope.firstname + $scope.lastname + $scope.address.formatted_address + $scope.city + $scope.zipcode + $scope.email + $scope.number +  $scope.password +$scope.state);
+			else {
+				console.log("Inside register Funct"+$scope.firstname);
+				console.log($scope.ssn + $scope.firstname + $scope.lastname + $scope.address.formatted_address + $scope.city + $scope.zipcode + $scope.email + $scope.number +  $scope.password +$scope.state);
 
-		if(($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state=="")){
-			
-			
-			$scope.formError = "Form Invalid !!!";
-		}else{
-			
-			var params = {
-					
+				if(($scope.ssn =="" || $scope.firstname =="" || $scope.lastname =="" || $scope.address.formatted_address =="" || $scope.city =="" || $scope.zipcode=="" || $scope.email=="" ||  $scope.number=="" ||  $scope.password=="" || $scope.state=="")){
+
 					fname : $scope.firstname,
 					lname:  $scope.lastname,
 					address : $scope.address.formatted_address,
@@ -166,8 +161,9 @@ $scope.register = function() {
 		
 	}
 
-	}
-};
+				
+			}
+		};
 
 $scope.cancel = function() {
 	$modalInstance.dismiss(false);

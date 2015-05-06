@@ -1,5 +1,5 @@
 'use strict';
-wfms.controller("CreateReportCtrl", function($scope, $rootScope, DataService, $location) {
+wfms.controller("CreateReportCtrl", function($scope, $rootScope, DataService, $location , $window) {
 	
 	
 	//to fetch guard building schedule

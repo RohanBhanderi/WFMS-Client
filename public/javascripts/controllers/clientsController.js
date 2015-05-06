@@ -11,7 +11,7 @@ wfms.controller("ClientsCtrl", function($scope, $rootScope, DataService, $window
 				console.log("$rootScope idclient inside load client:" + $window.sessionStorage.idclient);
 	
 				$scope.clientListResults = response.data;
-				console.log(JSON.strigfy($rootScope));
+				//console.log(JSON.stringify($rootScope));
 		var params = {
 
 			idclient : $rootScope.idclient

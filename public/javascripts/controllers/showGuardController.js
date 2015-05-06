@@ -38,7 +38,11 @@ wfms.controller("ShowGuardController", function($scope, $rootScope, $modal,
 					$location.path('/guard');
 				}).error(function(err) {
 			console.log("Error while fetching data");
-			$scope.formError="Inactive Guard Id";
+			if(result.status==300)
+				{
+				$scope.formError="Inactive Guard Id";
+				}
+			
 			console.log(formError+"in Guard");
 			//$location.path('/');
 		});

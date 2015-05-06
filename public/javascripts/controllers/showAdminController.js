@@ -34,6 +34,7 @@ wfms.controller("ShowAdminController", function($scope, $rootScope, $modal,
 					$location.path('/admin');
 				}).error(function(err) {
 			console.log("Error while fetching data");
+			$scope.formError="Invalid Username/Password";
 			$location.path('/');
 		});
 		}
